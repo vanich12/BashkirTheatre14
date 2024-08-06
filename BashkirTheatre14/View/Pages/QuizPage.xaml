@@ -1,0 +1,55 @@
+﻿<Page x:Class="BashkirTheatre14.View.Pages.QuizPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="QuizPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center"
+                    Width="1668"
+                    HorizontalAlignment="Center">
+            <TextBlock 
+                Style="{StaticResource BoldWhiteTextBlock}"
+                TextAlignment="Center"
+                Margin="100 0"
+                Text="В КАКОЙ ОДЕЖДЕ РЕКОМЕНДУЕТСЯ ПОСЕЩАТЬ ТЕАТР?"/>
+            <TextBlock
+                Text="Выберите один вариант ответа"
+                TextAlignment="Center"
+                Style="{StaticResource MainWhiteTextBlock}"/>
+
+            <StackPanel  Margin="170 240" >
+                <TextBox
+                    FontSize="60"
+                    Margin="0 40"
+                    Style="{StaticResource CustomTextBox}"
+                    Text="Введите текст..."/>
+                <TextBox 
+                    FontSize="60"
+                    Margin="0 40"
+                    Style="{StaticResource CustomTextBox}"
+                    Text="Введите текст..."/>
+                <TextBox 
+                    FontSize="60"
+                    Margin="0 40"
+                    Style="{StaticResource CustomTextBox}"
+                    Text="Введите текст..."/>
+            </StackPanel>
+            <StackPanel>
+                <Button 
+                    Content="ПРОДОЛЖИТЬ"
+                    FontWeight="Bold"
+                    FontSize="80"
+                    Foreground="White"
+                    Background="#96358c"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource PurpleLightButton}"/>
+                <Button/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

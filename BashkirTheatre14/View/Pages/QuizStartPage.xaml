@@ -1,0 +1,49 @@
+﻿<Page x:Class="BashkirTheatre14.View.Pages.QuizStartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="QuizPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" 
+                    MaxWidth="1668" HorizontalAlignment="Center">
+            <Image 
+                Width="1060"
+                Height="900"
+                Margin="0 0 0 240"
+                Source="../../Resources/Images/QuizCharacters.png"/>
+            <TextBlock Text="КАК ВЕСТИ СЕБЯ В ТЕАТРЕ?"
+                        Style="{StaticResource BoldWhiteTextBlock}"
+                        TextAlignment="Center"
+                        Margin="0 0 0 0"
+                        LineHeight="138px"
+
+                       />
+            <TextBlock 
+                Margin="0 80"
+                Style="{StaticResource MainWhiteTextBlock}"
+                TextAlignment="Center"
+                VerticalAlignment="Top"
+                Text="Когда Красная Шапочка и Буратино устали стоять на фасаде здания, они решили, что пора познакомиться с миром искусства и впервые в жизни посетить театр. Однако, столкнувшись с необходимостью соблюдать определённые правила поведения, они оказались в растерянности."/>
+
+            <TextBlock 
+                Style="{StaticResource MainWhiteTextBlock}"
+                TextAlignment="Center"
+                FontWeight="ExtraLight"
+                Text="Давайте поможем им узнать, как следует вести себя в театре, чтобы их визит стал приятным и культурным опытом!" />
+
+            <Button Content="НАЧАТЬ!" 
+                    FontWeight="Bold"
+                    FontSize="80"
+                    Margin=" 0 240 0 0"
+                    Foreground="White"
+                    Background="#96358c"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource PurpleLightButton}"/>
+        </StackPanel>
+    </Grid>
+</Page>
