@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:conv="clr-namespace:BashkirTheatre14.Converter">
+    <conv:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter"/>
     <Style x:Key="CustomTextBox" TargetType="TextBox">
         <Setter Property="Template">
             <Setter.Value>
@@ -11,12 +13,17 @@
                                 Padding="76"
                                 CornerRadius="40">
                             <TextBlock x:Name="PlaceHolder"
-                                   Foreground="Black"
-                                   Text="{TemplateBinding Text}"
+                                   Foreground="#505050"
+                                   Visibility="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IsNullOrEmptyConverter}}"
+                                   Text="{TemplateBinding Tag}"
                                    FontSize="{TemplateBinding FontSize}"
                                    VerticalAlignment="Center"
                                    IsHitTestVisible="False"/>
                         </Border>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Margin="76"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Center"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

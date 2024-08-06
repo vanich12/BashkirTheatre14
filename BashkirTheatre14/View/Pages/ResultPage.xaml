@@ -1,0 +1,42 @@
+﻿<Page x:Class="BashkirTheatre14.View.Pages.ResultPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      Title="ResultPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <Image Source="../../Resources/Images/PerfectResult.png"
+                   Width="700"
+                   Height="700"
+                   />
+            <StackPanel Margin="0 0 0 240">
+                <TextBlock 
+                    TextAlignment="Center"
+                    Text="ОТЛИЧНО!"
+                    Margin="0 80"
+                    Style="{StaticResource BoldWhiteTextBlock}"/>
+                <TextBlock 
+                           Text="Вы ответили правильно на 10 из 10 вопросов"
+                           TextAlignment="Center"
+                           FontSize="80"
+                           MaxWidth="900"
+                           Style="{StaticResource MainWhiteTextBlock}"/>
+            </StackPanel>
+            <Button 
+                Content="ЗАВЕРШИТЬ"
+                HorizontalAlignment="Center"
+                FontSize="80"
+                FontWeight="Bold"
+                Foreground="White"
+                Padding="76 38"
+                Background="#96358c"
+                Style="{StaticResource PurpleLightButton}"/>
+        </StackPanel>
+    </Grid>
+</Page>

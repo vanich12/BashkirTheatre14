@@ -9,13 +9,19 @@
       Title="QuizPage">
 
     <Grid>
+       
         <StackPanel VerticalAlignment="Center"
                     Width="1668"
                     HorizontalAlignment="Center">
+            <Button 
+                Margin="400 0"
+                Content="1\10"
+                MaxWidth="800"
+                Style="{StaticResource ProggressBar}"/>
             <TextBlock 
                 Style="{StaticResource BoldWhiteTextBlock}"
                 TextAlignment="Center"
-                Margin="100 0"
+                Margin="100 240 100 0"
                 Text="В КАКОЙ ОДЕЖДЕ РЕКОМЕНДУЕТСЯ ПОСЕЩАТЬ ТЕАТР?"/>
             <TextBlock
                 Text="Выберите один вариант ответа"
@@ -27,17 +33,22 @@
                     FontSize="60"
                     Margin="0 40"
                     Style="{StaticResource CustomTextBox}"
-                    Text="Введите текст..."/>
+                    Tag="Введите текст..."
+                    Foreground="#505050"
+                    />
                 <TextBox 
                     FontSize="60"
+                    Tag="Введите текст..."
                     Margin="0 40"
                     Style="{StaticResource CustomTextBox}"
-                    Text="Введите текст..."/>
+                    Foreground="#505050"/>
                 <TextBox 
+                    Tag="Введите текст..."
                     FontSize="60"
                     Margin="0 40"
+                    Foreground="#505050"
                     Style="{StaticResource CustomTextBox}"
-                    Text="Введите текст..."/>
+                   />
             </StackPanel>
             <StackPanel>
                 <Button 
@@ -46,10 +57,26 @@
                     FontSize="80"
                     Foreground="White"
                     Background="#96358c"
+                    Padding="76 38"
+                    Margin="0 0 0 20"
                     HorizontalAlignment="Center"
                     Style="{StaticResource PurpleLightButton}"/>
-                <Button/>
+
+                <Button 
+                    Content="ЗАВЕРШИТЬ"
+                    FontSize="80"
+                    Foreground="White"
+                    Background="Transparent"
+                    BorderBrush="White"
+                    FontWeight="Bold"
+                    Margin="0 20 0 0 "
+                    Padding="126 38"
+                    HorizontalAlignment="Center"
+                    BorderThickness="3"
+                    Style="{StaticResource PurpleLightButton}"/>
+
             </StackPanel>
         </StackPanel>
+
     </Grid>
 </Page>

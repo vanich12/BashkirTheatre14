@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BashkirTheatre14.View.Pages;
 
-namespace BashkirTheatre14
+namespace BashkirTheatre14.View.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для TheatreInfoPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TheatreInfoPage : Page
     {
-        public MainWindow()
+        public TheatreInfoPage()
         {
             InitializeComponent();
-            MainFrame.Navigate(new TheatreInfoPage());
         }
     }
 }

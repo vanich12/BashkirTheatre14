@@ -9,14 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Bad.png" />
+    <None Remove="Resources\Images\GoodResult.png" />
     <None Remove="Resources\Images\MainBackground.png" />
+    <None Remove="Resources\Images\PerfectResult.png" />
     <None Remove="Resources\Images\QuizCharacters.png" />
+    <None Remove="Resources\Images\Theatre.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converter\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Model\" />
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Services\" />
     <Folder Include="Utlities\" />
@@ -29,8 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\Bad.png" />
+    <Resource Include="Resources\Images\GoodResult.png" />
     <Resource Include="Resources\Images\MainBackground.png" />
+    <Resource Include="Resources\Images\PerfectResult.png" />
     <Resource Include="Resources\Images\QuizCharacters.png" />
+    <Resource Include="Resources\Images\Theatre.png" />
   </ItemGroup>
 
 </Project>
