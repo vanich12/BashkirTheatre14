@@ -29,9 +29,15 @@ namespace BashkirTheatre14.ViewModel.Popups
         {
             _cancellationTokenSource = new CancellationTokenSource();
             QuizList.Clear();
-            await foreach (var quiz in _quizService.GetListAsync(_cancellationTokenSource.Token))
+            try
             {
-                QuizList.Add(quiz);
+                await foreach (var quiz in _quizService.GetListAsync(_cancellationTokenSource.Token))
+                {
+                    QuizList.Add(quiz);
+                }
+            }
+            catch (OperationCanceledException)
+            {
             }
         }
 
