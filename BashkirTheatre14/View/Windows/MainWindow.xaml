@@ -1,0 +1,67 @@
+﻿<Window x:Class="BashkirTheatre14.View.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BashkirTheatre14"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:windows="clr-namespace:BashkirTheatre14.ViewModel.Windows"
+        xmlns:components="clr-namespace:BashkirTheatre14.View.Components"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowState="Maximized"
+        d:DesignHeight ="3840"
+        d:DesignWidth="2160"
+        Title="MainWindow"
+        d:DataContext="{d:DesignInstance windows:MainWindowViewModel}">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="TransparentButtonStyle">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Panel.ZIndex" Value="3000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="{TemplateBinding Width}" 
+                                Height="{TemplateBinding Height}" 
+                                Background="Transparent"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:InvokeCommandAction
+                Command="{Binding LoadedCommand}"/>
+        </b:EventTrigger>
+        <b:EventTrigger EventName="Closed">
+            <b:InvokeCommandAction
+                Command="{Binding ClosingCommand}"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    <Viewbox>
+        <Grid Height="3840"
+              Width="2160">
+            <ContentPresenter Content="{Binding CurrentViewModel}"/>
+            <components:ModalControl 
+                Panel.ZIndex="1"
+                IsOpen="{Binding IsModalOpen}">
+                <ContentControl Content="{Binding CurrentModalViewModel}"/>
+            </components:ModalControl>
+            <Button 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom" 
+                Style="{StaticResource TransparentButtonStyle}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="PreviewMouseDown">
+                        <b:InvokeCommandAction Command="{Binding StartTimerCommand}"/>
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="PreviewMouseUp">
+                        <b:InvokeCommandAction Command="{Binding StopTimerCommand}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+        </Grid>
+    </Viewbox>
+</Window>
