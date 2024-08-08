@@ -21,8 +21,9 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
             builder.ConfigureServices((context,services) =>
             {
 
+                services.AddSingleton<CreateViewModel<QuizViewModel, Quiz>>(s => quiz => new QuizViewModel(quiz));
                 services.AddTransient<MainPageViewModel>(s=>new MainPageViewModel(s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>()));
-
+                
                 // не уверен что будет норм работать, и можно ли так делать, по другому хз как передать навигацию с параметром в QuizItemModel
                 services.AddSingleton<CreateViewModel<QuizItemViewModel, Quiz>>(s =>
                 {
@@ -31,8 +32,9 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
                     return quiz => new QuizItemViewModel(parameterNavigationService, quiz);
                 });
 
-                services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
-                    quizModel => new QuizQuestionViewModel(quizModel));
+
+                //services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
+                //    quizModel => new QuizQuestionViewModel(quizModel));
 
                 services.AddTransient<KeyboardControlViewModel>(_ =>
                 {

@@ -62,7 +62,7 @@
                 Panel.ZIndex="1001"
                 Margin=" 0 -400 0 00"
                 VerticalAlignment="Center"
-                Command="{Binding SelectQuizCommand}"
+                Command="{Binding CloseContainerCommand}"
                 />
         </StackPanel>
     </popupContainers:OpacityPopupContainer>

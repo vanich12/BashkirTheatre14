@@ -23,6 +23,7 @@ namespace BashkirTheatre14.HostBuilders
                 {
                     DataContext = s.GetRequiredService<MainWindowViewModel>()
                 });
+
             });
             return builder;
         }
