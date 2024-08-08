@@ -17,13 +17,12 @@ namespace BashkirTheatre14.ViewModel.Popups
     {
         private readonly QuizService _quizService;
         private CancellationTokenSource? _cancellationTokenSource;
-        [ObservableProperty] private ObservableCollection<QuizViewModel> _quizList = new();
+        [ObservableProperty] private ObservableCollection<QuizItemViewModel> _quizList = new();
         private IParameterNavigationService<IReadOnlyList<Question>> _parameterNavigationService;
 
-        public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService, IParameterNavigationService<IReadOnlyList<Question>> param) : base(closeModalNavigationService)
+        public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService) : base(closeModalNavigationService)
         {
             _quizService = quizService;
-            _parameterNavigationService = param;
         }
 
         [RelayCommand]
@@ -54,8 +53,7 @@ namespace BashkirTheatre14.ViewModel.Popups
         [RelayCommand]
         private void SelectQuiz()
         {
-            var selectViewModel = QuizList.First(x => x.IsSelected);
-            _parameterNavigationService.Navigate(selectViewModel.Quiz.Questions);
+
         }
     }
 }

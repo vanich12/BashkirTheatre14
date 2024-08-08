@@ -22,7 +22,7 @@ namespace BashkirTheatre14.HostBuilders.Navigation
 
                 services.AddNavigationService<MainPageViewModel, NavigationStore>();
                
-                services.AddParameterNavigationService<QuizQuestionViewModel, NavigationStore, IReadOnlyList<Question>>();
+                services.AddParameterNavigationService<QuizItemViewModel, NavigationStore, Quiz>();
 
                 services.AddSingleton<CompositeNavigationService<MainPageViewModel>>(s=>
                     new CompositeNavigationService<MainPageViewModel>(

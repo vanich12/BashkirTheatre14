@@ -23,8 +23,7 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
                 services.AddTransient<QuizSelectionPopupViewModel>(s=>
                     new QuizSelectionPopupViewModel(
                         s.GetRequiredService<CloseNavigationService<ModalNavigationStore>>(),
-                        s.GetRequiredService<QuizService>(),
-                        s.GetRequiredService<ParameterNavigationService<QuizQuestionViewModel, IReadOnlyList<Question>>>()));
+                        s.GetRequiredService<QuizService>()));
             });
             return builder;
         }

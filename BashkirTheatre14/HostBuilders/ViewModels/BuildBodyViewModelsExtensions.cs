@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvvmNavigationLib.Services;
+using MvvmNavigationLib.Stores;
 
 namespace BashkirTheatre14.HostBuilders.ViewModels
 {
@@ -22,7 +23,13 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
 
                 services.AddTransient<MainPageViewModel>(s=>new MainPageViewModel(s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>()));
 
-                services.AddSingleton<CreateViewModel<QuizViewModel, Quiz>>(s=>quiz=>new QuizViewModel(quiz));
+                // не уверен что будет норм работать, и можно ли так делать, по другому хз как передать навигацию с параметром в QuizItemModel
+                services.AddSingleton<CreateViewModel<QuizItemViewModel, Quiz>>(s =>
+                {
+                    var parameterNavigationService = s.GetRequiredService<ParameterNavigationService<QuizViewModel, Quiz>>();
+
+                    return quiz => new QuizItemViewModel(parameterNavigationService, quiz);
+                });
 
                 services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
                     quizModel => new QuizQuestionViewModel(quizModel));

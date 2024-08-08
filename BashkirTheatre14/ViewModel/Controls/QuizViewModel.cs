@@ -28,6 +28,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         {
             IsSelected = true;
         }
+
         public override Task Load()
         {
             return Task.CompletedTask;
