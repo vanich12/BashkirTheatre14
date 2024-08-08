@@ -1,4 +1,5 @@
-﻿using BashkirTheatre14.ViewModel.Popups;
+﻿using BashkirTheatre14.ViewModel.Pages;
+using BashkirTheatre14.ViewModel.Popups;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvvmNavigationLib.Services;

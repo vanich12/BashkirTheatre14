@@ -1,4 +1,5 @@
-﻿using BashkirTheatre14.Model.Entities;
+﻿using BashkirTheatre14.Model;
+using BashkirTheatre14.Model.Entities;
 using BashkirTheatre14.ViewModel.Controls;
 using BashkirTheatre14.ViewModel.Pages;
 using BashkirTheatre14.ViewModel.Popups;
@@ -22,6 +23,9 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
                 services.AddTransient<MainPageViewModel>(s=>new MainPageViewModel(s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>()));
 
                 services.AddSingleton<CreateViewModel<QuizViewModel, Quiz>>(s=>quiz=>new QuizViewModel(quiz));
+
+                services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
+                    quizModel => new QuizQuestionViewModel(quizModel));
 
                 services.AddTransient<KeyboardControlViewModel>(_ =>
                 {

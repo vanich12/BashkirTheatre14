@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BashkirTheatre14.Model.Entities;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public class QuizViewModel:BaseControlViewModel
+    public partial class QuizViewModel:BaseControlViewModel
     {
         public Quiz Quiz { get; }
+        [ObservableProperty] private bool _isSelected;
 
         public QuizViewModel(Quiz quiz)
         {
@@ -20,6 +23,11 @@ namespace BashkirTheatre14.ViewModel.Controls
         {
         }
 
+        [RelayCommand]
+        private void SelectQuiz()
+        {
+            IsSelected = true;
+        }
         public override Task Load()
         {
             return Task.CompletedTask;

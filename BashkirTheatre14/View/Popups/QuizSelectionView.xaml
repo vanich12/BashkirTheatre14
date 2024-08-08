@@ -8,7 +8,7 @@
              xmlns:popups="clr-namespace:BashkirTheatre14.ViewModel.Popups"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             Height="450" Width="800"
+             Height="1500" Width="1668"
              d:DataContext="{d:DesignInstance popups:QuizSelectionPopupViewModel}">
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
@@ -21,20 +21,49 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <popupContainers:OpacityPopupContainer>
+
         <StackPanel
             Background="White">
-            <ItemsControl ItemsSource="{Binding  QuizList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock FontSize="32"
-                                   Text="{Binding Quiz.Title}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+           <ItemsControl ItemsSource="{Binding QuizList}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel
+                        Height="1500"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+               <ItemsControl.ItemTemplate>
+                   <DataTemplate>
+                        <Grid VerticalAlignment="Center">
+                            <Button Content="Кнопка"
+                                    Height="100"
+                                    Panel.ZIndex="1001"
+                                    Background="Black"
+                                    FontSize="60" Command="{Binding SelectQuizCommand}"/>
+                            <Image Source="../../Resources/Images/quiz_variants.png" Height="535"/>
+                            <TextBlock Text="{Binding Quiz.Title}"
+                                       TextAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="56"/>
+                        </Grid>
+                   </DataTemplate>
+               </ItemsControl.ItemTemplate>
+           </ItemsControl>
             <Button Width="50"
                     Height="50"
                     Content="Закрыть"
                     Command="{Binding CloseContainerCommand}"/>
+
+            <Button
+                Width="100"
+                Height="100"
+                Content="Продолжить"
+                Panel.ZIndex="1001"
+                Margin=" 0 -400 0 00"
+                VerticalAlignment="Center"
+                Command="{Binding SelectQuizCommand}"
+                />
         </StackPanel>
     </popupContainers:OpacityPopupContainer>
 </UserControl>

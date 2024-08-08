@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BashkirTheatre14.Model.Entities;
 using BashkirTheatre14.Services;
 using BashkirTheatre14.ViewModel.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,12 +17,13 @@ namespace BashkirTheatre14.ViewModel.Popups
     {
         private readonly QuizService _quizService;
         private CancellationTokenSource? _cancellationTokenSource;
+        [ObservableProperty] private ObservableCollection<QuizViewModel> _quizList = new();
+        private IParameterNavigationService<IReadOnlyList<Question>> _parameterNavigationService;
 
-        [ObservableProperty] private ObservableCollection<QuizViewModel> _quizList=new();
-
-        public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService) : base(closeModalNavigationService)
+        public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService, IParameterNavigationService<IReadOnlyList<Question>> param) : base(closeModalNavigationService)
         {
             _quizService = quizService;
+            _parameterNavigationService = param;
         }
 
         [RelayCommand]
@@ -47,6 +49,13 @@ namespace BashkirTheatre14.ViewModel.Popups
             if(_cancellationTokenSource is null) return;
             await _cancellationTokenSource.CancelAsync();
             _cancellationTokenSource.Dispose();
+        }
+
+        [RelayCommand]
+        private void SelectQuiz()
+        {
+            var selectViewModel = QuizList.First(x => x.IsSelected);
+            _parameterNavigationService.Navigate(selectViewModel.Quiz.Questions);
         }
     }
 }

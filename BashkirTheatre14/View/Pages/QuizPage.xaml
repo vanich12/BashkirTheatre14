@@ -4,8 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
+      xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls"
+      xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
+      d:DataContext="{d:DesignInstance controls:QuizViewModel}"
       Title="QuizPage">
 
     <Grid>

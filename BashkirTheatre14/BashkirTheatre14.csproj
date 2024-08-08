@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Resources\Images\MainBackground.png" />
     <None Remove="Resources\Images\QuizCharacters.png" />
+    <None Remove="Resources\Images\quiz_variants.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\MainBackground.png" />
     <Resource Include="Resources\Images\QuizCharacters.png" />
+    <Resource Include="Resources\Images\quiz_variants.png" />
   </ItemGroup>
 
   <ItemGroup>
