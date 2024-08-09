@@ -40,7 +40,17 @@
                                     Height="100"
                                     Panel.ZIndex="1001"
                                     Background="Black"
-                                    FontSize="60" Command="{Binding SelectQuizCommand}"/>
+                                    FontSize="60"
+                                    Command="{Binding SelectQuizCommand}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Click">
+                                        <b:InvokeCommandAction 
+                                            Command="{Binding DataContext.CloseContainerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+
+                                        <b:InvokeCommandAction Command="{Binding SelectQuizCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </Button>
                             <Image Source="../../Resources/Images/quiz_variants.png" Height="535"/>
                             <TextBlock Text="{Binding Quiz.Title}"
                                        TextAlignment="Center"

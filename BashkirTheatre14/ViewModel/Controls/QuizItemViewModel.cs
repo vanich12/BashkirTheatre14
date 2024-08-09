@@ -14,7 +14,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         private IParameterNavigationService<Quiz> _navigationService;
         public Quiz Quiz { get; set; }
 
-        public QuizItemViewModel(IParameterNavigationService<Quiz> navService = null,Quiz quiz = null)
+        public QuizItemViewModel(IParameterNavigationService<Quiz> navService = null, Quiz quiz = null)
         {
             this.Quiz = quiz;
       
