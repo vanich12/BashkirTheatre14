@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BashkirTheatre14.Model.Entities;
+﻿using BashkirTheatre14.Model.Entities;
+using BashkirTheatre14.ViewModel.Pages;
 
-namespace BashkirTheatre14.ViewModel.Pages
+namespace BashkirTheatre14.ViewModel.Controls
 {
     public partial class QuizQuestionViewModel: BasePageViewModel
     {

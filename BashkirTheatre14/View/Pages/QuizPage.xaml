@@ -8,7 +8,7 @@
       xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
-      d:DataContext="{d:DesignInstance controls:QuizViewModel}"
+      d:DataContext="{d:DesignInstance controls:QuizQuestionViewModel}"
       Title="QuizPage">
 
     <Grid>

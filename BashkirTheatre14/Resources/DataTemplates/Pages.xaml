@@ -8,9 +8,4 @@
             <pages1:MainPage/>
         </pages1:PageContainer>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type controls:QuizViewModel}">
-        <pages1:PageContainer DataContext="{Binding}">
-            <pages1:QuizStartPage/>
-        </pages1:PageContainer>
-    </DataTemplate>
 </ResourceDictionary>

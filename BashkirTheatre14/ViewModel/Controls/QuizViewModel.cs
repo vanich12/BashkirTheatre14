@@ -11,6 +11,7 @@ namespace BashkirTheatre14.ViewModel.Controls
 {
     public partial class QuizViewModel:BaseControlViewModel
     {
+
         public Quiz Quiz { get; }
         [ObservableProperty] private bool _isSelected;
 
@@ -27,6 +28,12 @@ namespace BashkirTheatre14.ViewModel.Controls
         private void SelectQuiz()
         {
             IsSelected = true;
+        }
+
+        [RelayCommand]
+        private void OnQustions()
+        {
+            
         }
 
         public override Task Load()

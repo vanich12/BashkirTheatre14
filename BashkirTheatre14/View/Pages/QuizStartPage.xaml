@@ -1,4 +1,4 @@
-﻿<Page x:Class="BashkirTheatre14.View.Pages.QuizStartPage"
+﻿<UserControl x:Class="BashkirTheatre14.View.Pages.QuizStartPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
       d:DataContext="{d:DesignInstance controls:QuizViewModel}"
-      Title="QuizPage">
+      >
 
     <Grid>
         <StackPanel VerticalAlignment="Center" 
@@ -48,4 +48,4 @@
                     Style="{StaticResource PurpleLightButton}"/>
         </StackPanel>
     </Grid>
-</Page>
+</UserControl>
