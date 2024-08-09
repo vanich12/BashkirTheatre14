@@ -12,4 +12,27 @@
         <Setter Property="FontSize" Value="60"/>
         <Setter Property="FontWeight" Value="Light"/>
     </Style>
+
+    <!--<Style x:Key="QuizQuestion" TargetType="TextBlock">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBlock">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="76"
+                                CornerRadius="40">
+                            <TextBlock x:Name="PlaceHolder"
+                                       Foreground="Black"
+                                       Text="{TemplateBinding Text}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
 </ResourceDictionary>

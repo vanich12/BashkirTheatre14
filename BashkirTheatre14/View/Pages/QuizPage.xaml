@@ -8,10 +8,11 @@
       xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
-      d:DataContext="{d:DesignInstance controls:QuizQuestionViewModel}"
+      d:DataContext="{d:DesignInstance controls:QuizItemViewModel}"
       Title="QuizPage">
 
-    <Grid>
+    <Grid 
+        DataContext="{Binding SelectedQuestion}">
         <StackPanel VerticalAlignment="Center"
                     Width="1668"
                     HorizontalAlignment="Center">
@@ -19,28 +20,47 @@
                 Style="{StaticResource BoldWhiteTextBlock}"
                 TextAlignment="Center"
                 Margin="100 0"
-                Text="В КАКОЙ ОДЕЖДЕ РЕКОМЕНДУЕТСЯ ПОСЕЩАТЬ ТЕАТР?"/>
+                Text="{Binding Question.Title}"/>
             <TextBlock
                 Text="Выберите один вариант ответа"
                 TextAlignment="Center"
                 Style="{StaticResource MainWhiteTextBlock}"/>
 
+            <ItemsControl ItemsSource="{Binding Question.Answers}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel  Margin="170 240"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button
+                            FontSize="60"
+                            Margin="0 40"
+                            Style="{StaticResource QuizQuestionBut}"
+                            Content="{Binding Title}"
+                            />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
             <StackPanel  Margin="170 240" >
-                <TextBox
+                <Button
                     FontSize="60"
                     Margin="0 40"
-                    Style="{StaticResource CustomTextBox}"
-                    Text="Введите текст..."/>
-                <TextBox 
-                    FontSize="60"
-                    Margin="0 40"
-                    Style="{StaticResource CustomTextBox}"
-                    Text="Введите текст..."/>
-                <TextBox 
-                    FontSize="60"
-                    Margin="0 40"
-                    Style="{StaticResource CustomTextBox}"
-                    Text="Введите текст..."/>
+                    Style="{StaticResource QuizQuestionBut}"
+                    Content="Введите текст..."/>
+                <Button
+ 
+                     FontSize="60"
+                     Margin="0 40"
+                     Style="{StaticResource QuizQuestionBut}"
+                     Content="Введите текст..."/>
+                <Button
+                     FontSize="60"
+                     Margin="0 40"
+                     Style="{StaticResource QuizQuestionBut}"
+                     Content="Введите текст..."/>
             </StackPanel>
             <StackPanel>
                 <Button 
@@ -51,7 +71,7 @@
                     Background="#96358c"
                     HorizontalAlignment="Center"
                     Style="{StaticResource PurpleLightButton}"/>
-                <Button/>
+           
             </StackPanel>
         </StackPanel>
     </Grid>

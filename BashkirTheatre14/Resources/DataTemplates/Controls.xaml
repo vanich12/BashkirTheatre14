@@ -6,5 +6,10 @@
         <pages:PageContainer DataContext="{Binding}">
             <pages:QuizStartPage/>
         </pages:PageContainer>
+    </DataTemplate>  
+    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
+        <pages:PageContainer DataContext="{Binding}">
+            <pages:QuizPage/>
+        </pages:PageContainer>
     </DataTemplate>
 </ResourceDictionary>

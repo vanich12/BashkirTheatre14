@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,20 +16,29 @@ namespace BashkirTheatre14.Services
         private readonly IMainApiClient _apiClient;
         private readonly ImageLoadingHttpClient _loadingHttpClient;
         private readonly CreateViewModel<QuizItemViewModel, Quiz> _quizFactory;
-
-        public QuizService(IMainApiClient apiClient,ImageLoadingHttpClient loadingHttpClient,CreateViewModel<QuizItemViewModel,Quiz> quizFactory)
+        private readonly CreateViewModel<QuizQuestionViewModel, Question> _questionFactory;
+        public QuizService(IMainApiClient apiClient,ImageLoadingHttpClient loadingHttpClient,CreateViewModel<QuizItemViewModel,Quiz> quizFactory,CreateViewModel<QuizQuestionViewModel,Question> questionFactory)
         {
             _apiClient = apiClient;
             _loadingHttpClient = loadingHttpClient;
             _quizFactory = quizFactory;
+            _questionFactory = questionFactory;
         }
 
         protected override async IAsyncEnumerable<QuizItemViewModel> GetListAsyncOverride(params object[] args)
         {
             var quizList = await _apiClient.GetQuizList();
-            foreach (var quiz in quizList.Where(q=>q.Display))
+            foreach (var quiz in quizList.Where(q => q.Display))
             {
-                yield return _quizFactory(quiz);
+                var quizViewModel = _quizFactory(quiz);
+
+                var questionViewModels = new ObservableCollection<QuizQuestionViewModel>(
+                    quiz.Questions.Select(question => _questionFactory(question))
+                );
+
+                quizViewModel.QuestionList = questionViewModels;
+
+                yield return quizViewModel;
             }
         }
     }

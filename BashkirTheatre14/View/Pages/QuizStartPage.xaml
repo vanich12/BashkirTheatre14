@@ -18,7 +18,7 @@
                 Height="900"
                 Margin="0 0 0 240"
                 Source="../../Resources/Images/QuizCharacters.png"/>
-            <TextBlock Text="КАК ВЕСТИ СЕБЯ В ТЕАТРЕ?"
+            <TextBlock Text="{Binding Quiz.Title}"
                         Style="{StaticResource BoldWhiteTextBlock}"
                         TextAlignment="Center"
                         Margin="0 0 0 0"
@@ -44,6 +44,7 @@
                     Margin=" 0 240 0 0"
                     Foreground="White"
                     Background="#96358c"
+                    Command="{Binding NavigateOnQuestionCommand}"
                     HorizontalAlignment="Center"
                     Style="{StaticResource PurpleLightButton}"/>
         </StackPanel>

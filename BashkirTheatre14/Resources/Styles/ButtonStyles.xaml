@@ -14,4 +14,27 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+        <Style x:Key="QuizQuestionBut" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Padding="76"
+                                    CornerRadius="40">
+                                <TextBlock x:Name="PlaceHolder"
+                                           Foreground="Black"
+                                           Text="{TemplateBinding Content}"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           VerticalAlignment="Center"
+                                           IsHitTestVisible="False"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 </ResourceDictionary>

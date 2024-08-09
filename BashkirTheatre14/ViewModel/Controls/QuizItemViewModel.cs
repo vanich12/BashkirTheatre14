@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BashkirTheatre14.Model.Entities;
+using BashkirTheatre14.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmNavigationLib.Services;
 
@@ -18,11 +21,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         {
             this.Quiz = quiz;
       
-            _navigationService = navService;
-            if (navService!=null)
-            {
-                _navigationService = navService;
-            }
+            this. _navigationService = navService;
         }
 
         [RelayCommand]
@@ -30,7 +29,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         {
             _navigationService.Navigate(Quiz);
         }
-        
+
         public override Task Load()
         {
             throw new NotImplementedException();
