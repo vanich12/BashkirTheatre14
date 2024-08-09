@@ -1,4 +1,4 @@
-﻿<Page x:Class="BashkirTheatre14.View.Pages.QuizPage"
+﻿<UserControl x:Class="BashkirTheatre14.View.Pages.QuizPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,71 +8,12 @@
       xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
-      d:DataContext="{d:DesignInstance controls:QuizItemViewModel}"
-      Title="QuizPage">
-
-    <Grid 
-        DataContext="{Binding SelectedQuestion}">
-        <StackPanel VerticalAlignment="Center"
-                    Width="1668"
-                    HorizontalAlignment="Center">
-            <TextBlock 
-                Style="{StaticResource BoldWhiteTextBlock}"
-                TextAlignment="Center"
-                Margin="100 0"
-                Text="{Binding Question.Title}"/>
-            <TextBlock
-                Text="Выберите один вариант ответа"
-                TextAlignment="Center"
-                Style="{StaticResource MainWhiteTextBlock}"/>
-
-            <ItemsControl ItemsSource="{Binding Question.Answers}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel  Margin="170 240"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button
-                            FontSize="60"
-                            Margin="0 40"
-                            Style="{StaticResource QuizQuestionBut}"
-                            Content="{Binding Title}"
-                            />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <StackPanel  Margin="170 240" >
-                <Button
-                    FontSize="60"
-                    Margin="0 40"
-                    Style="{StaticResource QuizQuestionBut}"
-                    Content="Введите текст..."/>
-                <Button
+      d:DataContext="{d:DesignInstance controls:QuizViewModel}"
+     >
  
-                     FontSize="60"
-                     Margin="0 40"
-                     Style="{StaticResource QuizQuestionBut}"
-                     Content="Введите текст..."/>
-                <Button
-                     FontSize="60"
-                     Margin="0 40"
-                     Style="{StaticResource QuizQuestionBut}"
-                     Content="Введите текст..."/>
-            </StackPanel>
-            <StackPanel>
-                <Button 
-                    Content="ПРОДОЛЖИТЬ"
-                    FontWeight="Bold"
-                    FontSize="80"
-                    Foreground="White"
-                    Background="#96358c"
-                    HorizontalAlignment="Center"
-                    Style="{StaticResource PurpleLightButton}"/>
-           
-            </StackPanel>
-        </StackPanel>
+    <Grid>
+        <ContentControl>
+
+        </ContentControl>
     </Grid>
-</Page>
+</UserControl>

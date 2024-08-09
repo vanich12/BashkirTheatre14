@@ -21,22 +21,31 @@ namespace BashkirTheatre14.ViewModel.Controls
         [ObservableProperty]
         private QuizQuestionViewModel _selectedQuestion;
 
-        public QuizViewModel(Quiz quiz, QuizService quizService)
+        public QuizViewModel(Quiz quiz)
         {
             Quiz = quiz;
-            _quizService = quizService;
+            foreach (Question quizQuestion in Quiz.Questions)
+            {
+                QuestionList.Add(new QuizQuestionViewModel(quizQuestion));
+            }
         }
 
         public override async ValueTask DisposeAsync()
         {
+            
         }
-
+        
         [RelayCommand]
         private void SelectQuiz()
         {
             IsSelected = true;
         }
 
+        [RelayCommand]
+        private void NextQuestions()
+        {
+            _selectedQuestion = QuestionList[0];
+        }
 
         public override Task Load()
         {

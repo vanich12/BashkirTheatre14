@@ -2,14 +2,108 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pages="clr-namespace:BashkirTheatre14.View.Pages"
                     xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls">
-    <DataTemplate DataType="{x:Type controls:QuizViewModel}">
-        <pages:PageContainer DataContext="{Binding}">
-            <pages:QuizStartPage/>
-        </pages:PageContainer>
-    </DataTemplate>  
-    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
-        <pages:PageContainer DataContext="{Binding}">
-            <pages:QuizPage/>
-        </pages:PageContainer>
+    <DataTemplate DataType="{x:Type controls:QuizViewModel}" x:Key="StartPage">
+      
+            <StackPanel VerticalAlignment="Center" 
+                        MaxWidth="1668" HorizontalAlignment="Center">
+                <Image 
+                    Width="1060"
+                    Height="900"
+                    Margin="0 0 0 240"
+                    Source="../../Resources/Images/QuizCharacters.png"/>
+                <TextBlock Text="{Binding Quiz.Title}"
+                           Style="{StaticResource BoldWhiteTextBlock}"
+                           TextAlignment="Center"
+                           Margin="0 0 0 0"
+                           LineHeight="138px"
+                />
+                <TextBlock 
+                    Margin="0 80"
+                    Style="{StaticResource MainWhiteTextBlock}"
+                    TextAlignment="Center"
+                    VerticalAlignment="Top"
+                    Text="Когда Красная Шапочка и Буратино устали стоять на фасаде здания, они решили, что пора познакомиться с миром искусства и впервые в жизни посетить театр. Однако, столкнувшись с необходимостью соблюдать определённые правила поведения, они оказались в растерянности."/>
+
+                <TextBlock 
+                    Style="{StaticResource MainWhiteTextBlock}"
+                    TextAlignment="Center"
+                    FontWeight="ExtraLight"
+                    Text="Давайте поможем им узнать, как следует вести себя в театре, чтобы их визит стал приятным и культурным опытом!" />
+
+                <Button Content="НАЧАТЬ!" 
+                        FontWeight="Bold"
+                        FontSize="80"
+                        Margin=" 0 240 0 0"
+                        Foreground="White"
+                        Background="#96358c"
+                        Command="{Binding NextQuestionsCommand}"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource PurpleLightButton}"/>
+            </StackPanel>
+    </DataTemplate> 
+
+    <DataTemplate DataType="{x:Type controls:QuizQuestionViewModel}" x:Key="QuizPage">
+            <StackPanel
+                VerticalAlignment="Center"
+             Width="1668"
+             HorizontalAlignment="Center">
+                <TextBlock 
+         Style="{StaticResource BoldWhiteTextBlock}"
+         TextAlignment="Center"
+         Margin="100 0"
+         Text="{Binding Question.Title}"/>
+                <TextBlock
+         Text="Выберите один вариант ответа"
+         TextAlignment="Center"
+         Style="{StaticResource MainWhiteTextBlock}"/>
+
+                <ItemsControl ItemsSource="{Binding Question.Answers}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel  Margin="170 240"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button
+                     FontSize="60"
+                     Margin="0 40"
+                     Style="{StaticResource QuizQuestionBut}"
+                     Content="{Binding Title}"
+                     />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <StackPanel  Margin="170 240" >
+                    <Button
+             FontSize="60"
+             Margin="0 40"
+             Style="{StaticResource QuizQuestionBut}"
+             Content="Введите текст..."/>
+                    <Button
+ 
+              FontSize="60"
+              Margin="0 40"
+              Style="{StaticResource QuizQuestionBut}"
+              Content="Введите текст..."/>
+                    <Button
+              FontSize="60"
+              Margin="0 40"
+              Style="{StaticResource QuizQuestionBut}"
+              Content="Введите текст..."/>
+                </StackPanel>
+                <StackPanel>
+                    <Button 
+             Content="ПРОДОЛЖИТЬ"
+             FontWeight="Bold"
+             FontSize="80"
+             Foreground="White"
+             Background="#96358c"
+             HorizontalAlignment="Center"
+             Style="{StaticResource PurpleLightButton}"/>
+
+                </StackPanel>
+            </StackPanel>
     </DataTemplate>
 </ResourceDictionary>

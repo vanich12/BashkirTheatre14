@@ -24,8 +24,8 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
 
                 services.AddSingleton<CreateViewModel<QuizViewModel, Quiz>>(s =>
                 {
-                    var quizService = s.GetRequiredService<QuizService>();
-                    return quiz => new QuizViewModel(quiz, quizService);
+                  
+                    return quiz => new QuizViewModel(quiz);
                 });
 
                 services.AddTransient<MainPageViewModel>(s=>new MainPageViewModel(s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>()));

@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace BashkirTheatre14.View.Pages
 {
     /// <summary>
     /// Логика взаимодействия для QuizPage.xaml
     /// </summary>
-    public partial class QuizPage : Page
+    public partial class QuizPage : UserControl
     {
         public QuizPage()
         {

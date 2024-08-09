@@ -36,8 +36,6 @@ namespace BashkirTheatre14.Services
                     quiz.Questions.Select(question => _questionFactory(question))
                 );
 
-                quizViewModel.QuestionList = questionViewModels;
-
                 yield return quizViewModel;
             }
         }
