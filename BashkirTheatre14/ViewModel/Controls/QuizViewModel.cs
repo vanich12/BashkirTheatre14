@@ -12,39 +12,55 @@ using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public partial class QuizViewModel:BaseControlViewModel
+    public partial class QuizViewModel : BaseControlViewModel
     {
         public Quiz Quiz { get; }
         private readonly QuizService _quizService;
-        [ObservableProperty] private bool _isSelected;
-        [ObservableProperty] private ObservableCollection<QuizQuestionViewModel> _questionList = new();
-        [ObservableProperty]
-        private QuizQuestionViewModel _selectedQuestion;
+        [ObservableProperty] private ObservableCollection<Question> _questionList = new();
+        [ObservableProperty] private Question? _selectedQuestion;
+        [ObservableProperty] private Answer? _selectedAnswer;
+        private int? QuestionIndex { get; set; }
+        private List<Answer> CorrectAnswer { get; set; } = new();
 
         public QuizViewModel(Quiz quiz)
         {
             Quiz = quiz;
             foreach (Question quizQuestion in Quiz.Questions)
             {
-                QuestionList.Add(new QuizQuestionViewModel(quizQuestion));
+                QuestionList.Add(quizQuestion);
             }
         }
 
         public override async ValueTask DisposeAsync()
         {
-            
         }
-        
+
         [RelayCommand]
-        private void SelectQuiz()
+        private void SelectAnswer(Answer answer)
         {
-            IsSelected = true;
+            this._selectedAnswer = answer;
         }
 
         [RelayCommand]
         private void NextQuestions()
         {
-            _selectedQuestion = QuestionList[0];
+            if (QuestionIndex == null)
+            {
+                QuestionIndex = 0;
+            }
+            else if ((QuestionIndex < QuestionList.Count - 1) )
+            {
+                if (SelectedAnswer is not null && SelectedAnswer.Correct)
+                {
+                    CorrectAnswer.Add(SelectedAnswer);
+                }
+                QuestionIndex++;
+            }
+
+            if (QuestionIndex < QuestionList.Count)
+            {
+                SelectedQuestion = QuestionList[QuestionIndex.Value];
+            }
         }
 
         public override Task Load()

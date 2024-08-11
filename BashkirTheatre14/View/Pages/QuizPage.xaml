@@ -6,14 +6,19 @@
       xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
       xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls"
       xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
+      xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
       d:DataContext="{d:DesignInstance controls:QuizViewModel}"
      >
+    <UserControl.Resources>
+        <helpers:QuizTemplateSelector x:Key="QuizTemplateSelector" />
+    </UserControl.Resources>
  
     <Grid>
-        <ContentControl>
-
+        <ContentControl 
+            Content="{Binding }"
+            ContentTemplateSelector="{StaticResource QuizTemplateSelector}">
         </ContentControl>
     </Grid>
 </UserControl>

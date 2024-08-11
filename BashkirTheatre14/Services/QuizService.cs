@@ -16,13 +16,11 @@ namespace BashkirTheatre14.Services
         private readonly IMainApiClient _apiClient;
         private readonly ImageLoadingHttpClient _loadingHttpClient;
         private readonly CreateViewModel<QuizItemViewModel, Quiz> _quizFactory;
-        private readonly CreateViewModel<QuizQuestionViewModel, Question> _questionFactory;
-        public QuizService(IMainApiClient apiClient,ImageLoadingHttpClient loadingHttpClient,CreateViewModel<QuizItemViewModel,Quiz> quizFactory,CreateViewModel<QuizQuestionViewModel,Question> questionFactory)
+        public QuizService(IMainApiClient apiClient,ImageLoadingHttpClient loadingHttpClient,CreateViewModel<QuizItemViewModel,Quiz> quizFactory)
         {
             _apiClient = apiClient;
             _loadingHttpClient = loadingHttpClient;
             _quizFactory = quizFactory;
-            _questionFactory = questionFactory;
         }
 
         protected override async IAsyncEnumerable<QuizItemViewModel> GetListAsyncOverride(params object[] args)
@@ -32,9 +30,6 @@ namespace BashkirTheatre14.Services
             {
                 var quizViewModel = _quizFactory(quiz);
 
-                var questionViewModels = new ObservableCollection<QuizQuestionViewModel>(
-                    quiz.Questions.Select(question => _questionFactory(question))
-                );
 
                 yield return quizViewModel;
             }

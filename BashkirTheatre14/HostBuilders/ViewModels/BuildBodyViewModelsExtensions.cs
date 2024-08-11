@@ -24,22 +24,21 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
 
                 services.AddSingleton<CreateViewModel<QuizViewModel, Quiz>>(s =>
                 {
-                  
                     return quiz => new QuizViewModel(quiz);
                 });
 
                 services.AddTransient<MainPageViewModel>(s=>new MainPageViewModel(s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>()));
                 
-                // не уверен что будет норм работать, и можно ли так делать, по другому хз как передать навигацию с параметром в QuizItemModel
+                
                 services.AddSingleton<CreateViewModel<QuizItemViewModel, Quiz>>(s =>
                 {
                     var parameterNavigationService = s.GetRequiredService<ParameterNavigationService<QuizViewModel, Quiz>>();
                     return quiz => new QuizItemViewModel(parameterNavigationService, quiz);
                 });
 
-
-                services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
-                   quizModel => new QuizQuestionViewModel(quizModel));
+                
+                //services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
+                //   quizModel => new QuizQuestionViewModel(quizModel));
 
                 services.AddTransient<KeyboardControlViewModel>(_ =>
                 {

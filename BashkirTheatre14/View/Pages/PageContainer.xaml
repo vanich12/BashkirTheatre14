@@ -18,4 +18,5 @@
                 Command="{Binding UnloadedCommand}"/>
         </b:EventTrigger>
     </b:Interaction.Triggers>
+
 </ContentControl>
