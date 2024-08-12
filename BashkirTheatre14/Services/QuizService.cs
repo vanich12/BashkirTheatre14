@@ -11,19 +11,19 @@ using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.Services
 {
-    public class QuizService:BaseListWebStore<QuizItemViewModel>
+    public class QuizService:BaseListWebStore<QuizChoiceViewModel>
     {
         private readonly IMainApiClient _apiClient;
         private readonly ImageLoadingHttpClient _loadingHttpClient;
-        private readonly CreateViewModel<QuizItemViewModel, Quiz> _quizFactory;
-        public QuizService(IMainApiClient apiClient,ImageLoadingHttpClient loadingHttpClient,CreateViewModel<QuizItemViewModel,Quiz> quizFactory)
+        private readonly CreateViewModel<QuizChoiceViewModel, Quiz> _quizFactory;
+        public QuizService(IMainApiClient apiClient,ImageLoadingHttpClient loadingHttpClient,CreateViewModel<QuizChoiceViewModel, Quiz> quizFactory)
         {
             _apiClient = apiClient;
             _loadingHttpClient = loadingHttpClient;
             _quizFactory = quizFactory;
         }
 
-        protected override async IAsyncEnumerable<QuizItemViewModel> GetListAsyncOverride(params object[] args)
+        protected override async IAsyncEnumerable<QuizChoiceViewModel> GetListAsyncOverride(params object[] args)
         {
             var quizList = await _apiClient.GetQuizList();
             foreach (var quiz in quizList.Where(q => q.Display))

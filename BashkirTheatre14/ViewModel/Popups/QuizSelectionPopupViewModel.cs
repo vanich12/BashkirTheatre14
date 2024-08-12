@@ -17,7 +17,7 @@ namespace BashkirTheatre14.ViewModel.Popups
     {
         private readonly QuizService _quizService;
         private CancellationTokenSource? _cancellationTokenSource;
-        [ObservableProperty] private ObservableCollection<QuizItemViewModel> _quizList = new();
+        [ObservableProperty] private ObservableCollection<QuizChoiceViewModel> _quizList = new();
         private IParameterNavigationService<IReadOnlyList<Question>> _parameterNavigationService;
 
         public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService) : base(closeModalNavigationService)

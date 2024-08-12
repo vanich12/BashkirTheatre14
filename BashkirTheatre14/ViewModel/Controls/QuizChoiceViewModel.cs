@@ -1,27 +1,24 @@
-﻿using System;
+﻿using BashkirTheatre14.Model.Entities;
+using CommunityToolkit.Mvvm.Input;
+using MvvmNavigationLib.Services;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BashkirTheatre14.Model.Entities;
-using BashkirTheatre14.Services;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public partial class QuizItemViewModel: BaseControlViewModel
+    public partial class QuizChoiceViewModel : BaseControlViewModel
     {
         private IParameterNavigationService<Quiz> _navigationService;
         public Quiz Quiz { get; set; }
 
-        public QuizItemViewModel(IParameterNavigationService<Quiz> navService = null, Quiz quiz = null)
+        public QuizChoiceViewModel(IParameterNavigationService<Quiz> navService = null, Quiz quiz = null)
         {
             this.Quiz = quiz;
-      
-            this. _navigationService = navService;
+
+            this._navigationService = navService;
         }
 
         [RelayCommand]

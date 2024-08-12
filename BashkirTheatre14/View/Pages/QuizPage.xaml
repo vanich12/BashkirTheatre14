@@ -7,6 +7,7 @@
       xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls"
       xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
       xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
+      xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
       d:DataContext="{d:DesignInstance controls:QuizViewModel}"

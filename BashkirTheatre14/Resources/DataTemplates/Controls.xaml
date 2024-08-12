@@ -3,7 +3,7 @@
                     xmlns:pages="clr-namespace:BashkirTheatre14.View.Pages"
                     xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls"
                     xmlns:entities="clr-namespace:BashkirTheatre14.Model.Entities">
-    <DataTemplate DataType="{x:Type controls:QuizViewModel}" x:Key="StartPage">
+    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}" x:Key="StartPage">
             <StackPanel VerticalAlignment="Center" 
                         MaxWidth="1668" HorizontalAlignment="Center">
                 <Image 
@@ -37,10 +37,42 @@
                         Margin=" 0 240 0 0"
                         Foreground="White"
                         Background="#96358c"
-                        Command="{Binding NextQuestionsCommand}"
+                        Command="{Binding GoToQuestionsCommand}"
                         HorizontalAlignment="Center"
                         Style="{StaticResource PurpleLightButton}"/>
             </StackPanel>
+    </DataTemplate>  
+
+    <DataTemplate DataType="{x:Type controls:QuizResultViewModel}" x:Key="ResultPage">
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <Image Source="../../Resources/Images/QuizCharacters.png"
+                   Width="700"
+                   Height="700"
+            />
+            <StackPanel Margin="0 0 0 240">
+                <TextBlock 
+                    TextAlignment="Center"
+                    Text="ОТЛИЧНО!"
+                    Margin="0 80"
+                    Style="{StaticResource BoldWhiteTextBlock}"/>
+                <TextBlock 
+                    Text="{Binding PointResult}"
+                    TextAlignment="Center"
+                    FontSize="80"
+                    MaxWidth="900"
+                    Style="{StaticResource MainWhiteTextBlock}"/>
+            </StackPanel>
+            <Button 
+                Content="ЗАВЕРШИТЬ"
+                HorizontalAlignment="Center"
+                FontSize="80"
+                FontWeight="Bold"
+                Foreground="White"
+                Padding="76 38"
+                Background="#96358c"
+                Style="{StaticResource PurpleLightButton}"/>
+        </StackPanel>
     </DataTemplate> 
 
     <DataTemplate DataType="{x:Type controls:QuizViewModel}" x:Key="QuizPage">
@@ -93,7 +125,19 @@
             </StackPanel>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
+        <pages:PageContainer DataContext="{Binding}">
+            <pages:QuizPage />
+        </pages:PageContainer>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type controls:QuizViewModel}">
+        <pages:PageContainer DataContext="{Binding}">
+            <pages:QuizPage />
+        </pages:PageContainer>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type controls:QuizResultViewModel}">
         <pages:PageContainer DataContext="{Binding}">
             <pages:QuizPage />
         </pages:PageContainer>
