@@ -2,7 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:pages="clr-namespace:BashkirTheatre14.View.Pages"
                     xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls"
-                    xmlns:entities="clr-namespace:BashkirTheatre14.Model.Entities">
+                    xmlns:entities="clr-namespace:BashkirTheatre14.Model.Entities"
+                    xmlns:converter="clr-namespace:BashkirTheatre14.Converter">
+    <converter:PointResultToImageSourceConverter x:Key="PointResultToImageSourceConverter"/>
+    <converter:PointResultToTextConverter x:Key="PointResultToTextConverter"/>
     <DataTemplate DataType="{x:Type controls:QuizItemViewModel}" x:Key="StartPage">
             <StackPanel VerticalAlignment="Center" 
                         MaxWidth="1668" HorizontalAlignment="Center">
@@ -24,7 +27,7 @@
                     TextAlignment="Center"
                     VerticalAlignment="Top"
                     Text="Когда Красная Шапочка и Буратино устали стоять на фасаде здания, они решили, что пора познакомиться с миром искусства и впервые в жизни посетить театр. Однако, столкнувшись с необходимостью соблюдать определённые правила поведения, они оказались в растерянности."/>
-
+                    
                 <TextBlock 
                     Style="{StaticResource MainWhiteTextBlock}"
                     TextAlignment="Center"
@@ -34,6 +37,7 @@
                 <Button Content="НАЧАТЬ!" 
                         FontWeight="Bold"
                         FontSize="80"
+                        Padding="76 38"
                         Margin=" 0 240 0 0"
                         Foreground="White"
                         Background="#96358c"
@@ -46,16 +50,17 @@
     <DataTemplate DataType="{x:Type controls:QuizResultViewModel}" x:Key="ResultPage">
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-            <Image Source="../../Resources/Images/QuizCharacters.png"
-                   Width="700"
+            <Image Width="700"
                    Height="700"
-            />
+                   Source="{Binding PointResult, Converter={StaticResource PointResultToImageSourceConverter}}"/>
+
             <StackPanel Margin="0 0 0 240">
                 <TextBlock 
                     TextAlignment="Center"
-                    Text="ОТЛИЧНО!"
+                    Text="{Binding PointResult, Converter={StaticResource PointResultToTextConverter}}"
                     Margin="0 80"
-                    Style="{StaticResource BoldWhiteTextBlock}"/>
+                    Style="{StaticResource BoldWhiteTextBlock}">
+                </TextBlock>
                 <TextBlock 
                     Text="{Binding PointResult}"
                     TextAlignment="Center"
@@ -81,14 +86,14 @@
              Width="1668"
              HorizontalAlignment="Center">
                 <TextBlock 
-         Style="{StaticResource BoldWhiteTextBlock}"
-         TextAlignment="Center"
-         Margin="100 0"
-         Text="{Binding SelectedQuestion.Title}"/>
+                     Style="{StaticResource BoldWhiteTextBlock}"
+                     TextAlignment="Center"
+                     Margin="100 0"
+                     Text="{Binding SelectedQuestion.Title}"/>
                 <TextBlock
-         Text="Выберите один вариант ответа"
-         TextAlignment="Center"
-         Style="{StaticResource MainWhiteTextBlock}"/>
+                     Text="Выберите один вариант ответа"
+                     TextAlignment="Center"
+                     Style="{StaticResource MainWhiteTextBlock}"/>
 
                 <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}">
                     <ItemsControl.ItemsPanel>
@@ -99,12 +104,12 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button
-                     FontSize="60"
-                     Margin="0 40"
-                     Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                     CommandParameter="{Binding}"
-                     Style="{StaticResource QuizQuestionBut}"
-                     Content="{Binding Title}"
+                                 FontSize="60"
+                                 Margin="0 40"
+                                 Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                 CommandParameter="{Binding}"
+                                 Style="{StaticResource QuizQuestionBut}"
+                                 Content="{Binding Title}"
                      />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -112,15 +117,29 @@
 
                 <StackPanel>
                     <Button 
-             Content="ПРОДОЛЖИТЬ"
-             FontWeight="Bold"
-             FontSize="80"
-             Foreground="White"
-             Background="#96358c"
-             HorizontalAlignment="Center"
-             Command="{Binding NextQuestionsCommand}"
-             Style="{StaticResource PurpleLightButton}"/>
-
+                     Content="ПРОДОЛЖИТЬ"
+                     FontWeight="Bold"
+                     FontSize="80"
+                     Margin="0 0 0 40"
+                     Padding="76 38"
+                     Foreground="White"
+                     Background="#96358c"
+                     HorizontalAlignment="Center"
+                     Command="{Binding NextQuestionsCommand}"
+                     Style="{StaticResource PurpleLightButton}"/>
+                
+                    <Button
+                        Content="ЗАВЕРШИТЬ"
+                        Padding ="140 38"
+                        BorderBrush="White"
+                        BorderThickness="3"
+                        Margin="0 40 0 0"
+                        FontSize="80"
+                        Background="Transparent"
+                        HorizontalAlignment="Center"
+                        Foreground="White"
+                        Style="{StaticResource PurpleLightButton}"
+                        />
                 </StackPanel>
             </StackPanel>
     </DataTemplate>

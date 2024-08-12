@@ -27,6 +27,7 @@ namespace BashkirTheatre14.Model.Entities
 
     public record Answer(
         [property: JsonPropertyName("id")] int Id,
+        bool IsSelect,
         [property: JsonPropertyName("title")] string Title,
         [property: JsonPropertyName("correct")] bool Correct,
         [property: JsonPropertyName("image")] string? Image

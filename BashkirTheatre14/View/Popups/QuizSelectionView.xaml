@@ -7,9 +7,14 @@
              xmlns:popupContainers="clr-namespace:BashkirTheatre14.View.Popups.PopupContainers"
              xmlns:popups="clr-namespace:BashkirTheatre14.ViewModel.Popups"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
              mc:Ignorable="d" 
              Height="1500" Width="1668"
              d:DataContext="{d:DesignInstance popups:QuizSelectionPopupViewModel}">
+    <UserControl.Resources>
+        <converter:SelectQuizConverter x:Key="SelectQuizConverter"/>
+    </UserControl.Resources>
+
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
             <b:InvokeCommandAction
@@ -21,59 +26,111 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <popupContainers:OpacityPopupContainer>
+        <Border Background="White" CornerRadius="40">
+            <StackPanel
+            Background="Transparent">
 
-        <StackPanel
-            Background="White">
-           <ItemsControl ItemsSource="{Binding QuizList}">
+            <StackPanel
+                Margin="0 80">
+                <TextBlock 
+
+                    Style="{StaticResource PurpleText}"
+                    TextAlignment="Center"
+                    Margin=" 0 0 0 40"
+                    Text="ВЫБЕРИТЕ КВИЗ"/>
+                <TextBlock
+                    MaxWidth="1508"
+                    TextAlignment="Center"
+                    TextWrapping="Wrap"
+                    Style="{StaticResource BrownText}"
+                    Text="Пройдите уникальный тест «Кто хочет стать театралом?» на знание кукольного театра или помогите Красной Шапочке и Буратино разобраться как следует вести себя в театре"/>
+            </StackPanel>
+                <ItemsControl ItemsSource="{Binding QuizList}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel
-                        Height="1500"
+                        Height="535"
                         Orientation="Horizontal"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
                <ItemsControl.ItemTemplate>
                    <DataTemplate>
-                        <Grid VerticalAlignment="Center">
-                            <Button Content="Кнопка"
-                                    Height="100"
-                                    Panel.ZIndex="1001"
-                                    Background="Black"
-                                    FontSize="60"
-                                    Command="{Binding SelectQuizCommand}">
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="Click">
-                                        <b:InvokeCommandAction 
-                                            Command="{Binding DataContext.CloseContainerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                       <Button
+                               Margin="40 0"
+                               Content="{Binding}" Height="535" 
+                               CommandParameter="{Binding}"
+                               Command="{Binding DataContext.SelectQuizCommand, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                           <Button.Template>
+                               <ControlTemplate TargetType="Button">
+                                   <Grid>
+                                            <Image
+                                                Source="{Binding IsSelected, Converter={StaticResource SelectQuizConverter}}" 
+                                                Height="535"/>
 
-                                        <b:InvokeCommandAction Command="{Binding SelectQuizCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </Button>
-                            <Image Source="../../Resources/Images/quiz_variants.png" Height="535"/>
-                            <TextBlock Text="{Binding Quiz.Title}"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       FontSize="56"/>
-                        </Grid>
-                   </DataTemplate>
+                                            <TextBlock Text="{Binding Quiz.Title}"
+                                                  TextAlignment="Center"
+                                                  Margin="20 00"
+                                                  VerticalAlignment="Center"
+                                                  FontSize="56"
+                                                  MaxWidth="550"
+                                                  FontWeight="Bold"
+                                                  TextWrapping="Wrap"
+                                                  Foreground="#3f2a3d">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                            <Setter Property="Foreground" Value="White"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                   </Grid>
+                               </ControlTemplate>
+                           </Button.Template>
+                       </Button>
+                    </DataTemplate>
                </ItemsControl.ItemTemplate>
            </ItemsControl>
-            <Button Width="50"
-                    Height="50"
-                    Content="Закрыть"
-                    Command="{Binding CloseContainerCommand}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-            <Button
-                Width="100"
-                Height="100"
-                Content="Продолжить"
-                Panel.ZIndex="1001"
-                Margin=" 0 -400 0 00"
-                VerticalAlignment="Center"
-                Command="{Binding CloseContainerCommand}"
-                />
+                <Button 
+                    Content="НАЗАД"
+                    FontSize="80"
+                    Foreground="#96358c"
+                    Background="Transparent"
+                    BorderBrush="#96358c"
+                    Padding="76 38"
+                    FontWeight="Bold"
+                    Margin="0 80 20 0"
+                    HorizontalAlignment="Center"
+                    BorderThickness="3"
+                    Command="{Binding CloseContainerCommand}"
+                    Style="{StaticResource PurpleLightButton}"/>
+
+                <Button 
+                    Background="#96358c"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    DataContext="{Binding SelectedQuiz}"
+                    FontSize="80"
+                    Padding="76 38"
+                    Style="{StaticResource PurpleLightButton}"
+                    Margin="20 80 0 0"
+                    Command="{Binding GoToQuestionsCommand}"
+                    Content="ПРОДОЛЖИТЬ">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Click">
+                            <b:InvokeCommandAction Command="{Binding DataContext.CloseContainerCommand,RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+
         </StackPanel>
+        </Border>
     </popupContainers:OpacityPopupContainer>
 </UserControl>

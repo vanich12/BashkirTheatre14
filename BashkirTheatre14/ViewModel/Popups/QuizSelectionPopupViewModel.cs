@@ -20,6 +20,8 @@ namespace BashkirTheatre14.ViewModel.Popups
         [ObservableProperty] private ObservableCollection<QuizChoiceViewModel> _quizList = new();
         private IParameterNavigationService<IReadOnlyList<Question>> _parameterNavigationService;
 
+        [ObservableProperty] private QuizChoiceViewModel _selectedQuiz;
+
         public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService) : base(closeModalNavigationService)
         {
             _quizService = quizService;
@@ -43,6 +45,18 @@ namespace BashkirTheatre14.ViewModel.Popups
         }
 
         [RelayCommand]
+        private void SelectQuiz(QuizChoiceViewModel quiz)
+        {
+            if (SelectedQuiz != null)
+            {
+                SelectedQuiz.IsSelected = false;
+            }
+
+            this.SelectedQuiz = quiz;
+            SelectedQuiz.IsSelected = true;
+        }
+
+        [RelayCommand]
         private async Task Unloaded()
         {
             if(_cancellationTokenSource is null) return;
@@ -50,10 +64,6 @@ namespace BashkirTheatre14.ViewModel.Popups
             _cancellationTokenSource.Dispose();
         }
 
-        [RelayCommand]
-        private void SelectQuiz()
-        {
-
-        }
+     
     }
 }

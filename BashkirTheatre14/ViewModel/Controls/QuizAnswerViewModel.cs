@@ -3,13 +3,13 @@ using BashkirTheatre14.ViewModel.Pages;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public partial class QuizQuestionViewModel: BasePageViewModel
+    public partial class QuizAnswerViewModel: BasePageViewModel
     {
-        public Question Question { get; }
+        public Answer Answer { get; }
 
-        public QuizQuestionViewModel(Question question)
+        public QuizAnswerViewModel(Answer question)
         {
-            this.Question = question;
+            this.Answer = question;
         }
 
         protected override Task Loaded()
