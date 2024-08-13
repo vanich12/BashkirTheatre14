@@ -11,23 +11,31 @@ namespace BashkirTheatre14.ViewModel.Controls
 {
     public partial class QuizResultViewModel : BaseControlViewModel
     {
-        private IParameterNavigationService<Quiz> _navigationService;
+        private IParameterNavigationService<Quiz> _navigationServiceParam;
+
+        private INavigationService _navigationService;
         public Quiz Quiz { get; set; }
         private QuizViewModel _quizViewModel;
 
         public int? PointResult { get; set; }
 
-        public QuizResultViewModel(QuizViewModel quizViewModel = null)
+        public QuizResultViewModel(INavigationService navigationService,QuizViewModel quizViewModel)
         {
             this._quizViewModel = quizViewModel;
-
+            this._navigationService = navigationService;
             this.PointResult = _quizViewModel.CorrectAnswer.Count();
         }
 
         [RelayCommand]
         private void SelectQuiz()
         {
-            _navigationService.Navigate(Quiz);
+            _navigationServiceParam.Navigate(Quiz);
+        }
+
+        [RelayCommand]
+        private void GoToMainPage()
+        {
+            _navigationService.Navigate();
         }
 
         public override Task Load()

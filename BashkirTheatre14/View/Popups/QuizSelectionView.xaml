@@ -13,6 +13,7 @@
              d:DataContext="{d:DesignInstance popups:QuizSelectionPopupViewModel}">
     <UserControl.Resources>
         <converter:SelectQuizConverter x:Key="SelectQuizConverter"/>
+        <converter:SelectConverter x:Key="SelectConverter"/>
     </UserControl.Resources>
 
     <b:Interaction.Triggers>
@@ -66,8 +67,18 @@
                                <ControlTemplate TargetType="Button">
                                    <Grid>
                                             <Image
-                                                Source="{Binding IsSelected, Converter={StaticResource SelectQuizConverter}}" 
-                                                Height="535"/>
+                                                Height="535">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="Source" Value="../../Resources/Images/quiz_variants.png"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelected,Converter={StaticResource SelectConverter}}" Value="True">
+                                                                <Setter Property="Source" Value="../../Resources/Images/SelectQuiz.png"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
 
                                             <TextBlock Text="{Binding Quiz.Title}"
                                                   TextAlignment="Center"
@@ -77,12 +88,15 @@
                                                   MaxWidth="550"
                                                   FontWeight="Bold"
                                                   TextWrapping="Wrap"
-                                                  Foreground="#3f2a3d">
+                                                  >
                                                 <TextBlock.Style>
                                                     <Style TargetType="TextBlock">
                                                         <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                        <DataTrigger Binding="{Binding IsSelected, Converter={StaticResource SelectConverter}}" Value="True">
                                                             <Setter Property="Foreground" Value="White"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsSelected, Converter={StaticResource SelectConverter}}" Value="False">
+                                                                <Setter Property="Foreground" Value="#3f2a3d"/>
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                     </Style>

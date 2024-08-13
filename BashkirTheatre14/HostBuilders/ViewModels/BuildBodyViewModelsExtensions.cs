@@ -21,20 +21,21 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
         {
             builder.ConfigureServices((context,services) =>
             {
-
-
                 services.AddTransient<MainPageViewModel>(s=>new MainPageViewModel(s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>()));
-                
                 
                 services.AddSingleton<CreateViewModel<QuizChoiceViewModel, Quiz>>(s =>
                 {
                     var parameterNavigationService = s.GetRequiredService<ParameterNavigationService<QuizItemViewModel, Quiz>>();
                     return quiz => new QuizChoiceViewModel(parameterNavigationService, quiz);
-                });     
+                });
+
+                services.AddTransient<CreateViewModel<QuizAnswerViewModel, Answer>>(s =>
+                    quiz => new QuizAnswerViewModel(quiz));
                 
                 services.AddSingleton<CreateViewModel<QuizResultViewModel, QuizViewModel>>(s =>
                 {
-                    return quiz => new QuizResultViewModel(quiz);
+                    var navigationService = s.GetRequiredService<NavigationService<MainPageViewModel>>();
+                    return quiz => new QuizResultViewModel(navigationService,quiz);
                 });  
                 
                 services.AddSingleton<CreateViewModel<QuizItemViewModel, Quiz>>(s =>
@@ -46,12 +47,12 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
                 services.AddSingleton<CreateViewModel<QuizViewModel, Quiz>>(s =>
                 {
                     var parameterNavigationService = s.GetRequiredService<ParameterNavigationService<QuizResultViewModel, QuizViewModel>>();
-                    return quiz => new QuizViewModel(parameterNavigationService, quiz);
+                    var navigationService = s.GetRequiredService<NavigationService<MainPageViewModel>>();
+                    return quiz => new QuizViewModel(parameterNavigationService,navigationService ,quiz);
                 });
 
-                
-                //services.AddSingleton<CreateViewModel<QuizQuestionViewModel, Question>>(s =>
-                //   quizModel => new QuizQuestionViewModel(quizModel));
+                //services.AddSingleton<CreateViewModel<QuizAnswerViewModel, Question>>(s =>
+                //   quizModel => new QuizAnswerViewModel(quizModel));
 
                 services.AddTransient<KeyboardControlViewModel>(_ =>
                 {

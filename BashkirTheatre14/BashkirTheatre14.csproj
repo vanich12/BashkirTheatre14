@@ -15,6 +15,9 @@
     <None Remove="Resources\Images\MainBackground.png" />
     <None Remove="Resources\Images\PerfectResult.png" />
     <None Remove="Resources\Images\QuizCharacters.png" />
+    <None Remove="Resources\Images\QuizHeader.png" />
+    <None Remove="Resources\Images\QuizMaskIcon.png" />
+    <None Remove="Resources\Images\QuizTimeIcon.png" />
     <None Remove="Resources\Images\quiz_variants.png" />
     <None Remove="Resources\Images\SelectQuiz.png" />
   </ItemGroup>
@@ -54,6 +57,9 @@
     <Resource Include="Resources\Images\MainBackground.png" />
     <Resource Include="Resources\Images\PerfectResult.png" />
     <Resource Include="Resources\Images\QuizCharacters.png" />
+    <Resource Include="Resources\Images\QuizHeader.png" />
+    <Resource Include="Resources\Images\QuizMaskIcon.png" />
+    <Resource Include="Resources\Images\QuizTimeIcon.png" />
     <Resource Include="Resources\Images\quiz_variants.png" />
     <Resource Include="Resources\Images\SelectQuiz.png" />
   </ItemGroup>

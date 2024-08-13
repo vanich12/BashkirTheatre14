@@ -23,6 +23,8 @@ namespace BashkirTheatre14.HostBuilders.Navigation
                 services.AddNavigationService<MainPageViewModel, NavigationStore>();
                 services.AddNavigationService<QuizItemViewModel, NavigationStore>();
                 services.AddNavigationService<QuizViewModel, NavigationStore>();
+                services.AddNavigationService<QuizResultViewModel,NavigationStore>();
+
                 services.AddParameterNavigationService<QuizItemViewModel, NavigationStore, Quiz>(); 
                 services.AddParameterNavigationService<QuizViewModel, NavigationStore, Quiz>();
                 services.AddParameterNavigationService<QuizResultViewModel,NavigationStore,QuizViewModel>();
