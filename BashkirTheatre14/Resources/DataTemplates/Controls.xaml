@@ -113,8 +113,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"/>
 
-
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Foreground="White">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{1}/{0}">
                             <Binding Path="QuestionList.Count"/>

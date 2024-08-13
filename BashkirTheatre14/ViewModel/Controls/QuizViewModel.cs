@@ -81,7 +81,7 @@ namespace BashkirTheatre14.ViewModel.Controls
             {
                 QuestionIndex = 0;
             }
-            else if (SelectedAnswer is not null && (QuestionIndex < QuestionList.Count - 1)  )
+            else if (SelectedAnswer is not null && (QuestionIndex < QuestionList.Count))
             {
                 if (SelectedAnswer.Answer.Correct)
                 {
@@ -101,7 +101,7 @@ namespace BashkirTheatre14.ViewModel.Controls
                 }
             }
 
-            if (QuestionIndex ==QuestionList.Count - 1)
+            if (QuestionIndex == QuestionList.Count )
             {
                 GoToResult();
             }

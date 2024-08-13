@@ -14,7 +14,8 @@ namespace BashkirTheatre14.Converter
         {
             if (value is int index)
             {
-                return index >= 5;
+                bool res = index >= 5;
+                return res;
             }
 
             return false;
