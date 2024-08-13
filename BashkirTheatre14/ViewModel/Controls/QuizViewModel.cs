@@ -23,7 +23,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         [ObservableProperty] private ObservableCollection<QuizAnswerViewModel> _quizAnswerList = new();
         [ObservableProperty] private Question? _selectedQuestion;
         [ObservableProperty] private QuizAnswerViewModel? _selectedAnswer;
-        public int? QuestionIndex { get; set; }
+        [ObservableProperty] private int? _questionIndex;
 
         public List<QuizAnswerViewModel> CorrectAnswer { get; set; } = new();
 

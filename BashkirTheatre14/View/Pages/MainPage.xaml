@@ -6,16 +6,38 @@
              xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
              xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="3840" d:DesignWidth="2160"
              d:DataContext="{d:DesignInstance pages:MainPageViewModel}">
     <Grid>
-        <TextBlock Text="Главная страница"
-                   FontSize="32"/>
-
+        <StackPanel
+            Margin="246 387 246 0"
+            Width="1668">
+            <Image Source="../../Resources/Images/QuizHeader.png"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button 
+                    Content="ЛЕТОПИСЬ"
+                    Tag="Подробное описание всех исторических событий которые, происходили с театром с момента основания"
+                    Width="530"
+                    Margin="19 0"
+                    Style="{StaticResource MainPageControl}"/>
+                <Button 
+                    Content="КВИЗЫ"
+                    Command="{Binding ToQuizSelectionCommand}"
+                    Tag="Увлекательные игры с ответами на вопросы на тему “Кто хочет стать театралом?” и “Этикет”"
+                    Margin="19 0"
+                    Style="{StaticResource MainPageControQuiz}"/>
+                <Button 
+                    Content="О ТЕАТРЕ"
+                    Tag="Огромный путь существования театра до сегодняшних дней"
+                    Margin="19 0"
+                    Style="{StaticResource MainPageControTeathr}"/>
+            </StackPanel>
         <Button Width="100"
                 Height="100"
                 Command="{Binding ToQuizSelectionCommand}"
                 Content="Выбор викторины"/>
-        
+        <Button/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

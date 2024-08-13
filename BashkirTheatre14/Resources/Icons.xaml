@@ -1,4 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+    <DataTemplate x:Key="RightArrowIcon">
+        <Viewbox>
+            <Grid>
+                <Path Width="48" Height="48" Data="M32.53 26.74C33.98 25.2 33.98 22.79 32.53 21.25L17.82 5.62C17.07 4.82 15.8 4.78 15 5.54C14.19 6.3 14.15 7.56 14.91 8.37L29.62 24L14.91 39.62C14.15 40.43 14.19 41.69 15 42.45C15.8 43.21 17.07 43.17 17.82 42.37L32.53 26.74Z" Fill="#FFFFFF" Opacity="1.000000"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
 </ResourceDictionary>

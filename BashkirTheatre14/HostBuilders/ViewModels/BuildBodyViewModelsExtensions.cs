@@ -29,7 +29,7 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
                     return quiz => new QuizChoiceViewModel(parameterNavigationService, quiz);
                 });
 
-                services.AddTransient<CreateViewModel<QuizAnswerViewModel, Answer>>(s =>
+                services.AddSingleton<CreateViewModel<QuizAnswerViewModel, Answer>>(s =>
                     quiz => new QuizAnswerViewModel(quiz));
                 
                 services.AddSingleton<CreateViewModel<QuizResultViewModel, QuizViewModel>>(s =>

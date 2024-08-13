@@ -4,11 +4,13 @@
                     xmlns:controls="clr-namespace:BashkirTheatre14.ViewModel.Controls"
                     xmlns:entities="clr-namespace:BashkirTheatre14.Model.Entities"
                     xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
-                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors">
-    <converter:PointResultToImageSourceConverter x:Key="PointResultToImageSourceConverter"/>
-    <converter:PointResultToTextConverter x:Key="PointResultToTextConverter"/>
-    <converter:SelectAnswerConverter x:Key="SelectAnswerConverter"/>
-    <converter:SelectConverter x:Key="SelectBoolAnswerConverter"/>
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers">
+            <converter:PointResultToImageSourceConverter x:Key="PointResultToImageSourceConverter"/>
+            <converter:PointResultToTextConverter x:Key="PointResultToTextConverter"/>
+            <converter:SelectAnswerConverter x:Key="SelectAnswerConverter"/>
+            <converter:SelectConverter x:Key="SelectBoolAnswerConverter"/>
+            <converter:ProgressBarColorConverter x:Key="ProgressBarColorConverter"/>
     <DataTemplate DataType="{x:Type controls:QuizItemViewModel}" x:Key="StartPage">
             <StackPanel VerticalAlignment="Center" 
                         MaxWidth="1668" HorizontalAlignment="Center">
@@ -65,11 +67,19 @@
                     Style="{StaticResource BoldWhiteTextBlock}">
                 </TextBlock>
                 <TextBlock 
-                    Text="{Binding PointResult}"
                     TextAlignment="Center"
                     FontSize="80"
                     MaxWidth="900"
-                    Style="{StaticResource MainWhiteTextBlock}"/>
+
+                    Style="{StaticResource MainWhiteTextBlock}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Вы ответили правильно на {0} из {1} вопросов">
+                            <Binding Path="PointResult"/>
+                            <Binding Path="QuizViewModel.QuestionList.Count"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
             </StackPanel>
             <Button 
                 Content="ЗАВЕРШИТЬ"
@@ -85,21 +95,48 @@
     </DataTemplate> 
 
     <DataTemplate DataType="{x:Type controls:QuizViewModel}" x:Key="QuizPage">
-        <!--<b:Interaction.Triggers>
-            <b:EventTrigger EventName="Loaded">
-                <b:InvokeCommandAction
-                    Command="{Binding LoadedCommand}"/>
-            </b:EventTrigger>
-            <b:EventTrigger EventName="Unloaded">
-                <b:InvokeCommandAction
-                    Command="{Binding UnloadedCommand}"/>
-            </b:EventTrigger>
-        </b:Interaction.Triggers>-->
         <StackPanel
-                VerticalAlignment="Center"
+             VerticalAlignment="Top"
+             Margin="0 500 0 0 "
              Width="1668"
              HorizontalAlignment="Center">
-                <TextBlock 
+
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="717" Height="48">
+                <ProgressBar
+                    Style="{StaticResource CustomProgressBarStyle}"
+                    Minimum="-1"
+                    FontSize="40"
+                    Margin="0 0 0 0"
+                    Maximum="{Binding QuestionList.Count}"
+                    Value="{Binding QuestionIndex}"
+                    Height="48"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"/>
+
+
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Foreground="White">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{1}/{0}">
+                            <Binding Path="QuestionList.Count"/>
+                            <Binding Path="QuestionIndex"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#505050"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding QuestionIndex,Converter = {StaticResource ProgressBarColorConverter}}" Value="True">
+                                     <Setter Property="Foreground" Value="White"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding QuestionIndex,Converter = {StaticResource ProgressBarColorConverter}}" Value="False">
+                                    <Setter Property="Foreground" Value="#505050"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <TextBlock 
                      Style="{StaticResource BoldWhiteTextBlock}"
                      TextAlignment="Center"
                      Margin="100 0"

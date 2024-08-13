@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
@@ -15,6 +16,8 @@ namespace BashkirTheatre14.ViewModel.Controls
 
         private INavigationService _navigationService;
         public Quiz Quiz { get; set; }
+
+        [ObservableProperty]
         private QuizViewModel _quizViewModel;
 
         public int? PointResult { get; set; }

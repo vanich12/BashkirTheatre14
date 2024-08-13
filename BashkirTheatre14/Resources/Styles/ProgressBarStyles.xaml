@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="CustomProgressBarStyle" TargetType="ProgressBar">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Grid>
+                        <Border Background="Transparent" 
+                                Height="48"
+                                CornerRadius="40">
+                            <Border x:Name="PART_Track" 
+                                    Background="White"
+                                    CornerRadius="40"/>
+                        </Border>
+
+                        <Border x:Name="PART_Indicator" 
+                                Background="#96358C"
+                                Height="48"
+                                HorizontalAlignment="Left"
+                                CornerRadius="30">
+                        </Border>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
