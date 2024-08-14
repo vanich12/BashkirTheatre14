@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
              xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
+             xmlns:controls="clr-namespace:BashkirTheatre14.View.Controls"
+             xmlns:map="clr-namespace:BashkirTheatre14.View.Controls.Map"
              mc:Ignorable="d" 
              d:DesignHeight="3840" d:DesignWidth="2160"
              d:DataContext="{d:DesignInstance pages:MainPageViewModel}">
@@ -13,12 +15,18 @@
             Margin="246 387 246 0"
             Width="1668">
             <Image Source="../../Resources/Images/QuizHeader.png"/>
+
+            <local:PageContainer
+                DataContext="{Binding MapControlViewModel}">
+                <map:MapView Margin="0 76"/>
+            </local:PageContainer>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button 
                     Content="ЛЕТОПИСЬ"
                     Tag="Подробное описание всех исторических событий которые, происходили с театром с момента основания"
                     Width="530"
-                    Command="{Binding ToChoniclesCommand}"
+                    Command="{Binding ToChroniclesCommand}"
                     Margin="19 0"
                     Style="{StaticResource MainPageControl}"/>
                 <Button 
@@ -33,11 +41,6 @@
                     Margin="19 0"
                     Style="{StaticResource MainPageControTeathr}"/>
             </StackPanel>
-        <Button Width="100"
-                Height="100"
-                Command="{Binding ToQuizSelectionCommand}"
-                Content="Выбор викторины"/>
-        <Button/>
         </StackPanel>
 
     </Grid>

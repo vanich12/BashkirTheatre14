@@ -7,4 +7,74 @@
             </Grid>
         </Viewbox>
     </DataTemplate>
+
+    <DataTemplate x:Key="MapArrowIcon">
+        <Viewbox>
+            <Grid>
+                <Path  Data="M15.369 5.064C15.5716 4.4562 16.4313 4.45621 16.6338 5.064L23.4925 25.6397C23.6802 26.2032 23.0932 26.7125 22.5618 26.4469L16.0014 23.1666L9.44099 26.4469C8.90975 26.7125 8.32258 26.2032 8.51039 25.6397L15.369 5.064Z" 
+                       Fill="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=Control}}"
+                       Margin="-8 -5 0 0"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GeoIcon">
+        <Viewbox>
+            <Grid>
+                <Path Data="M9 24C9 24 18 15.471 18 9C18 6.61305 17.0518 4.32387 15.364 2.63604C13.6761 0.948211 11.3869 0 9 0C6.61305 0 4.32387 0.948211 2.63604 2.63604C0.948211 4.32387 3.55683e-08 6.61305 0 9C0 15.471 9 24 9 24ZM9 13.5C7.80653 13.5 6.66193 13.0259 5.81802 12.182C4.97411 11.3381 4.5 10.1935 4.5 9C4.5 7.80653 4.97411 6.66193 5.81802 5.81802C6.66193 4.97411 7.80653 4.5 9 4.5C10.1935 4.5 11.3381 4.97411 12.182 5.81802C13.0259 6.66193 13.5 7.80653 13.5 9C13.5 10.1935 13.0259 11.3381 12.182 12.182C11.3381 13.0259 10.1935 13.5 9 13.5Z" Fill="#5B3831"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MapGeoIcon">
+        <Viewbox>
+            <Border
+                Width="48"
+                Height="48"
+                Background="White"
+                CornerRadius="48"
+                Padding="8">
+                <ContentPresenter ContentTemplate="{StaticResource GeoIcon}"/>
+            </Border>
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SearchIcon">
+        <Viewbox>
+            <Grid>
+                <Path Data="M19.7039 20.2039L25 25.5M11.9565 23.413C5.9054 23.413 1 18.5077 1 12.4565C1 6.4054 5.9054 1.5 11.9565 1.5C18.0077 1.5 22.913 6.4054 22.913 12.4565C22.913 18.5077 18.0077 23.413 11.9565 23.413Z" 
+                      Stroke="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=Control}}" 
+                      StrokeThickness="6"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PlusIcon">
+        <Viewbox>
+            <Grid>
+                <Path Data="M9 0C9.19891 0 9.38968 0.0790178 9.53033 0.21967C9.67098 0.360322 9.75 0.551088 9.75 0.75V8.25H17.25C17.4489 8.25 17.6397 8.32902 17.7803 8.46967C17.921 8.61032 18 8.80109 18 9C18 9.19891 17.921 9.38968 17.7803 9.53033C17.6397 9.67098 17.4489 9.75 17.25 9.75H9.75V17.25C9.75 17.4489 9.67098 17.6397 9.53033 17.7803C9.38968 17.921 9.19891 18 9 18C8.80109 18 8.61032 17.921 8.46967 17.7803C8.32902 17.6397 8.25 17.4489 8.25 17.25V9.75H0.75C0.551088 9.75 0.360322 9.67098 0.21967 9.53033C0.0790178 9.38968 0 9.19891 0 9C0 8.80109 0.0790178 8.61032 0.21967 8.46967C0.360322 8.32902 0.551088 8.25 0.75 8.25H8.25V0.75C8.25 0.551088 8.32902 0.360322 8.46967 0.21967C8.61032 0.0790178 8.80109 0 9 0Z" 
+                      Fill="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=Control}}"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MinusIcon">
+        <Viewbox>
+            <Grid>
+                <Path Data="M0 1C0 0.801088 0.0790178 0.610322 0.21967 0.46967C0.360322 0.329018 0.551088 0.25 0.75 0.25H17.25C17.4489 0.25 17.6397 0.329018 17.7803 0.46967C17.921 0.610322 18 0.801088 18 1C18 1.19891 17.921 1.38968 17.7803 1.53033C17.6397 1.67098 17.4489 1.75 17.25 1.75H0.75C0.551088 1.75 0.360322 1.67098 0.21967 1.53033C0.0790178 1.38968 0 1.19891 0 1Z" 
+                      Fill="{Binding Foreground,RelativeSource={RelativeSource FindAncestor,AncestorType=Control}}"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CrossIcon">
+        <Viewbox>
+            <Grid>
+                <Path Data="M49.6274 49.6274L4.37253 4.37258M49.6274 4.37258L4.37253 49.6274" Stroke="#96358C" StrokeThickness="8" StrokeEndLineCap="round"/>
+            </Grid>
+        </Viewbox>
+    </DataTemplate>
+
+    <BitmapImage UriSource="../../Resources/Images/zaglushka.jpg"
+                 x:Key="EventFallbackImage"/>
 </ResourceDictionary>

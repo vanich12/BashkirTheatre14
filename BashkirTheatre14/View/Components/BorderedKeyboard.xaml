@@ -5,15 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:CustomKeyboard.Views;assembly=CustomKeyboard"
              mc:Ignorable="d" 
-             Width="848"
-             Height="265">
+             Width="1668"
+             Height="540">
     <UserControl.Clip>
-        <RectangleGeometry Rect="0 0 848 265"
-                           RadiusX="32"
-                           RadiusY="32"/>
+        <RectangleGeometry Rect="0 0 1668 540"
+                           RadiusX="40"
+                           RadiusY="40"/>
     </UserControl.Clip>
     <Viewbox
-        Margin="40 20">
+        Margin="50">
         <views:KeyboardControl/>
     </Viewbox>
 </UserControl>

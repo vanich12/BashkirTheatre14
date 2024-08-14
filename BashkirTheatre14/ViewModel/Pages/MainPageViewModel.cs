@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BashkirTheatre14.ViewModel.Controls.Map;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmNavigationLib.Services;
 
@@ -14,10 +16,13 @@ namespace BashkirTheatre14.ViewModel.Pages
         private readonly INavigationService _openChronicleNavigationService;
         private readonly INavigationService _openTheatreInfoNavigationService;
 
-        public MainPageViewModel(INavigationService openQuizSelectionNavigationService, INavigationService openChronicleNavigationService)
+        [ObservableProperty] private MapControlViewModel _mapControlViewModel;
+
+        public MainPageViewModel(INavigationService openQuizSelectionNavigationService, INavigationService openChronicleNavigationService,MapControlViewModel mapControlViewModel)
         {
             this._openQuizSelectionNavigationService = openQuizSelectionNavigationService;
             this._openChronicleNavigationService = openChronicleNavigationService;
+            _mapControlViewModel = mapControlViewModel;
         }
 
         [RelayCommand]
@@ -27,7 +32,7 @@ namespace BashkirTheatre14.ViewModel.Pages
         }
 
         [RelayCommand]
-        private void ToChonicles()
+        private void ToChronicles()
         {
             _openChronicleNavigationService.Navigate();
         }

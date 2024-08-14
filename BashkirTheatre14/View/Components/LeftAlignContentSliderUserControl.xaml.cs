@@ -1,33 +1,48 @@
 ﻿using System.Collections;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.Input;
+using Core;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
-using Panel = System.Windows.Controls.Panel;
 using UserControl = System.Windows.Controls.UserControl;
 
-namespace BashkirTheatre14.View.Controls
+namespace BashkirTheatre14.View.Components
 {
     /// <summary>
-    /// Логика взаимодействия для ContentSliderUserControl.xaml
+    /// Логика взаимодействия для LeftAlignContentSliderUserControl.xaml
     /// </summary>
-    public partial class ContentSliderUserControl : UserControl
+    public partial class LeftAlignContentSliderUserControl : UserControl
     {
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
-            nameof(ItemsSource), typeof(IEnumerable), typeof(ContentSliderUserControl),
-            new PropertyMetadata(default(IEnumerable), ItemsSourcePropertyChangedCallback));
+        public static readonly DependencyProperty StartFromCenterProperty = DependencyProperty.Register(
+            nameof(StartFromCenter), typeof(bool), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(bool)));
 
-        public IEnumerable ItemsSource
+        public static readonly DependencyProperty ArrowsPaddingProperty = DependencyProperty.Register(
+            nameof(ArrowsPadding), typeof(Thickness), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(Thickness)));
+
+        public Thickness ArrowsPadding
         {
-            get => (IEnumerable)GetValue(ItemsSourceProperty);
+            get { return (Thickness)GetValue(ArrowsPaddingProperty); }
+            set { SetValue(ArrowsPaddingProperty, value); }
+        }
+        public bool StartFromCenter
+        {
+            get { return (bool)GetValue(StartFromCenterProperty); }
+            set { SetValue(StartFromCenterProperty, value); }
+        }
+
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
+            nameof(ItemsSource), typeof(IList), typeof(LeftAlignContentSliderUserControl),
+            new PropertyMetadata(default(IList), ItemsSourcePropertyChangedCallback));
+
+        public IList? ItemsSource
+        {
+            get => (IList)GetValue(ItemsSourceProperty);
             set => SetValue(ItemsSourceProperty, value);
         }
 
         public static readonly DependencyProperty ArrowsShowProperty = DependencyProperty.Register(
-            nameof(ArrowsShow), typeof(Visibility), typeof(ContentSliderUserControl), new PropertyMetadata(System.Windows.Visibility.Collapsed));
+            nameof(ArrowsShow), typeof(Visibility), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(System.Windows.Visibility.Collapsed));
 
         public Visibility ArrowsShow
         {
@@ -35,8 +50,27 @@ namespace BashkirTheatre14.View.Controls
             set { SetValue(ArrowsShowProperty, value); }
         }
 
+        public static readonly DependencyProperty ArrowsWidthProperty = DependencyProperty.Register(
+            nameof(ArrowsWidth), typeof(double), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(double)));
+
+        public double ArrowsWidth
+        {
+            get { return (double)GetValue(ArrowsWidthProperty); }
+            set { SetValue(ArrowsWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty ArrowsHeightProperty = DependencyProperty.Register(
+            nameof(ArrowsHeight), typeof(double), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(double)));
+
+        public double ArrowsHeight
+        {
+            get { return (double)GetValue(ArrowsHeightProperty); }
+            set { SetValue(ArrowsHeightProperty, value); }
+        }
+
+
         public static readonly DependencyProperty ScrollBarVisibilityProperty = DependencyProperty.Register(
-            nameof(ScrollBarVisibility), typeof(ScrollBarVisibility), typeof(ContentSliderUserControl), new PropertyMetadata(System.Windows.Controls.ScrollBarVisibility.Hidden));
+            nameof(ScrollBarVisibility), typeof(ScrollBarVisibility), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(System.Windows.Controls.ScrollBarVisibility.Hidden));
 
         public ScrollBarVisibility ScrollBarVisibility
         {
@@ -44,7 +78,7 @@ namespace BashkirTheatre14.View.Controls
             set { SetValue(ScrollBarVisibilityProperty, value); }
         }
         public static readonly DependencyProperty ItemTemplateProperty = DependencyProperty.Register(
-            nameof(ItemTemplate), typeof(DataTemplate), typeof(ContentSliderUserControl),
+            nameof(ItemTemplate), typeof(DataTemplate), typeof(LeftAlignContentSliderUserControl),
             new PropertyMetadata(default(DataTemplate)));
 
         public DataTemplate ItemTemplate
@@ -54,7 +88,7 @@ namespace BashkirTheatre14.View.Controls
         }
 
         public static readonly DependencyProperty ItemWidthProperty = DependencyProperty.Register(
-            nameof(ItemWidth), typeof(double), typeof(ContentSliderUserControl), new PropertyMetadata(default(double)));
+            nameof(ItemWidth), typeof(double), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(double)));
 
         public double ItemWidth
         {
@@ -63,7 +97,7 @@ namespace BashkirTheatre14.View.Controls
         }
 
         public static readonly DependencyProperty CurrentItemIndexProperty = DependencyProperty.Register(
-            nameof(CurrentItemIndex), typeof(int), typeof(ContentSliderUserControl),
+            nameof(CurrentItemIndex), typeof(int), typeof(LeftAlignContentSliderUserControl),
             new FrameworkPropertyMetadata(default(int), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 CurrentItemIndexPropertyChangedCallback));
 
@@ -74,7 +108,7 @@ namespace BashkirTheatre14.View.Controls
         }
 
         public static readonly DependencyProperty CurrentItemProperty = DependencyProperty.Register(
-            nameof(CurrentItem), typeof(object), typeof(ContentSliderUserControl), new PropertyMetadata(default(object)));
+            nameof(CurrentItem), typeof(object), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(object)));
 
         public object? CurrentItem
         {
@@ -83,7 +117,7 @@ namespace BashkirTheatre14.View.Controls
         }
 
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
-            nameof(Scale), typeof(double), typeof(ContentSliderUserControl), new PropertyMetadata(1.0));
+            nameof(Scale), typeof(double), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(1.0));
 
         public double Scale
         {
@@ -91,30 +125,26 @@ namespace BashkirTheatre14.View.Controls
             set => SetValue(ScaleProperty, value);
         }
 
-        [RelayCommand]
-        private void Left()
+        private ICommand? _leftCommand;
+
+        public ICommand LeftCommand => _leftCommand ??= new RelayCommand(f =>
         {
             if (CurrentItemIndex - 1 < 0) return;
             CurrentItemIndex--;
             ScrollToIndex(CurrentItemIndex);
-        }
+        });
 
-        [RelayCommand]
-        private void Right()
+        private ICommand? _rightCommand;
+
+        public ICommand RightCommand => _rightCommand ??= new RelayCommand(f =>
         {
-            if (ItemsSource is not IList list) return;
+            if (ItemsSource is not { } list) return;
             if (CurrentItemIndex + 1 > list.Count - 1) return;
             CurrentItemIndex++;
             ScrollToIndex(CurrentItemIndex);
-        }
-        [RelayCommand]
-        private void ScrollToImage(object f)
-        {
-            if (ItemsSource is not IList list) return;
-            CurrentItemIndex = list.IndexOf(f);
-            ScrollToIndex(CurrentItemIndex);
-        }
-        public ContentSliderUserControl()
+        });
+
+        public LeftAlignContentSliderUserControl()
         {
             InitializeComponent();
         }
@@ -122,9 +152,9 @@ namespace BashkirTheatre14.View.Controls
 
         private static void ItemsSourcePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is not ContentSliderUserControl control)
+            if (d is not LeftAlignContentSliderUserControl control)
                 return;
-
+            if (control.ItemsSource?.Count >= 2 && control.StartFromCenter) control.CurrentItemIndex = 1;
             control.UpdateCurrentItem();
             control.ScrollToIndex(control.CurrentItemIndex, false);
         }
@@ -132,42 +162,38 @@ namespace BashkirTheatre14.View.Controls
         private static void CurrentItemIndexPropertyChangedCallback(DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            if (d is not ContentSliderUserControl control)
+            if (d is not LeftAlignContentSliderUserControl control)
                 return;
 
             control.UpdateCurrentItem();
         }
 
-        private async void UpdateCurrentItem()
+        private void UpdateCurrentItem()
         {
-            if (ItemsSource is not IList list || CurrentItemIndex < 0 || CurrentItemIndex >= list.Count) return;
-            //var max = Math.Min(CurrentItemIndex + 2, list.Count);
-            //var min = Math.Max(CurrentItemIndex - 2, 0);
-            //for (var i = 0; i < list.Count; i++)
-            //{
-            //    if (i >= min && i <= max)
-            //    {
-            //        if(list[i].Image?.Source is null)
-            //            list[i].Image = new DisposableImage(list[i].ImagePath,height: 2049);
-            //    }
-            //    else
-            //    {
-            //        list[i].Image?.Dispose();
-            //    }
-            //}
+            if (ItemsSource is null || ItemsSource.Count == 0 || ItemsSource.Count==1)
+            {
+                LeftButton.Visibility = Visibility.Hidden;
+                RightButton.Visibility = Visibility.Hidden;
+            }
+            else if(ArrowsShow==Visibility.Visible)
+            {
+                LeftButton.Visibility = Visibility.Visible;
+                RightButton.Visibility = Visibility.Visible;
+            }
+            if (ItemsSource is not { } list || CurrentItemIndex < 0 || CurrentItemIndex >= list.Count) return;
             if (ArrowsShow == Visibility.Visible)
             {
-                LeftButton.Visibility = CurrentItemIndex == 0 ? Visibility.Hidden : Visibility.Visible;
-                RightButton.Visibility = CurrentItemIndex + 1 == list.Count ? Visibility.Hidden : Visibility.Visible;
+                LeftButton.IsEnabled = StartFromCenter? CurrentItemIndex > 1:CurrentItemIndex>0;
+                RightButton.IsEnabled = CurrentItemIndex + 1 != ItemsSource.Count;
             }
             
             CurrentItem = list[CurrentItemIndex];
         }
 
-        private void ScrollToIndex(int index, bool animate = true)
+        public void ScrollToIndex(int index, bool animate = true)
         {
             if (index < 0 ||
-                ItemsSource is not IList { Count: > 0 } list)
+                ItemsSource is not { Count: > 0 } list)
             {
                 index = 0;
             }
@@ -205,12 +231,8 @@ namespace BashkirTheatre14.View.Controls
                 var scale = Scale + (1.0 - Scale) * value;
 
                 element.LayoutTransform = new ScaleTransform(scale, scale);
-                element.Opacity = Math.Pow(scale,2);
-                Panel.SetZIndex(element,(int)(scale * 10));
             }
         }
-
-
 
         private double GetElementIntersectionWithCenterGrid(FrameworkElement element)
         {
@@ -285,7 +307,7 @@ namespace BashkirTheatre14.View.Controls
             if (content == CurrentItem)
                 return;
 
-            if (ItemsSource is not IList list)
+            if (ItemsSource is not { } list)
                 return;
 
             var index = list.IndexOf(content);
@@ -305,8 +327,5 @@ namespace BashkirTheatre14.View.Controls
         {
             e.Handled = true;
         }
-
-
-        
     }
 }

@@ -10,7 +10,52 @@
                     mc:Ignorable="d">
 
 
-
+    <Style TargetType="components1:PlaceholderTextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="components1:PlaceholderTextBox">
+                    <Border
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Background="{TemplateBinding Background}">
+                        <Grid>
+                            <TextBlock x:Name="Placeholder" Text="{TemplateBinding Placeholder}"
+                                   Foreground="{TemplateBinding PlaceholderBrush}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Margin="{TemplateBinding Padding}"/>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                      VerticalContentAlignment="{TemplateBinding VerticalAlignment}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="Placeholder"
+                                            TargetProperty="Opacity">
+                                        <DoubleAnimation To="1"
+                                                     Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard TargetName="Placeholder"
+                                            TargetProperty="Opacity">
+                                        <DoubleAnimation To="0"
+                                                     Duration="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="{x:Type components1:ModalControl}">
         <Setter Property="Background">

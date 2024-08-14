@@ -27,6 +27,7 @@
     <None Remove="Resources\Images\RightArrow.png" />
     <None Remove="Resources\Images\SelectQuiz.png" />
     <None Remove="Resources\Images\timeline.png" />
+    <None Remove="Resources\Images\zaglushka.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,9 @@
     <Reference Include="CustomKeyboard">
       <HintPath>Libs\CustomKeyboard.dll</HintPath>
     </Reference>
+    <Reference Include="MapControlLib">
+      <HintPath>Libs\MapControlLib.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmNavigationLib">
       <HintPath>Libs\MvvmNavigationLib.dll</HintPath>
     </Reference>
@@ -76,6 +80,7 @@
     <Resource Include="Resources\Images\RightArrow.png" />
     <Resource Include="Resources\Images\SelectQuiz.png" />
     <Resource Include="Resources\Images\timeline.png" />
+    <Resource Include="Resources\Images\zaglushka.jpg" />
   </ItemGroup>
 
   <ItemGroup>

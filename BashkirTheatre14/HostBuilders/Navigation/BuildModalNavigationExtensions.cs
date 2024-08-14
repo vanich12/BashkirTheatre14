@@ -16,7 +16,9 @@ namespace BashkirTheatre14.HostBuilders.Navigation
             {
                 services.AddSingleton<CloseNavigationService<ModalNavigationStore>>();
                 services.AddNavigationService<PasswordPopupViewModel, ModalNavigationStore>();
+                services.AddNavigationService<MapSearchPopupViewModel, ModalNavigationStore>();
                 services.AddNavigationService<QuizSelectionPopupViewModel, ModalNavigationStore>();
+                services.AddParameterNavigationService<MapObjectDetailsPopupViewModel, ModalNavigationStore, List<string>>();
             });
             return builder;
         }

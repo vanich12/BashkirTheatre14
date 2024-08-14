@@ -6,6 +6,7 @@ using BashkirTheatre14.ViewModel.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmNavigationLib.Services;
+using ContentSliderUserControl = BashkirTheatre14.View.Components.ContentSliderUserControl;
 
 namespace BashkirTheatre14.ViewModel.Pages
 {

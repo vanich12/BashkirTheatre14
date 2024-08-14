@@ -1,0 +1,74 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Storyboard x:Key="LisBoxItemSelectedForeground">
+        <ColorAnimation
+            Duration="0:0:0.5"
+            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+            To="#FFF0FC"/>
+    </Storyboard>
+
+    <Storyboard x:Key="ListBoxItemUnselectedForeground">
+        <ColorAnimation
+            Duration="0:0:0.5"
+            Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+            To="#BD007E"/>
+    </Storyboard>
+
+    <Storyboard x:Key="LisBoxItemUnselectedBackground">
+        <ColorAnimation
+            Duration="0:0:0.5"
+            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+            To="#FFFFFF"/>
+    </Storyboard>
+
+    <Storyboard x:Key="ListBoxItemSelectedBackground">
+        <ColorAnimation
+            Duration="0:0:0.5"
+            Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
+            To="#BD007E"/>
+    </Storyboard>
+
+    <Storyboard x:Key="ShowOpacityStoryBoard"
+                TargetProperty="(UIElement.Opacity)">
+        <DoubleAnimation
+            To="1"
+            Duration="0:0:0.25"/>
+    </Storyboard>
+    <Storyboard x:Key="HideOpacityStoryBoard"
+                TargetProperty="(UIElement.Opacity)">
+        <DoubleAnimation
+            To="0"
+            Duration="0:0:0.25"/>
+    </Storyboard>
+
+
+    <PowerEase x:Key="PowerEase"
+               Power="2"
+               EasingMode="EaseInOut"/>
+
+    <Storyboard
+        x:Key="LateOpacityStoryboard"
+        TargetProperty="Opacity">
+        <DoubleAnimation
+            BeginTime="0:0:0.5"
+            To="1"/>
+    </Storyboard>
+
+    <Storyboard x:Key="SlideFromRightStoryboard">
+        <DoubleAnimation
+            From="1970"
+            To="0"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].X"
+            Duration="0:0:0.5"/>
+        <DoubleAnimation
+            From="0"
+            To="1"
+            Storyboard.TargetProperty="(UIElement.Opacity)"
+            Duration="0:0:0.5"/>
+        <DoubleAnimation
+            From="0.8"
+            To="1"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].ScaleX"
+            Duration="0:0:0.5"/>
+    </Storyboard>
+</ResourceDictionary>

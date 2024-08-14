@@ -6,12 +6,9 @@
                     xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
                     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
-                    xmlns:util="clr-namespace:BashkirTheatre14.Utilities">
-            <converter:PointResultToImageSourceConverter x:Key="PointResultToImageSourceConverter"/>
-            <converter:PointResultToTextConverter x:Key="PointResultToTextConverter"/>
-            <converter:SelectAnswerConverter x:Key="SelectAnswerConverter"/>
-            <converter:SelectConverter x:Key="SelectBoolAnswerConverter"/>
-            <converter:ProgressBarColorConverter x:Key="ProgressBarColorConverter"/>
+                    xmlns:map="clr-namespace:BashkirTheatre14.View.Controls.Map"
+                    xmlns:map1="clr-namespace:BashkirTheatre14.ViewModel.Controls.Map">
+            
     <DataTemplate DataType="{x:Type controls:QuizItemViewModel}" x:Key="StartPage">
             <StackPanel VerticalAlignment="Center" 
                         MaxWidth="1668" HorizontalAlignment="Center">
@@ -237,5 +234,9 @@
         <pages:PageContainer DataContext="{Binding}">
             <pages:QuizPage />
         </pages:PageContainer>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type map1:MapObjectPopupViewModel}">
+        <map:MapObjectPopupView DataContext="{Binding}"/>
     </DataTemplate>
 </ResourceDictionary>

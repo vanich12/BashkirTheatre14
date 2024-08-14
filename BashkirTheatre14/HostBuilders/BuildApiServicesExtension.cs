@@ -1,11 +1,14 @@
 ﻿using BashkirTheatre14.Helpers.Logging;
 using BashkirTheatre14.Model;
+using BashkirTheatre14.Model.Entities.Map;
 using BashkirTheatre14.Services;
-using BashkirTheatre14.Utlities;
+using MapControlLib.Helpers;
+using MapControlLib.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Refit;
+using ApiCachingHttpMessageHandler = BashkirTheatre14.Utlities.ApiCachingHttpMessageHandler;
 
 namespace BashkirTheatre14.HostBuilders
 {
@@ -27,6 +30,9 @@ namespace BashkirTheatre14.HostBuilders
                     .AddHttpMessageHandler<ApiCachingHttpMessageHandler>();
 
                 services.AddSingleton<ILoggingService>(s => new FileLoggingService("Logs"));
+
+                services.AddMap<Terminal, Floor, MapObject>(host,context.Configuration.GetValue<int>("terminalId"),true,TimeSpan.FromMinutes(10));
+
                 services.AddSingleton<QuizService>();
                 services.AddSingleton<ChronicleService>();
             });

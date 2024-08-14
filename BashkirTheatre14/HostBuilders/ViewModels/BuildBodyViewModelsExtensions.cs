@@ -1,17 +1,23 @@
-﻿using BashkirTheatre14.Model;
-using BashkirTheatre14.Model.Entities;
+﻿using BashkirTheatre14.Model.Entities;
+using BashkirTheatre14.Model.Entities.Map;
 using BashkirTheatre14.Services;
 using BashkirTheatre14.ViewModel.Controls;
+using BashkirTheatre14.ViewModel.Controls.Map;
 using BashkirTheatre14.ViewModel.Pages;
 using BashkirTheatre14.ViewModel.Popups;
 using BashkirTheatre14.ViewModel.Windows;
+using CommunityToolkit.Mvvm.Messaging;
 using CustomKeyboard.Helpers;
 using CustomKeyboard.ViewModels;
+using MapControlLib.Models.Clients;
+using MapControlLib.Models.Repositories;
+using MapControlLib.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvvmNavigationLib.Services;
 using MvvmNavigationLib.Stores;
+using ImageLoadingHttpClient = BashkirTheatre14.Model.ImageLoadingHttpClient;
 
 namespace BashkirTheatre14.HostBuilders.ViewModels
 {
@@ -21,13 +27,24 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
         {
             builder.ConfigureServices((context,services) =>
             {
+                services.AddTransient<MapControlViewModel>(s=>
+                    new MapControlViewModel(
+                        s.GetRequiredService<IMessenger>(),
+                        s.GetRequiredService<MapViewModel<Terminal>>(),
+                        s.GetRequiredService<CreateViewModel<MapObjectPopupViewModel,AreaViewModel>>(),
+                        s.GetRequiredService<NavigationService<MapSearchPopupViewModel>>()));
+
+                services.AddSingleton<CreateViewModel<MapObjectPopupViewModel, AreaViewModel>>(s=>area=>
+                    new MapObjectPopupViewModel(
+                        area,s.GetRequiredService<MapNavigationService<Terminal>>(),
+                        s.GetRequiredService<MapImageLoadingClient>(),
+                        s.GetRequiredService<ParameterNavigationService<MapObjectDetailsPopupViewModel,List<string>>>()));
+
                 services.AddTransient<MainPageViewModel>(s=>
-                {
-                    var quizService = s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>();
-                    var chronicleService = s.GetRequiredService<NavigationService<ChroniclesPageViewModel>>();
-                    
-                    return new MainPageViewModel(quizService, chronicleService);
-                });
+                    new MainPageViewModel(
+                        s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>(), 
+                        s.GetRequiredService<NavigationService<ChroniclesPageViewModel>>(),
+                        s.GetRequiredService<MapControlViewModel>()));
 
                 services.AddTransient<ChroniclesPageViewModel>(s =>
                     new ChroniclesPageViewModel(s.GetRequiredService<ChronicleService>(),s.GetRequiredService<NavigationService<MainPageViewModel>>()));

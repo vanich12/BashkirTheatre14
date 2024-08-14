@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converter="clr-namespace:BashkirTheatre14.Converter">
+    <converter:ProgressToWidthConverter x:Key="ProgressToWidthConverter"/>
+    <converter:PointResultToImageSourceConverter x:Key="PointResultToImageSourceConverter"/>
+    <converter:PointResultToTextConverter x:Key="PointResultToTextConverter"/>
+    <converter:SelectAnswerConverter x:Key="SelectAnswerConverter"/>
+    <converter:SelectConverter x:Key="SelectBoolAnswerConverter"/>
+    <converter:ProgressBarColorConverter x:Key="ProgressBarColorConverter"/>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <converter:ImageConverter x:Key="ImageConverter"/>
+    <converter:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibilityConverter"/>
+    <converter:ImageConverter x:Key="UnlimitedImageConverter"/>
+    <converter:GreaterThanConverter x:Key="GreaterThanConverter"/>
+    <converter:BooleanToHiddenVisibilityConverter x:Key="BooleanToHiddenVisibilityConverter"/>
+</ResourceDictionary>
