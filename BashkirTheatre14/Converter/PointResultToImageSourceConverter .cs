@@ -19,7 +19,7 @@ namespace BashkirTheatre14.Converter
                 {
                     return new BitmapImage(new Uri("pack://application:,,,/Resources/Images/BadResult.png"));
                 }
-                else if (pointResult < 5)
+                else if (pointResult < 7)
                 {
                     return new BitmapImage(new Uri("pack://application:,,,/Resources/Images/GoodResult.png"));
                 }

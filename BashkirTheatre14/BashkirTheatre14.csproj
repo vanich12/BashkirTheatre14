@@ -10,9 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Gif\SadFace.gif" />
     <None Remove="Resources\Images\Background.png" />
     <None Remove="Resources\Images\BadResult.png" />
     <None Remove="Resources\Images\Bg.png" />
+    <None Remove="Resources\Images\ChButBg.png" />
     <None Remove="Resources\Images\GoodResult.png" />
     <None Remove="Resources\Images\MainBackground.png" />
     <None Remove="Resources\Images\PerfectResult.png" />
@@ -22,6 +24,7 @@
     <None Remove="Resources\Images\QuizQuestionIcon.png" />
     <None Remove="Resources\Images\QuizTimeIcon.png" />
     <None Remove="Resources\Images\quiz_variants.png" />
+    <None Remove="Resources\Images\RightArrow.png" />
     <None Remove="Resources\Images\SelectQuiz.png" />
     <None Remove="Resources\Images\timeline.png" />
   </ItemGroup>
@@ -37,6 +40,7 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
     <PackageReference Include="Refit" Version="7.1.2" />
     <PackageReference Include="Refit.HttpClientFactory" Version="7.1.2" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,9 +59,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Gif\SadFace.gif" />
     <Resource Include="Resources\Images\Background.png" />
     <Resource Include="Resources\Images\BadResult.png" />
     <Resource Include="Resources\Images\Bg.png" />
+    <Resource Include="Resources\Images\ChButBg.png" />
     <Resource Include="Resources\Images\GoodResult.png" />
     <Resource Include="Resources\Images\MainBackground.png" />
     <Resource Include="Resources\Images\PerfectResult.png" />
@@ -67,6 +73,7 @@
     <Resource Include="Resources\Images\QuizQuestionIcon.png" />
     <Resource Include="Resources\Images\QuizTimeIcon.png" />
     <Resource Include="Resources\Images\quiz_variants.png" />
+    <Resource Include="Resources\Images\RightArrow.png" />
     <Resource Include="Resources\Images\SelectQuiz.png" />
     <Resource Include="Resources\Images\timeline.png" />
   </ItemGroup>

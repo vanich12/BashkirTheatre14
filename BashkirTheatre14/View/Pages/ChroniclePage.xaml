@@ -14,6 +14,7 @@
      >
 <UserControl.Resources>
     <converter:ImageConverter x:Key="ImageConverter"/>
+        <converter:EndAtIsNullConverter x:Key="EndAtIsNullConverter"/>
     <DataTemplate x:Key="ImageTemplate"
                   DataType="{x:Type vm:ChronicleViewModel}">
         <Border CornerRadius="700"
@@ -664,20 +665,37 @@
                     </Style>
                 </StackPanel.Style>
                 <TextBlock Margin="0 0 0 76"
-                        Foreground="White"
-                        FontSize="120"
-                        FontWeight="Bold"
-                        TextAlignment="Center"
-                        >
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0}-{1}}">
-                            <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
-                            <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
+                           Foreground="White"
+                           FontSize="120"
+                           FontWeight="Bold"
+                           TextAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text" Value="{Binding Path=CurrentChronicle.Chronicle.StartAt}"/>
+                            <Style.Triggers>
+                                <DataTrigger Value="False">
+                                    <DataTrigger.Binding>
+                                        <MultiBinding Converter="{StaticResource EndAtIsNullConverter}">
+                                            <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
+                                            <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                        </MultiBinding>
+                                    </DataTrigger.Binding>
+                                    <Setter Property="Text">
+                                        <Setter.Value>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
+                                                <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
                 </TextBlock>
+
                 <TextBlock Foreground="White"
-                        FontSize="72"
+                        FontSize="60"
                         TextAlignment="Center"
                         TextWrapping="Wrap"
                         Width="1668px"
@@ -740,13 +758,36 @@
                     </Style>
                 </StackPanel.Style>
                 <TextBlock Margin="0 0 0 76"
-                        Foreground="White"
-                        FontSize="120"
-                        FontWeight="Bold"
-                        TextAlignment="Center"
-                        Text="{Binding NewModel.Header}"/>
+                           Foreground="White"
+                           FontSize="120"
+                           FontWeight="Bold"
+                           TextAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Text" Value="{Binding Path=CurrentChronicle.Chronicle.StartAt}"/>
+                            <Style.Triggers>
+                                <DataTrigger Value="False">
+                                    <DataTrigger.Binding>
+                                        <MultiBinding Converter="{StaticResource EndAtIsNullConverter}">
+                                            <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
+                                            <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                        </MultiBinding>
+                                    </DataTrigger.Binding>
+                                    <Setter Property="Text">
+                                        <Setter.Value>
+                                            <MultiBinding StringFormat="{}{0} - {1}">
+                                                <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
+                                                <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <TextBlock Foreground="White"
-                        FontSize="72"
+                        FontSize="60"
                         TextAlignment="Center"
                         TextWrapping="Wrap"
                         Width="1668px"
@@ -765,13 +806,14 @@
             FontSize="56"
             Padding="144 36"
             Foreground="White"
+            Margin="0 152"
             Command="{Binding NavigateToCommand}"
-            Background="#412A4780"
             Style="{StaticResource PurpleLightButton}">
-            <Button.RenderTransform>
-                <TranslateTransform Y="0"/>
-            </Button.RenderTransform>
+            <Button.Background>
+                <ImageBrush ImageSource="../../Resources/Images/ChButBg.png"/>
+            </Button.Background>
         </Button>
+        
         <StackPanel Margin="0 2289 0 0">
             <Grid Margin="76 0">
                 <Button Content="Slide Left"
