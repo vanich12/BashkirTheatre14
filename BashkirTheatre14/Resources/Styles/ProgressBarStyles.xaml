@@ -19,7 +19,6 @@
                                 HorizontalAlignment="Left"
                                 CornerRadius="30">
                         </Border>
-
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

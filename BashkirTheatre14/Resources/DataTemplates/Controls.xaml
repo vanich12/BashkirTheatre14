@@ -5,7 +5,8 @@
                     xmlns:entities="clr-namespace:BashkirTheatre14.Model.Entities"
                     xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
                     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-                    xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers">
+                    xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
+                    xmlns:util="clr-namespace:BashkirTheatre14.Utilities">
             <converter:PointResultToImageSourceConverter x:Key="PointResultToImageSourceConverter"/>
             <converter:PointResultToTextConverter x:Key="PointResultToTextConverter"/>
             <converter:SelectAnswerConverter x:Key="SelectAnswerConverter"/>
@@ -114,7 +115,11 @@
                     Value="{Binding QuestionIndex}"
                     Height="48"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center">
+                    <b:Interaction.Behaviors>
+                        <util:ProgressBarAnimateBehavior/>
+                    </b:Interaction.Behaviors>
+                </ProgressBar>
 
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
                     <TextBlock.Text>

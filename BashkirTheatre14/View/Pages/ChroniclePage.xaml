@@ -35,6 +35,7 @@
     <Grid Height="3840px" 
        Width="2160px">
         <Image Source="/Resources/Images/Background.png"/>
+
         <controls:ContentSliderUserControl Margin="0 885 0 0"
                                         x:Name="SliderUserControl"
                                         VerticalAlignment="Top"
@@ -604,6 +605,7 @@
             </Border>
 
         </Grid>
+    
         <Grid Margin="0 2645 0 0"
            VerticalAlignment="Top">
             <StackPanel
@@ -680,16 +682,7 @@
                         TextWrapping="Wrap"
                         Width="1668px"
                         Text="{Binding CurrentChronicle.Chronicle.Description}"/>
-                <Button
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Content="НАЗАД"
-                    FontSize="56"
-                    Padding="144 36"
-                    Foreground="White"
-                    Command="{Binding NavigateToCommand}"
-                    Background="#412A4780"
-                    Style="{StaticResource PurpleLightButton}"/>
+              
             </StackPanel>
             <StackPanel>
                 <StackPanel.Style>
@@ -757,15 +750,28 @@
                         TextAlignment="Center"
                         TextWrapping="Wrap"
                         Width="1668px"
-                        Text="{Binding NewModel.Description}"/>
+                        Text="{Binding NewModel.Chronicle.Description}"/>
             </StackPanel>
             
         </Grid>
 
-        <Image Source="/Resources/Images/Bg.png"/>
+        <Image 
+            Source="/Resources/Images/Bg.png"/>
 
-
-
+        <Button
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Content="НАЗАД"
+            FontSize="56"
+            Padding="144 36"
+            Foreground="White"
+            Command="{Binding NavigateToCommand}"
+            Background="#412A4780"
+            Style="{StaticResource PurpleLightButton}">
+            <Button.RenderTransform>
+                <TranslateTransform Y="0"/>
+            </Button.RenderTransform>
+        </Button>
         <StackPanel Margin="0 2289 0 0">
             <Grid Margin="76 0">
                 <Button Content="Slide Left"
@@ -773,7 +779,7 @@
                         Command="{Binding SlideLeftCommand}"
                         CommandParameter="{Binding ElementName=SliderUserControl}"
                         >
-                <Button.Style>
+                    <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding CurrentItemIndex,ElementName=SliderUserControl}"
@@ -826,7 +832,7 @@
                         <Style TargetType="Button">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding CurrentItemIndex,ElementName=SliderUserControl}"
-                                          Value="4">
+                                          Value="9">
                                     <DataTrigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard TargetProperty="Opacity">
@@ -870,5 +876,6 @@
                 </Button>
             </Grid>
         </StackPanel>
+  
     </Grid>
 </UserControl>

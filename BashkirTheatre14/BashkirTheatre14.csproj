@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Background.png" />
     <None Remove="Resources\Images\BadResult.png" />
+    <None Remove="Resources\Images\Bg.png" />
     <None Remove="Resources\Images\GoodResult.png" />
     <None Remove="Resources\Images\MainBackground.png" />
     <None Remove="Resources\Images\PerfectResult.png" />
@@ -53,7 +55,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\Background.png" />
     <Resource Include="Resources\Images\BadResult.png" />
+    <Resource Include="Resources\Images\Bg.png" />
     <Resource Include="Resources\Images\GoodResult.png" />
     <Resource Include="Resources\Images\MainBackground.png" />
     <Resource Include="Resources\Images\PerfectResult.png" />
