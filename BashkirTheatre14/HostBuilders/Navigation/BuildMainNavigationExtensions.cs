@@ -21,6 +21,8 @@ namespace BashkirTheatre14.HostBuilders.Navigation
                 services.AddSingleton<ModalNavigationStore>();
 
                 services.AddNavigationService<MainPageViewModel, NavigationStore>();
+                services.AddNavigationService<ChroniclesPageViewModel, NavigationStore>();
+
                 services.AddNavigationService<QuizItemViewModel, NavigationStore>();
                 services.AddNavigationService<QuizViewModel, NavigationStore>();
                 services.AddNavigationService<QuizResultViewModel,NavigationStore>();

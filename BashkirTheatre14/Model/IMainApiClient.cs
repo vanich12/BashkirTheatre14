@@ -7,4 +7,7 @@ public interface IMainApiClient
 {
     [Get("/api/viktorins?terminals=Old")]
     Task<List<Quiz>> GetQuizList();
+
+    [Get("/api/chronicles?terminals=Old")]
+    Task<List<Chronicle>> GetChroniclesList();
 }

@@ -18,6 +18,7 @@
                     Content="ЛЕТОПИСЬ"
                     Tag="Подробное описание всех исторических событий которые, происходили с театром с момента основания"
                     Width="530"
+                    Command="{Binding ToChoniclesCommand}"
                     Margin="19 0"
                     Style="{StaticResource MainPageControl}"/>
                 <Button 

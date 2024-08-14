@@ -8,4 +8,10 @@
             <pages1:MainPage/>
         </pages1:PageContainer>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type pages:ChroniclesPageViewModel}">
+        <pages1:PageContainer DataContext="{Binding}">
+            <pages1:ChroniclePage/>
+        </pages1:PageContainer>
+    </DataTemplate>
 </ResourceDictionary>

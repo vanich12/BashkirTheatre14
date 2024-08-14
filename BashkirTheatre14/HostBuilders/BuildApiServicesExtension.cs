@@ -28,6 +28,7 @@ namespace BashkirTheatre14.HostBuilders
 
                 services.AddSingleton<ILoggingService>(s => new FileLoggingService("Logs"));
                 services.AddSingleton<QuizService>();
+                services.AddSingleton<ChronicleService>();
             });
             
             return builder;

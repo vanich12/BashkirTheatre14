@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="BashkirTheatre14.View.Controls.ContentSliderUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:utlities="clr-namespace:BashkirTheatre14.Utlities"
+             mc:Ignorable="d">
+    <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+          Width="{Binding Width}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+       
+            <utlities:AnimatedScrollViewer Grid.Column="1" x:Name="AnimatedScrollViewer"
+                                 VerticalScrollBarVisibility="Disabled"
+                                 Style="{DynamicResource ContentSliderScrollViewer}"
+                                 HorizontalScrollBarVisibility="{Binding ScrollBarVisibility}"
+                                 PanningMode="HorizontalOnly"
+                                 PanningDeceleration="1.0"
+                                 AnimationDuration="0:0:0.5"
+                                 ManipulationBoundaryFeedback="AnimatedScrollViewer_OnManipulationBoundaryFeedback"
+                                 ScrollChanged="AnimatedScrollViewer_OnScrollChanged"
+                                 PreviewTouchDown="AnimatedScrollViewer_OnTouchDown"
+                                 PreviewTouchUp="AnimatedScrollViewer_OnTouchUp">
+                <StackPanel Orientation="Horizontal" >
+
+                    <Grid Width="{Binding ActualWidth, ElementName=LeftGrid}"/>
+                    <ItemsControl x:Name="ContentItemsControl" 
+                       ItemsSource="{Binding ItemsSource}"
+                       ItemTemplate="{Binding ItemTemplate}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="FrameworkElement">
+                                <Setter Property="Width" Value="{Binding ItemWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+                                <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"/>
+
+                                <Setter Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.0"
+                                             ScaleY="1.0"/>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <EventSetter Event="PreviewMouseDown" Handler="Element_OnMouseDown"/>
+                                <EventSetter Event="PreviewMouseUp" Handler="Element_OnMouseUp"/>
+                                <EventSetter Event="PreviewMouseMove" Handler="Element_OnMouseMove"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+
+                    <Grid Width="{Binding ActualWidth, ElementName=RightGrid}"/>
+                </StackPanel>
+            </utlities:AnimatedScrollViewer>
+       
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="{Binding ItemWidth}"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0"
+                     x:Name="LeftGrid"/>
+
+            <Grid Grid.Column="1"
+                     x:Name="CenterGrid"/>
+
+            <Grid Grid.Column="2"
+                     x:Name="RightGrid"/>
+
+        </Grid>
+        <Button Grid.Column="0" 
+                Name="LeftButton"
+                Visibility="{Binding ArrowsShow}"
+                Command="{Binding LeftCommand}"
+                HorizontalAlignment="Left"
+                Margin=" 0 0 20 0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border Width="92"
+                            Height="92"
+                            Background="#F2F4FF"
+                            BorderThickness="0"
+                            Padding="30"
+                            CornerRadius="100">
+                        <Viewbox>
+                            <Path Data="M19.2118 2.72164L2.84886 17.1254C2.69932 17.2573 2.57955 17.4195 2.49751 17.6013C2.41547 17.783 2.37305 17.9801 2.37305 18.1795C2.37305 18.3789 2.41547 18.576 2.49751 18.7577C2.57955 18.9394 2.69932 19.1016 2.84886 19.2335L19.2118 33.6401" Stroke="#F30680" StrokeThickness="4" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="round"/>
+                        </Viewbox>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Grid.Column="2"
+                Name="RightButton"
+                Visibility="{Binding ArrowsShow}"
+                Command="{Binding RightCommand}"
+                HorizontalAlignment="Right"
+                Margin=" 20 0 0 0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border Width="92"
+                            Height="92"
+                            Background="#F2F4FF"
+                            BorderThickness="0"
+                            Padding="30"
+                            CornerRadius="100">
+                        <Viewbox>
+                            <Path Data="M2.78823 2.72164L19.1511 17.1254C19.3007 17.2573 19.4205 17.4195 19.5025 17.6013C19.5845 17.783 19.627 17.9801 19.627 18.1795C19.627 18.3789 19.5845 18.576 19.5025 18.7577C19.4205 18.9394 19.3007 19.1016 19.1511 19.2335L2.78823 33.6401" Stroke="#F30680" StrokeThickness="4" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="round"/>
+                        </Viewbox>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>
+

@@ -70,7 +70,6 @@
                     TextAlignment="Center"
                     FontSize="80"
                     MaxWidth="900"
-
                     Style="{StaticResource MainWhiteTextBlock}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Вы ответили правильно на {0} из {1} вопросов">
@@ -101,7 +100,11 @@
              Width="1668"
              HorizontalAlignment="Center">
 
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="717" Height="48">
+            <Grid HorizontalAlignment="Center" 
+                  VerticalAlignment="Center" 
+                  Width="717" 
+                  Margin="0 0 0 240"
+                  Height="48">
                 <ProgressBar
                     Style="{StaticResource CustomProgressBarStyle}"
                     Minimum="-1"
@@ -150,7 +153,9 @@
                 <ItemsControl ItemsSource="{Binding QuizAnswerList}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel  Margin="170 240"/>
+                            <StackPanel 
+                                
+                                Margin="170 240"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>

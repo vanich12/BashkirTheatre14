@@ -11,16 +11,25 @@ namespace BashkirTheatre14.ViewModel.Pages
     public partial class MainPageViewModel:BasePageViewModel
     {
         private readonly INavigationService _openQuizSelectionNavigationService;
+        private readonly INavigationService _openChronicleNavigationService;
+        private readonly INavigationService _openTheatreInfoNavigationService;
 
-        public MainPageViewModel(INavigationService openQuizSelectionNavigationService)
+        public MainPageViewModel(INavigationService openQuizSelectionNavigationService, INavigationService openChronicleNavigationService)
         {
-            _openQuizSelectionNavigationService = openQuizSelectionNavigationService;
+            this._openQuizSelectionNavigationService = openQuizSelectionNavigationService;
+            this._openChronicleNavigationService = openChronicleNavigationService;
         }
 
         [RelayCommand]
         private void ToQuizSelection()
         {
             _openQuizSelectionNavigationService.Navigate();
+        }
+
+        [RelayCommand]
+        private void ToChonicles()
+        {
+            _openChronicleNavigationService.Navigate();
         }
 
         protected override Task Loaded()
