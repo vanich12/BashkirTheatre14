@@ -13,7 +13,7 @@
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       RenderTransformOrigin="0.5 0.5"
-                      Fill="{StaticResource SecondaryForegroundBrush}">
+                      Fill="{StaticResource SecondaryBackgroundBrush}">
                     <Path.RenderTransform>
                         <RotateTransform Angle="0"/>
                     </Path.RenderTransform>
@@ -37,6 +37,7 @@
                 </Path>
                 <TextBlock Style="{StaticResource DescriptionTextStyle}"
                            Text="Пожалуйста, подождите"
+                           Foreground="{StaticResource SecondaryBackgroundBrush}"
                            Margin="0 16 0 0"/>
             </StackPanel>
         </Viewbox>

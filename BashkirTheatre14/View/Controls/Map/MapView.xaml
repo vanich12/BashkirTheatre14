@@ -216,33 +216,17 @@
                      Panel.ZIndex="4"
                      Margin="40">
                     <components:RoundedButton Style="{StaticResource AlterMapToolButtonStyle}"
-                        ContentTemplate="{StaticResource PlusIcon}">
-                        <b:Interaction.Triggers>
-                            <b:EventTrigger EventName="Click">
-                                <b:CallMethodAction TargetObject="{Binding ElementName=ZoomableContentControl}"
-                             MethodName="ZoomIn"/>
-                            </b:EventTrigger>
-                        </b:Interaction.Triggers>
-                    </components:RoundedButton>
+                        ContentTemplate="{StaticResource PlusIcon}"
+                        Command="{Binding Map.ZoomInCommand}"/>
                     <components:RoundedButton Style="{StaticResource AlterMapToolButtonStyle}"
                          Margin="0 20"
-                         ContentTemplate="{StaticResource MinusIcon}">
-                        <b:Interaction.Triggers>
-                            <b:EventTrigger EventName="Click">
-                                <b:CallMethodAction TargetObject="{Binding ElementName=ZoomableContentControl}"
-                             MethodName="ZoomOut"/>
-                            </b:EventTrigger>
-                        </b:Interaction.Triggers>
-                    </components:RoundedButton>
+                         ContentTemplate="{StaticResource MinusIcon}"
+                         Command="{Binding Map.ZoomOutCommand}"/>
+
                     <components:RoundedButton Style="{StaticResource MapToolButtonStyle}"
-                        ContentTemplate="{StaticResource MapArrowIcon}">
-                        <b:Interaction.Triggers>
-                            <b:EventTrigger EventName="Click">
-                                <b:CallMethodAction TargetObject="{Binding ElementName=ZoomableContentControl}"
-                             MethodName="ResetOffset"/>
-                            </b:EventTrigger>
-                        </b:Interaction.Triggers>
-                    </components:RoundedButton>
+                        ContentTemplate="{StaticResource MapArrowIcon}"
+                        Command="{Binding Map.MoveToTerminalCommand}"
+                        CommandParameter="4"/>
                 </StackPanel>
 
                 <popups:Loader 
@@ -286,8 +270,12 @@
                                 RadiusY="40"/>
                     </components1:ZoomableContentControl.Clip>
                     <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="Loaded">
+                            <b:InvokeCommandAction Command="{Binding LoadMapCommand}"
+                                                   CommandParameter="{Binding ElementName=ZoomableContentControl}"/>
+                        </b:EventTrigger>
                         <b:DataTrigger Binding="{Binding Map.SelectedFloor.AreaSelected}"
-                            Value="True">
+                                       Value="True">
                             <b:CallMethodAction TargetObject="{Binding ElementName=ZoomableContentControl}"
                      MethodName="ResetOffset"/>
                         </b:DataTrigger>

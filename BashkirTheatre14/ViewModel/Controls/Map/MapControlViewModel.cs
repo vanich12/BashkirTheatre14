@@ -3,6 +3,7 @@ using BashkirTheatre14.ViewModel.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using MapControlLib.Components;
 using MapControlLib.ViewModels;
 using MapControlLib.ViewModels.Messages;
 using MvvmNavigationLib.Services;
@@ -53,10 +54,16 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
             OnPropertyChanged(nameof(ShowOverlay));
         }
 
-        protected override async Task Loaded()
+        protected override Task Loaded()
+        {
+            return Task.CompletedTask;
+        }
+
+        [RelayCommand]
+        private async Task LoadMap(ZoomableContentControl zoomableContentControl)
         {
             IsLoading = true;
-            await Map.Load();
+            await Map.Load(zoomableContentControl);
             IsLoading = false;
         }
 

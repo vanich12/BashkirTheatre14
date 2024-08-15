@@ -16,8 +16,7 @@
         <StackPanel Margin="40">
             <Border
                 CornerRadius="40"
-                Height="400"
-                Visibility="{Binding MapObjectPopupViewModel.IsNotInfrastructure,Converter={StaticResource BooleanToHiddenVisibilityConverter}}">
+                Height="400">
                 <Border.Background>
                     <ImageBrush ImageSource="{Binding Image,
                         Converter={StaticResource ImageConverter},
@@ -31,14 +30,23 @@
             <TextBlock Text="{Binding MapObjectPopupViewModel.MapObject.Title}"
                    Style="{StaticResource HeaderStyle}"
                    FontSize="40"
-                   Height="80"
+                   Height="100"
                    Margin="0 21 0 0"/>
 
-            <components:ExpandingTextBlock Visibility="{Binding MapObjectPopupViewModel.IsNotInfrastructure,Converter={StaticResource BooleanToHiddenVisibilityConverter}}"
+            <TextBlock Style="{StaticResource HeaderStyle}"
+                       Visibility="{Binding MapObjectPopupViewModel.IsNotInfrastructure,Converter={StaticResource InvertBooleanToVisibilityConverter}}"
+                       FontSize="40"
+                       Height="100"
+                       Margin="0 10 0 8">
+                <Run Text="{Binding MapObjectPopupViewModel.MapObject.Floor.Name}"/>
+                <Run Text="этаж"/>
+            </TextBlock>
+
+            <components:ExpandingTextBlock Visibility="{Binding MapObjectPopupViewModel.IsNotInfrastructure,Converter={StaticResource BooleanToVisibilityConverter}}"
                    helpers:RichTextBoxHelper.HtmlText="{Binding MapObjectPopupViewModel.MapObject.Description}"
                    Foreground="{StaticResource PrimaryForegroundBrush}"
                    Style="{StaticResource DescriptionTextStyle}"
-                   CollapsedHeight="130"
+                   CollapsedHeight="100"
                    Margin="0 10 0 8"
                    IsExpanded="False"
                    AnimationDuration="0:0:0.25"

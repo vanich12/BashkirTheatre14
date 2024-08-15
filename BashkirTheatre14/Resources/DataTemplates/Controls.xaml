@@ -11,7 +11,7 @@
                     xmlns:utilities="clr-namespace:BashkirTheatre14.Utilities"
                     xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif">
             
-    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}" x:Key="StartPage">
+    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
             <StackPanel VerticalAlignment="Center" 
                         MaxWidth="1668" HorizontalAlignment="Center">
                 <Image 
@@ -52,7 +52,7 @@
             </StackPanel>
     </DataTemplate>  
 
-    <DataTemplate DataType="{x:Type controls:QuizResultViewModel}" x:Key="ResultPage">
+    <DataTemplate DataType="{x:Type controls:QuizResultViewModel}" >
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center">
             <Image 
@@ -95,7 +95,7 @@
         </StackPanel>
     </DataTemplate> 
 
-    <DataTemplate DataType="{x:Type controls:QuizViewModel}" x:Key="QuizPage">
+    <DataTemplate DataType="{x:Type controls:QuizViewModel}">
         <StackPanel
              VerticalAlignment="Top"
              Margin="0 500 0 0 "
@@ -150,7 +150,7 @@
                      Margin="100 0"
                      Height="670"
                      MaxWidth="1668"
-                     Text="{Binding SelectedQuestion.Title}"/>
+                     helpers:RichTextBoxHelper.HtmlText="{Binding SelectedQuestion.Title}"/>
                 <TextBlock
                      Text="Выберите один вариант ответа"
                      TextAlignment="Center"
@@ -219,24 +219,6 @@
                         />
                 </StackPanel>
             </StackPanel>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
-        <pages:PageContainer DataContext="{Binding}">
-            <pages:QuizPage />
-        </pages:PageContainer>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type controls:QuizViewModel}">
-        <pages:PageContainer DataContext="{Binding}">
-            <pages:QuizPage />
-        </pages:PageContainer>
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type controls:QuizResultViewModel}">
-        <pages:PageContainer DataContext="{Binding}">
-            <pages:QuizPage />
-        </pages:PageContainer>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type map1:MapObjectPopupViewModel}">

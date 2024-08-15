@@ -14,7 +14,7 @@ using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public partial class QuizViewModel : BaseControlViewModel
+    public partial class QuizViewModel:ObservableObject
     {
         private IParameterNavigationService<QuizViewModel> _navigationServiceParam;
         private INavigationService _navigationService;
@@ -45,10 +45,6 @@ namespace BashkirTheatre14.ViewModel.Controls
             {
                 QuizAnswerList.Add(new QuizAnswerViewModel(answer));
             }
-        }
-
-        public override async ValueTask DisposeAsync()
-        {
         }
 
         [RelayCommand]
@@ -106,8 +102,6 @@ namespace BashkirTheatre14.ViewModel.Controls
                 GoToResult();
             }
         }
-
-        public override Task Load() => Task.CompletedTask;
 
     }
 }

@@ -23,10 +23,13 @@
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:TerminalAreaViewModel}">
-            <ContentPresenter ContentTemplate="{StaticResource MapGeoIcon}"
-                            Width="100"
-                            Height="100"
-                            Margin="{Binding TerminalPosition}"/>
+            <Grid
+                Width="30"
+                Height="30"
+                Margin="{Binding TerminalPosition}">
+                <ContentPresenter ContentTemplate="{StaticResource MapGeoIcon}"
+                                  Margin="-15 -15 0 0"/>
+            </Grid>
         </DataTemplate>
 
 
