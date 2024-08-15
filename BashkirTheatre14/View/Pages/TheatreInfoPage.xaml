@@ -4,17 +4,30 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
+      xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
+      xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
       mc:Ignorable="d" 
-      d:DesignHeight="3840" d:DesignWidth="2160">
+      d:DesignHeight="3840" d:DesignWidth="2160"
+      d:DataContext="{d:DesignInstance pages:TheatreInfoPageViewModel}">
+<UserControl.Resources>
+    <converter:ImageConverter x:Key="ImageConverter"/>
+</UserControl.Resources>
 
     <Grid>
         <StackPanel 
                     MaxWidth="1668"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Center">
-            <Image Source="../../Resources/Images/Theatre.png"
-                   Width="1400"
-                   Height="1400"/>
+            <Border CornerRadius="700"
+                    Width="1400"
+                    Height="1400"
+                    BorderThickness="9"
+                    BorderBrush="#96358C"
+                    Margin="-25 0">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding CurrentInfo.ImagePath, Converter={StaticResource ImageConverter}}"/>
+                </Border.Background>
+            </Border>
             <StackPanel>
                 <TextBlock Text="О ТЕАТРЕ"
                            Style="{StaticResource BoldWhiteTextBlock}"
@@ -23,10 +36,8 @@
                 <TextBlock 
                     Style="{StaticResource MainWhiteTextBlock}"
                     TextAlignment="Center"
-                    TextWrapping="Wrap"
-                    Text="Башкирский государственный театр кукол за годы своего существования проделал огромный путь, полный поисков, побед, ошибок (а куда без них!) – но самое главное, вдохновенной работы, творческого рвения, которое до сих пор помогает этому коллективу выпускать спектакли, жить, оставаться любимым. Помогает театру и его история: сегодня, когда слушаешь рассказы ветеранов БГТК, многое кажется вымышленным, похожим на легенду. И, тем не менее, это быль, это происходило с нашим коллективом, многое даже в здании, где сейчас работает Театра кукол.
-
-Окунемся в эту историю, без которой не было бы современности, без которой за нами не тянулся бы «шлейф» ассоциаций, воспоминаний, идей, приводящий в итоге к Башкирскому государственному театру кукол. Всё началось с небольшого увлечения, которому одна уфимская учительница изобразительного искусства уделяла все свободное время, постепенно увлекая за собой коллег и учеников…"/>
+                    Text="{Binding CurrentInfo.Info.Description}"
+                    />
                 <Button 
                     Margin="0 0 0 0"
                     Background="Transparent"
@@ -37,6 +48,7 @@
                     HorizontalAlignment="Center"
                     Padding="165.5 36"
                     Content="НАЗАД"
+                    Command="{Binding NavigateToMainCommand}"
                     Style="{StaticResource PurpleLightButton}"/>
             </StackPanel>
         </StackPanel>

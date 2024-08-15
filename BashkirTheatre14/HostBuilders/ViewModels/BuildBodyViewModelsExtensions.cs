@@ -44,8 +44,17 @@ namespace BashkirTheatre14.HostBuilders.ViewModels
                     new MainPageViewModel(
                         s.GetRequiredService<NavigationService<QuizSelectionPopupViewModel>>(), 
                         s.GetRequiredService<NavigationService<ChroniclesPageViewModel>>(),
+                        s.GetRequiredService<NavigationService<TheatreInfoPageViewModel>>(),
                         s.GetRequiredService<MapControlViewModel>()));
 
+                services.AddTransient<TheatreInfoPageViewModel>(s =>
+                    new TheatreInfoPageViewModel(s.GetRequiredService<InfoServices>(),s.GetRequiredService<NavigationService<MainPageViewModel>>()));
+
+                services.AddSingleton<CreateViewModel<TheatrInfoViewModel,Info>>(s =>
+                {
+                    return info => new TheatrInfoViewModel(info);
+                });
+                //летописи
                 services.AddTransient<ChroniclesPageViewModel>(s =>
                     new ChroniclesPageViewModel(s.GetRequiredService<ChronicleService>(),s.GetRequiredService<NavigationService<MainPageViewModel>>()));
 

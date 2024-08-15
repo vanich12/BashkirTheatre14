@@ -4,6 +4,7 @@ namespace BashkirTheatre14.Services
 {
     public abstract class BaseListWebStore<TData>:IListStore<TData>
     {
+
         public async IAsyncEnumerable<TData> GetListAsync([EnumeratorCancellation] CancellationToken token = default, params object[] args)
         {
 

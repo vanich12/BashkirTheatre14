@@ -10,4 +10,10 @@ public interface IMainApiClient
 
     [Get("/api/chronicles?terminals=Old")]
     Task<List<Chronicle>> GetChroniclesList();
+
+    [Get("/api/abouts?terminals=Old")]
+    Task<List<Info>> GetInfoList();
+
+    [Get("/api/abouts?terminals=Old")]
+    Task<Info> GetInfo();
 }

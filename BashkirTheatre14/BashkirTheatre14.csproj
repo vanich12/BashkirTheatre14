@@ -10,7 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Gif\in-love.gif" />
+    <None Remove="Resources\Gif\party.gif" />
     <None Remove="Resources\Gif\SadFace.gif" />
+    <None Remove="Resources\Gif\sample-1.gif" />
     <None Remove="Resources\Images\Background.png" />
     <None Remove="Resources\Images\BadResult.png" />
     <None Remove="Resources\Images\Bg.png" />
@@ -41,7 +44,7 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
     <PackageReference Include="Refit" Version="7.1.2" />
     <PackageReference Include="Refit.HttpClientFactory" Version="7.1.2" />
-    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,7 +66,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Gif\in-love.gif" />
+    <Resource Include="Resources\Gif\party.gif" />
     <Resource Include="Resources\Gif\SadFace.gif" />
+    <Resource Include="Resources\Gif\sample-1.gif" />
     <Resource Include="Resources\Images\Background.png" />
     <Resource Include="Resources\Images\BadResult.png" />
     <Resource Include="Resources\Images\Bg.png" />

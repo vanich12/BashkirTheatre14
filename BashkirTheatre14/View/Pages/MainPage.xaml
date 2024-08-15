@@ -39,6 +39,7 @@
                     Content="О ТЕАТРЕ"
                     Tag="Огромный путь существования театра до сегодняшних дней"
                     Margin="19 0"
+                    Command="{Binding ToInfoCommand}"
                     Style="{StaticResource MainPageControTeathr}"/>
             </StackPanel>
         </StackPanel>

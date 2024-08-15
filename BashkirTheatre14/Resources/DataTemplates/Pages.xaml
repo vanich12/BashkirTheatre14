@@ -14,4 +14,10 @@
             <pages1:ChroniclePage/>
         </pages1:PageContainer>
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type pages:TheatreInfoPageViewModel}">
+        <pages1:PageContainer DataContext="{Binding}">
+            <pages1:TheatreInfoPage/>
+        </pages1:PageContainer>
+    </DataTemplate>
 </ResourceDictionary>

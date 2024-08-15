@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
 namespace BashkirTheatre14.Converter
 {
-    internal class PointResultToImageSourceConverter: IValueConverter
+    internal class PointResultToImageSourceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is int pointResult)
             {
+                string uriString;
                 if (pointResult <= 2)
                 {
-                    return new BitmapImage(new Uri("pack://application:,,,/Resources/Images/BadResult.png"));
+                    uriString = "../../Resources/Gif/SadFace.gif";
                 }
                 else if (pointResult < 7)
                 {
-                    return new BitmapImage(new Uri("pack://application:,,,/Resources/Images/GoodResult.png"));
+                    uriString = "../../Resources/Gif/in-love.gif";
                 }
                 else
                 {
-                    return new BitmapImage(new Uri("pack://application:,,,/Resources/Images/PerfectResult.png"));
+                    uriString = "../../Resources/Gif/party.gif";
                 }
+
+                return uriString;
             }
+
             return null;
         }
 

@@ -35,6 +35,8 @@ namespace BashkirTheatre14.HostBuilders
 
                 services.AddSingleton<QuizService>();
                 services.AddSingleton<ChronicleService>();
+                services.AddSingleton<InfoServices>();
+                services.AddSingleton<TheatreInfoService>();
             });
             
             return builder;

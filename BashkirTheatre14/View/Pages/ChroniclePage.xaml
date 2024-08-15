@@ -11,7 +11,7 @@
       xmlns:components="clr-namespace:BashkirTheatre14.View.Components"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance pages:ChroniclesPageViewModel}"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="3804" d:DesignWidth="2160"
      >
 <UserControl.Resources>
     <converter:ImageConverter x:Key="ImageConverter"/>
@@ -38,7 +38,7 @@
        Width="2160px">
         <Image Source="/Resources/Images/Background.png"/>
 
-        <controls:ContentSliderUserControl Margin="0 885 0 0"
+        <components:ContentSliderUserControl Margin="0 885 0 0"
                                         x:Name="SliderUserControl"
                                         VerticalAlignment="Top"
                                         ItemWidth="1350"
@@ -191,7 +191,7 @@
                                  Y="95"/>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Opacity" Value="0.2"/>
+                        <Setter Property="Opacity" Value="0.0"/>
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsLast}"
@@ -765,20 +765,20 @@
                            TextAlignment="Center">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Text" Value="{Binding Path=CurrentChronicle.Chronicle.StartAt}"/>
+                            <Setter Property="Text" Value="{Binding Path=NewModel.Chronicle.StartAt}"/>
                             <Style.Triggers>
                                 <DataTrigger Value="False">
                                     <DataTrigger.Binding>
                                         <MultiBinding Converter="{StaticResource EndAtIsNullConverter}">
-                                            <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
-                                            <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                            <Binding Path="NewModel.Chronicle.StartAt"/>
+                                            <Binding Path="NewModel.Chronicle.EndAt"/>
                                         </MultiBinding>
                                     </DataTrigger.Binding>
                                     <Setter Property="Text">
                                         <Setter.Value>
                                             <MultiBinding StringFormat="{}{0} - {1}">
-                                                <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
-                                                <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                                <Binding Path="NewModel.Chronicle.StartAt"/>
+                                                <Binding Path="NewModel.Chronicle.EndAt"/>
                                             </MultiBinding>
                                         </Setter.Value>
                                     </Setter>
@@ -826,7 +826,7 @@
                         <Style TargetType="Button">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding CurrentItemIndex,ElementName=SliderUserControl}"
-                                          Value="0">
+                                             Value="0">
                                     <DataTrigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard TargetProperty="Opacity">
@@ -851,6 +851,7 @@
                                 </Trigger>
                             </Style.Triggers>
                             <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="Opacity" Value="0"/>
                         </Style>
                     </Button.Style>
                     <Button.Template>

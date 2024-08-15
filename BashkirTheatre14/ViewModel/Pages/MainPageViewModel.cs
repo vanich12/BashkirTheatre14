@@ -18,10 +18,11 @@ namespace BashkirTheatre14.ViewModel.Pages
 
         [ObservableProperty] private MapControlViewModel _mapControlViewModel;
 
-        public MainPageViewModel(INavigationService openQuizSelectionNavigationService, INavigationService openChronicleNavigationService,MapControlViewModel mapControlViewModel)
+        public MainPageViewModel(INavigationService openQuizSelectionNavigationService, INavigationService openChronicleNavigationService,INavigationService  theatreInfoNavigationService,MapControlViewModel mapControlViewModel)
         {
             this._openQuizSelectionNavigationService = openQuizSelectionNavigationService;
             this._openChronicleNavigationService = openChronicleNavigationService;
+            this._openTheatreInfoNavigationService = theatreInfoNavigationService;
             _mapControlViewModel = mapControlViewModel;
         }
 
@@ -37,6 +38,11 @@ namespace BashkirTheatre14.ViewModel.Pages
             _openChronicleNavigationService.Navigate();
         }
 
+        [RelayCommand]
+        private void ToInfo()
+        {
+            _openTheatreInfoNavigationService.Navigate();
+        }
         protected override Task Loaded()
         {
             return Task.CompletedTask;
