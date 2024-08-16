@@ -29,15 +29,14 @@ namespace BashkirTheatre14.Helpers.Logging
             });
         }
 
-        public void Log(Exception exception, string message = null)
+        public void Log(Exception exception, string message)
         {
-            if (exception is null)
-                return;
-
             var description = GetExceptionDescription(exception, message);
 
             Log(description);
         }
+
+        public void Log(Exception exception) => Log(exception.ToString());
 
         private string GetFilePath()
         {
@@ -55,21 +54,19 @@ namespace BashkirTheatre14.Helpers.Logging
         {
             _readerWriterLock.AcquireWriterLock(LockTimeoutMilliseconds);
 
-            using (var stream = File.AppendText(path))
+            using var stream = File.AppendText(path);
+            try
             {
-                try
-                {
-                    stream.WriteLine(entry);
-                    stream.WriteLine();
-                }
-                catch (Exception ex)
-                {
-                    
-                }
-                finally
-                {
-                    _readerWriterLock.ReleaseWriterLock();
-                }
+                stream.WriteLine(entry);
+                stream.WriteLine();
+            }
+            catch (Exception)
+            {
+                //
+            }
+            finally
+            {
+                _readerWriterLock.ReleaseWriterLock();
             }
         }
 
@@ -82,8 +79,7 @@ namespace BashkirTheatre14.Helpers.Logging
         {
             var sb = new StringBuilder();
 
-            if (!(message is null))
-                sb.Append($"{message}: ");
+            sb.Append($"{message}: ");
 
             sb.Append(exception);
 
