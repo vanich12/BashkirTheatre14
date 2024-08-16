@@ -21,7 +21,7 @@ namespace BashkirTheatre14.ViewModel.Popups
         private IParameterNavigationService<IReadOnlyList<Question>> _parameterNavigationService;
 
         [ObservableProperty] private QuizChoiceViewModel _selectedQuiz;
-
+        [ObservableProperty] private bool _hadSelectedQuiz;
         public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService) : base(closeModalNavigationService)
         {
             _quizService = quizService;
@@ -54,6 +54,7 @@ namespace BashkirTheatre14.ViewModel.Popups
 
             this.SelectedQuiz = quiz;
             SelectedQuiz.IsSelected = true;
+           HadSelectedQuiz = QuizList.Any(x => x.IsSelected);
         }
 
         [RelayCommand]

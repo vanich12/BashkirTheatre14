@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:BashkirTheatre14.View.Pages"
       xmlns:pages="clr-namespace:BashkirTheatre14.ViewModel.Pages"
       xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
+      xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="3840" d:DesignWidth="2160"
       d:DataContext="{d:DesignInstance pages:TheatreInfoPageViewModel}">
@@ -44,7 +45,7 @@
                             <TextBlock 
                                 Style="{StaticResource MainWhiteTextBlock}"
                                 TextAlignment="Center"
-                                Text="{Binding CurrentInfo.Info.Description}" />
+                                helpers:RichTextBoxHelper.HtmlText="{Binding CurrentInfo.Info.Description}" />
                         </StackPanel>
                     </ScrollViewer>
 
