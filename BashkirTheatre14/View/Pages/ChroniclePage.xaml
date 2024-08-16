@@ -793,7 +793,7 @@
                         TextAlignment="Center"
                         TextWrapping="Wrap"
                         Width="1668px"
-                        Text="{Binding NewModel.Chronicle.Description}"/>
+                        helpers:RichTextBoxHelper.HtmlText="{Binding NewModel.Chronicle.Description}"/>
             </StackPanel>
             
         </Grid>
