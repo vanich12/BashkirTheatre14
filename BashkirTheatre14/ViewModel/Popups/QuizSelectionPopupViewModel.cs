@@ -13,19 +13,14 @@ using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Popups
 {
-    public partial class QuizSelectionPopupViewModel:BasePopupViewModel
+    public partial class QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,
+            QuizService quizService,
+            CreateViewModel<QuizChoiceViewModel, QuizModel> quizItemFactory)
+        : BasePopupViewModel(closeModalNavigationService)
     {
-        private readonly QuizService _quizService;
         private CancellationTokenSource? _cancellationTokenSource;
         [ObservableProperty] private ObservableCollection<QuizChoiceViewModel> _quizList = new();
-        private IParameterNavigationService<IReadOnlyList<Question>> _parameterNavigationService;
-
-        [ObservableProperty] private QuizChoiceViewModel _selectedQuiz;
-
-        public QuizSelectionPopupViewModel(INavigationService closeModalNavigationService,QuizService quizService) : base(closeModalNavigationService)
-        {
-            _quizService = quizService;
-        }
+        [ObservableProperty] private QuizChoiceViewModel? _selectedQuiz;
 
         [RelayCommand]
         private async Task Loaded()
@@ -34,9 +29,9 @@ namespace BashkirTheatre14.ViewModel.Popups
             QuizList.Clear();
             try
             {
-                await foreach (var quiz in _quizService.GetListAsync(_cancellationTokenSource.Token))
+                await foreach (var quiz in quizService.WithCancellation(_cancellationTokenSource.Token))
                 {
-                    QuizList.Add(quiz);
+                    QuizList.Add(quizItemFactory(quiz));
                 }
             }
             catch (OperationCanceledException)
@@ -47,12 +42,8 @@ namespace BashkirTheatre14.ViewModel.Popups
         [RelayCommand]
         private void SelectQuiz(QuizChoiceViewModel quiz)
         {
-            if (SelectedQuiz != null)
-            {
-                SelectedQuiz.IsSelected = false;
-            }
-
-            this.SelectedQuiz = quiz;
+            if(SelectedQuiz is not null) SelectedQuiz.IsSelected = false;
+            SelectedQuiz = quiz;
             SelectedQuiz.IsSelected = true;
         }
 

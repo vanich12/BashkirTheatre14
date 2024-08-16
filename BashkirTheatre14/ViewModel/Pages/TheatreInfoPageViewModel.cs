@@ -32,7 +32,7 @@ namespace BashkirTheatre14.ViewModel.Pages
             _cancellationTokenSource = new CancellationTokenSource();
             try
             {
-                await foreach (var info in _infoService.GetListAsync(_cancellationTokenSource.Token))
+                await foreach (var info in _infoService.WithCancellation(_cancellationTokenSource.Token))
                 {
                     TheatrInfos.Add(info);
                     if (TheatrInfos.Any() && CurrentInfo == null)

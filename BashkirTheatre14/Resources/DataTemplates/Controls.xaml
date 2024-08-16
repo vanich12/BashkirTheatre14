@@ -20,7 +20,7 @@
                     Margin="0 0 0 240"
                     Source="../../Resources/Images/QuizCharacters.png"/>
                 
-                <TextBlock Text="{Binding Quiz.Title}"
+                <TextBlock Text="{Binding Quiz.QuizDto.Title}"
                            Style="{StaticResource BoldWhiteTextBlock}"
                            TextAlignment="Center"
                            Margin="0 0 0 0"
@@ -46,7 +46,7 @@
                         Margin=" 0 240 0 0"
                         Foreground="White"
                         Background="#96358c"
-                        Command="{Binding GoToQuestionsCommand}"
+                        Command="{Binding ToNextPageCommand}"
                         HorizontalAlignment="Center"
                         Style="{StaticResource PurpleLightButton}"/>
             </StackPanel>
@@ -59,12 +59,12 @@
                 Width="700"
                 Height="700"
                 gif:AnimationBehavior.RepeatBehavior="Forever"
-                gif:AnimationBehavior.SourceUri="{Binding PointResult, Converter= {StaticResource PointResultToImageSourceConverter}}"/>
+                gif:AnimationBehavior.SourceUri="{Binding ResultImageUri}"/>
 
             <StackPanel Margin="0 0 0 240">
                 <TextBlock 
                     TextAlignment="Center"
-                    Text="{Binding PointResult, Converter={StaticResource PointResultToTextConverter}}"
+                    Text="{Binding ResultText}"
                     Margin="0 80"
                     Style="{StaticResource BoldWhiteTextBlock}">
                 </TextBlock>
@@ -76,7 +76,7 @@
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Вы ответили правильно на {0} из {1} вопросов">
                             <Binding Path="PointResult"/>
-                            <Binding Path="QuizViewModel.QuestionList.Count"/>
+                            <Binding Path="QuizViewModel.Quiz.QuizDto.Questions.Count"/>
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
@@ -112,7 +112,7 @@
                     Minimum="-1"
                     FontSize="40"
                     Margin="0 0 0 0"
-                    Maximum="{Binding QuestionList.Count}"
+                    Maximum="{Binding Quiz.QuizDto.Questions.Count}"
                     Value="{Binding QuestionIndex}"
                     Height="48"
                     HorizontalAlignment="Stretch"
@@ -125,7 +125,7 @@
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{1}/{0}">
-                            <Binding Path="QuestionList.Count"/>
+                            <Binding Path="Quiz.QuizDto.Questions.Count"/>
                             <Binding Path="QuestionIndex"/>
                         </MultiBinding>
                     </TextBlock.Text>
@@ -156,7 +156,7 @@
                      TextAlignment="Center"
                      Style="{StaticResource MainWhiteTextBlock}"/>
 
-                <ItemsControl ItemsSource="{Binding QuizAnswerList}">
+                <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel 
@@ -166,27 +166,28 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button
+                            <RadioButton
                                 FontSize="60"
+                                GroupName="Answers"
                                 Margin="0 40"
                                 Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                 CommandParameter="{Binding}"
-                                Content="{Binding Answer.Title}">
-                                <Button.Style>
-                                    <Style TargetType="Button" BasedOn="{StaticResource QuizQuestionBut}">
+                                Content="{Binding Title}">
+                                <RadioButton.Style>
+                                    <Style TargetType="RadioButton" BasedOn="{StaticResource QuizQuestionBut}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsSelected, Converter={StaticResource SelectBoolAnswerConverter}}" Value="True">
+                                            <Trigger Property="IsChecked" Value="True">
                                                 <Setter Property="Background" Value="#96358C" />
                                                 <Setter Property="Foreground" Value="White" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsSelected, Converter={StaticResource SelectBoolAnswerConverter}}" Value="False">
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="False">
                                                 <Setter Property="Background" Value="White" />
                                                 <Setter Property="Foreground" Value="Black" />
-                                            </DataTrigger>
+                                            </Trigger>
                                         </Style.Triggers>
                                     </Style>
-                                </Button.Style>
-                            </Button>
+                                </RadioButton.Style>
+                            </RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

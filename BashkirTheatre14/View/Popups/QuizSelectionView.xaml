@@ -80,7 +80,7 @@
                                                 </Image.Style>
                                             </Image>
 
-                                            <TextBlock Text="{Binding Quiz.Title}"
+                                            <TextBlock Text="{Binding Quiz.QuizDto.Title}"
                                                   TextAlignment="Center"
                                                   Margin="20 00"
                                                   VerticalAlignment="Center"
@@ -134,7 +134,7 @@
                     Padding="76 38"
                     Style="{StaticResource PurpleLightButton}"
                     Margin="20 80 0 0"
-                    Command="{Binding GoToQuestionsCommand}"
+                    Command="{Binding ToNextPageCommand}"
                     Content="ПРОДОЛЖИТЬ">
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="Click">

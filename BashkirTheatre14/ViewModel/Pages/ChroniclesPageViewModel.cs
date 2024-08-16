@@ -49,7 +49,7 @@ namespace BashkirTheatre14.ViewModel.Pages
             try
             {
                 bool isFirstItem = true;
-                await foreach (var chronicle in _chronicleService.GetListAsync(_cancellationTokenSource.Token))
+                await foreach (var chronicle in _chronicleService.WithCancellation(_cancellationTokenSource.Token))
                 {
                     ChroniclesList.Add(chronicle);
 

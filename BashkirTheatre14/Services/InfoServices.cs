@@ -11,27 +11,17 @@ using BashkirTheatre14.ViewModel.Pages;
 
 namespace BashkirTheatre14.Services
 {
-    public class InfoServices:BaseListWebStore<TheatrInfoViewModel>
-    {
-        private readonly IMainApiClient _apiClient;
-        private readonly ImageLoadingHttpClient _loadingHttpClient;
-        private readonly CreateViewModel<TheatrInfoViewModel, Info> _chroniclesFactory;
-
-        public InfoServices(IMainApiClient apiClient, ImageLoadingHttpClient loadingHttpClient,
+    public class InfoServices(IMainApiClient apiClient, ImageLoadingHttpClient loadingHttpClient,
             CreateViewModel<TheatrInfoViewModel, Info> chronicleFactory)
+        : BaseListWebStore<TheatrInfoViewModel>
+    {
+        protected override async IAsyncEnumerable<TheatrInfoViewModel> GetListAsyncOverride()
         {
-            _apiClient = apiClient;
-            _loadingHttpClient = loadingHttpClient;
-            _chroniclesFactory = chronicleFactory;
-        }
-
-        protected override async IAsyncEnumerable<TheatrInfoViewModel> GetListAsyncOverride(params object[] args)
-        {
-            var chroniclesList = await _apiClient.GetInfoList();
+            var chroniclesList = await apiClient.GetInfoList();
             foreach (var info in chroniclesList)
             {
-                info.LocalImagePath = await _loadingHttpClient.DownloadImage(info.ImagePath);
-                var chronicleViewModel = _chroniclesFactory(info);
+                info.LocalImagePath = await loadingHttpClient.DownloadImage(info.ImagePath);
+                var chronicleViewModel = chronicleFactory(info);
 
                 yield return chronicleViewModel;
             }

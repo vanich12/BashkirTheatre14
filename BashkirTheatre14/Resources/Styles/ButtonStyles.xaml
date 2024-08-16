@@ -53,10 +53,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="QuizQuestionBut" TargetType="Button">
+    <Style x:Key="QuizQuestionBut" TargetType="ButtonBase">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="ButtonBase">
                         <Grid>
                             <Border Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
