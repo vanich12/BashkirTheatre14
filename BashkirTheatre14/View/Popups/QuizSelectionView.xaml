@@ -82,7 +82,7 @@
                                                 </Image.Style>
                                             </Image>
 
-                                            <TextBlock Text="{Binding Quiz.Title}"
+                                            <TextBlock Text="{Binding Quiz.QuizDto.Title}"
                                                   TextAlignment="Center"
                                                   Margin="20 00"
                                                   VerticalAlignment="Center"
@@ -128,16 +128,16 @@
                     Style="{StaticResource PurpleLightButton}"/>
 
                 <Button 
-                    Background="{Binding DataContext.HadSelectedQuiz, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToColorConverter}}"
+                    Background="{Binding DataContext.HasSelected, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToColorConverter}}"
                     Foreground="White"
-                    IsEnabled="{Binding DataContext.HadSelectedQuiz, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    IsEnabled="{Binding DataContext.HasSelected, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     FontWeight="Bold"
                     DataContext="{Binding SelectedQuiz}"
                     FontSize="80"
                     Padding="76 38"
                     Style="{StaticResource PurpleLightButton}"
                     Margin="20 80 0 0"
-                    Command="{Binding GoToQuestionsCommand}"
+                    Command="{Binding ToNextPageCommand}"
                     Content="ПРОДОЛЖИТЬ">
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="Click">

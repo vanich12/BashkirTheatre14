@@ -10,53 +10,32 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public partial class QuizResultViewModel : BaseControlViewModel
+    public partial class QuizResultViewModel(INavigationService navigationService, QuizViewModel quizViewModel)
+        : ObservableObject
     {
-        private IParameterNavigationService<Quiz> _navigationServiceParam;
+        [ObservableProperty] private QuizViewModel _quizViewModel = quizViewModel;
 
-        private INavigationService _navigationService;
-        public Quiz Quiz { get; set; }
+        public int PointResult { get;} = quizViewModel.CorrectAnswersCount;
 
-        [ObservableProperty]
-        private QuizViewModel _quizViewModel;
-
-        public int? PointResult { get; set; }
-
-        public QuizResultViewModel(INavigationService navigationService,QuizViewModel quizViewModel)
-        {
-            this._quizViewModel = quizViewModel;
-            this._navigationService = navigationService;
-            this.PointResult = _quizViewModel.CorrectAnswer.Count();
-        }
+        public string ResultText => GetResultText();
+        public string ResultImageUri => GetResultImageUri();
 
         [RelayCommand]
-        private void SelectQuiz()
+        private void GoToMainPage()=>navigationService.Navigate();
+
+        private string GetResultText() => PointResult switch
         {
-            _navigationServiceParam.Navigate(Quiz);
-        }
+            <= 2 => "Надо тренироваться!",
+            < 5 => "Отлично!",
+            _ => "Превосходно!"
+        };
 
-        [RelayCommand]
-        private void GoToMainPage()
+        private string GetResultImageUri()=> PointResult switch
         {
-            _navigationService.Navigate();
-        }
+            <= 2 => "../../Resources/Gif/SadFace.gif",
+            < 7 => "../../Resources/Gif/in-love.gif",
+            _ => "../../Resources/Gif/party.gif"
+        };
 
-        public override Task Load()
-        {
-            throw new NotImplementedException();
-        }
-
-        [RelayCommand]
-        //private void GoToQuestions()
-        //{
-        //    _navigationService.Navigate(Quiz);
-        //}
-
-#pragma warning disable MVVMTK0007 // Invalid RelayCommand method signature
-        public override async ValueTask DisposeAsync()
-#pragma warning restore MVVMTK0007 // Invalid RelayCommand method signature
-        {
-        }
-
-    }
+}
 }

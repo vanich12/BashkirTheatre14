@@ -13,7 +13,6 @@ namespace BashkirTheatre14.Converters
         {
             if (value is bool hasSelectedQuiz)
             {
-                // Если значение true, возвращаем основной цвет
                 return hasSelectedQuiz
                     ? new SolidColorBrush(Color.FromRgb(150, 53, 140))
                     : new SolidColorBrush(Color.FromRgb(109, 35, 94)); 

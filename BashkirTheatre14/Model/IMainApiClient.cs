@@ -6,7 +6,7 @@ namespace BashkirTheatre14.Model;
 public interface IMainApiClient
 {
     [Get("/api/viktorins?terminals=Old")]
-    Task<List<Quiz>> GetQuizList();
+    Task<List<QuizDto>> GetQuizList();
 
     [Get("/api/chronicles?terminals=Old")]
     Task<List<Chronicle>> GetChroniclesList();

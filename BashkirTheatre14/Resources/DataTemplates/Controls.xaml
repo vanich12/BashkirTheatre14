@@ -20,7 +20,7 @@
                     Margin="0 0 0 240"
                     Source="../../Resources/Images/QuizCharacters.png"/>
                 
-                <TextBlock Text="{Binding Quiz.Title}"
+                <TextBlock Text="{Binding Quiz.QuizDto.Title}"
                            Style="{StaticResource BoldWhiteTextBlock}"
                            TextAlignment="Center"
                            Margin="0 0 0 0"
@@ -46,7 +46,7 @@
                         Margin=" 0 240 0 0"
                         Foreground="White"
                         Background="#96358c"
-                        Command="{Binding GoToQuestionsCommand}"
+                        Command="{Binding ToNextPageCommand}"
                         HorizontalAlignment="Center"
                         Style="{StaticResource PurpleLightButton}"/>
             </StackPanel>
@@ -59,12 +59,12 @@
                 Width="700"
                 Height="700"
                 gif:AnimationBehavior.RepeatBehavior="Forever"
-                gif:AnimationBehavior.SourceUri="{Binding PointResult, Converter= {StaticResource PointResultToImageSourceConverter}}"/>
+                gif:AnimationBehavior.SourceUri="{Binding ResultImageUri}"/>
 
             <StackPanel Margin="0 0 0 240">
                 <TextBlock 
                     TextAlignment="Center"
-                    Text="{Binding PointResult, Converter={StaticResource PointResultToTextConverter}}"
+                    Text="{Binding ResultText}"
                     Margin="0 80"
                     Style="{StaticResource BoldWhiteTextBlock}">
                 </TextBlock>
@@ -76,7 +76,7 @@
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Вы ответили правильно на {0} из {1} вопросов">
                             <Binding Path="PointResult"/>
-                            <Binding Path="QuizViewModel.QuestionList.Count"/>
+                            <Binding Path="QuizViewModel.Quiz.QuizDto.Questions.Count"/>
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
@@ -96,129 +96,133 @@
     </DataTemplate> 
 
     <DataTemplate DataType="{x:Type controls:QuizViewModel}">
-        <StackPanel
-             VerticalAlignment="Top"
-             Margin="0 500 0 0 "
-             Width="1668"
-             HorizontalAlignment="Center">
+        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center">
+            <!-- Две строки: одна для основного содержимого, вторая для кнопок -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-            <Grid HorizontalAlignment="Center" 
-                  VerticalAlignment="Center" 
-                  Width="717" 
-                  Margin="0 0 0 240"
-                  Height="48">
-                <ProgressBar
-                    Style="{StaticResource CustomProgressBarStyle}"
-                    Minimum="-1"
-                    FontSize="40"
-                    Margin="0 0 0 0"
-                    Maximum="{Binding QuestionList.Count}"
-                    Value="{Binding QuestionIndex}"
-                    Height="48"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center">
-                    <b:Interaction.Behaviors>
-                        <utilities:ProgressBarAnimateBehavior/>
-                    </b:Interaction.Behaviors>
-                </ProgressBar>
+            <!-- Основное содержимое (включает ProgressBar, TextBlock и ItemsControl) -->
+            <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0 500 0 0" Width="1668" HorizontalAlignment="Center">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="717" Margin="0 0 0 240" Height="48">
+                    <ProgressBar
+                Style="{StaticResource CustomProgressBarStyle}"
+                Minimum="-1"
+                FontSize="40"
+                Margin="0 0 0 0"
+                Maximum="{Binding Quiz.QuizDto.Questions.Count}"
+                Value="{Binding QuestionIndex}"
+                Height="48"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center">
+                        <b:Interaction.Behaviors>
+                            <utilities:ProgressBarAnimateBehavior/>
+                        </b:Interaction.Behaviors>
+                    </ProgressBar>
 
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{1}/{0}">
-                            <Binding Path="QuestionList.Count"/>
-                            <Binding Path="QuestionIndex"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="#505050"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding QuestionIndex,Converter = {StaticResource ProgressBarColorConverter}}" Value="True">
-                                     <Setter Property="Foreground" Value="White"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding QuestionIndex,Converter = {StaticResource ProgressBarColorConverter}}" Value="False">
-                                    <Setter Property="Foreground" Value="#505050"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
-            <TextBlock 
-                     Style="{StaticResource BoldWhiteTextBlock}"
-                     TextAlignment="Center"
-                     Margin="100 0"
-                     Height="670"
-                     MaxWidth="1668"
-                     helpers:RichTextBoxHelper.HtmlText="{Binding SelectedQuestion.Title}"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{1}/{0}">
+                                <Binding Path="Quiz.QuizDto.Questions.Count"/>
+                                <Binding Path="QuestionIndex"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#505050"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding QuestionIndex,Converter={StaticResource ProgressBarColorConverter}}" Value="True">
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding QuestionIndex,Converter={StaticResource ProgressBarColorConverter}}" Value="False">
+                                        <Setter Property="Foreground" Value="#505050"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+
+                <TextBlock 
+            Style="{StaticResource BoldWhiteTextBlock}"
+            TextAlignment="Center"
+            Margin="100 0"
+            MinHeight="670"
+            MaxWidth="1668"
+            helpers:RichTextBoxHelper.HtmlText="{Binding SelectedQuestion.Title}"/>
+
                 <TextBlock
-                     Text="Выберите один вариант ответа"
-                     TextAlignment="Center"
-                     Style="{StaticResource MainWhiteTextBlock}"/>
+            Margin="0 50"
+            Text="Выберите один вариант ответа"
+            TextAlignment="Center"
+            Style="{StaticResource MainWhiteTextBlock}"/>
 
-                <ItemsControl ItemsSource="{Binding QuizAnswerList}">
+                <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel 
-                                Height="1100"
-                                Margin="170 240"/>
+                        Height="1100"
+                        Margin="170 240"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button
-                                FontSize="60"
-                                Margin="0 40"
-                                Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                CommandParameter="{Binding}"
-                                Content="{Binding Answer.Title}">
-                                <Button.Style>
-                                    <Style TargetType="Button" BasedOn="{StaticResource QuizQuestionBut}">
+                            <RadioButton
+                        FontSize="60"
+                        GroupName="Answers"
+                        Margin="0 40"
+                        Command="{Binding DataContext.SelectAnswerCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding}"
+                        Content="{Binding Title}">
+                                <RadioButton.Style>
+                                    <Style TargetType="RadioButton" BasedOn="{StaticResource QuizQuestionBut}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsSelected, Converter={StaticResource SelectBoolAnswerConverter}}" Value="True">
+                                            <Trigger Property="IsChecked" Value="True">
                                                 <Setter Property="Background" Value="#96358C" />
                                                 <Setter Property="Foreground" Value="White" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsSelected, Converter={StaticResource SelectBoolAnswerConverter}}" Value="False">
+                                            </Trigger>
+                                            <Trigger Property="IsChecked" Value="False">
                                                 <Setter Property="Background" Value="White" />
                                                 <Setter Property="Foreground" Value="Black" />
-                                            </DataTrigger>
+                                            </Trigger>
                                         </Style.Triggers>
                                     </Style>
-                                </Button.Style>
-                            </Button>
+                                </RadioButton.Style>
+                            </RadioButton>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-                <StackPanel>
-                    <Button 
-                     Content="ПРОДОЛЖИТЬ"
-                     FontWeight="Bold"
-                     FontSize="80"
-                     Margin="0 0 0 40"
-                     Padding="76 38"
-                     Foreground="White"
-                     Background="#96358c"
-                     HorizontalAlignment="Center"
-                     Command="{Binding NextQuestionsCommand}"
-                     Style="{StaticResource PurpleLightButton}"/>
-                
-                    <Button
-                        Content="ЗАВЕРШИТЬ"
-                        Padding ="140 38"
-                        BorderBrush="White"
-                        BorderThickness="3"
-                        Margin="0 40 0 0"
-                        FontSize="80"
-                        Background="Transparent"
-                        HorizontalAlignment="Center"
-                        Foreground="White"
-                        Command="{Binding GoToMainPageCommand}"
-                        Style="{StaticResource PurpleLightButton}"
-                        />
-                </StackPanel>
             </StackPanel>
+
+            <!-- Кнопки внизу, фиксированные на месте -->
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 20">
+                <Button 
+            Content="ПРОДОЛЖИТЬ"
+            FontWeight="Bold"
+            FontSize="80"
+            Margin="0 0 0 40"
+            Padding="76 38"
+            Foreground="White"
+            Background="#96358c"
+            HorizontalAlignment="Center"
+            Command="{Binding NextQuestionsCommand}"
+            Style="{StaticResource PurpleLightButton}"/>
+
+                <Button
+            Content="ЗАВЕРШИТЬ"
+            Padding ="140 38"
+            BorderBrush="White"
+            BorderThickness="3"
+            Margin="0 40 0 0"
+            FontSize="80"
+            Background="Transparent"
+            HorizontalAlignment="Center"
+            Foreground="White"
+            Command="{Binding GoToMainPageCommand}"
+            Style="{StaticResource PurpleLightButton}"/>
+            </StackPanel>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type map1:MapObjectPopupViewModel}">

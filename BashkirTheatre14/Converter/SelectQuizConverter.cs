@@ -17,7 +17,7 @@ namespace BashkirTheatre14.Converter
                 return isSelected ? "../../Resources/Images/SelectQuiz.png" : "../../Resources/Images/quiz_variants.png";
             }
 
-            return "../../Resources/Images/quiz_variants.png"; // значение по умолчанию
+            return "../../Resources/Images/quiz_variants.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

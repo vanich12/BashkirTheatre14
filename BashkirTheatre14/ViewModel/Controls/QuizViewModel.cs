@@ -16,91 +16,46 @@ namespace BashkirTheatre14.ViewModel.Controls
 {
     public partial class QuizViewModel:ObservableObject
     {
-        private IParameterNavigationService<QuizViewModel> _navigationServiceParam;
-        private INavigationService _navigationService;
-        public Quiz Quiz { get; }
-        [ObservableProperty] private ObservableCollection<Question> _questionList = new();
-        [ObservableProperty] private ObservableCollection<QuizAnswerViewModel> _quizAnswerList = new();
+        private readonly IParameterNavigationService<QuizViewModel> _navigationServiceParam;
+        private readonly INavigationService _navigationService;
+        public int CorrectAnswersCount { get; private set; }
+
+        public QuizModel Quiz { get; }
         [ObservableProperty] private Question? _selectedQuestion;
-        [ObservableProperty] private QuizAnswerViewModel? _selectedAnswer;
-        [ObservableProperty] private int? _questionIndex;
+        [ObservableProperty] private Answer? _selectedAnswer;
+        [ObservableProperty] private int _questionIndex;
 
-        public List<QuizAnswerViewModel> CorrectAnswer { get; set; } = new();
-
-        public QuizViewModel(IParameterNavigationService<QuizViewModel> navigationServiceParam, INavigationService navigationService ,Quiz quiz)
+        public QuizViewModel(IParameterNavigationService<QuizViewModel> navigationServiceParam, INavigationService navigationService ,QuizModel quiz)
         {
-           this._navigationServiceParam = navigationServiceParam;
-           this._navigationService = navigationService;
-
+           _navigationServiceParam = navigationServiceParam;
+           _navigationService = navigationService;
             Quiz = quiz;
-            foreach (Question quizQuestion in Quiz.Questions)
-            {
-                QuestionList.Add(quizQuestion);
-            }
-
-            SelectedQuestion = QuestionList[0];
-            QuestionIndex = QuestionList.IndexOf(SelectedQuestion);
-
-            foreach (var answer in SelectedQuestion.Answers)
-            {
-                QuizAnswerList.Add(new QuizAnswerViewModel(answer));
-            }
+            SelectedQuestion = quiz.ToNextQuestion();
         }
 
         [RelayCommand]
-        private void SelectAnswer(QuizAnswerViewModel answer)
+        private void SelectAnswer(Answer answer)=>SelectedAnswer = answer;
+
+        private void GoToResult()=>_navigationServiceParam.Navigate(this);
+
+        private void CheckAnswer()
         {
-            if (SelectedAnswer!=null)
-            {
-                SelectedAnswer.IsSelected = false;
-                SelectedAnswer = null;
-            }
-            SelectedAnswer= answer;
-            SelectedAnswer.IsSelected = true;
+            if (SelectedQuestion is null || SelectedAnswer is null) return;
+            if (SelectedQuestion.CheckAnswer(SelectedAnswer)) CorrectAnswersCount++;
         }
 
-        private void GoToResult()
-        {
-            _navigationServiceParam.Navigate(this);
-        }
 
         [RelayCommand]
-        private void GoToMainPage()
-        {
-            _navigationService.Navigate();
-        }
+        private void GoToMainPage()=>_navigationService.Navigate();
 
         [RelayCommand]
         private void NextQuestions()
         {
-            if (QuestionIndex == null)
-            {
-                QuestionIndex = 0;
-            }
-            else if (SelectedAnswer is not null && (QuestionIndex < QuestionList.Count))
-            {
-                if (SelectedAnswer.Answer.Correct)
-                {
-                    CorrectAnswer.Add(SelectedAnswer);
-                }
-                QuestionIndex++;
-                SelectedAnswer = null;
-            }
-
-            if (QuestionIndex < QuestionList.Count)
-            {
-                SelectedQuestion = QuestionList[QuestionIndex.Value];
-                QuizAnswerList.Clear();
-                foreach (var answer in SelectedQuestion.Answers)
-                {
-                    QuizAnswerList.Add(new QuizAnswerViewModel(answer));
-                }
-            }
-
-            if (QuestionIndex == QuestionList.Count )
-            {
-                GoToResult();
-            }
+            CheckAnswer();
+            var nextQuestion = Quiz.ToNextQuestion();
+            if(nextQuestion is null) GoToResult();
+            QuestionIndex++;
+            SelectedQuestion = nextQuestion;
         }
 
     }

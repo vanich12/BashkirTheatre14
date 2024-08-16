@@ -27,20 +27,18 @@ namespace BashkirTheatre14
 
         public App()
         {
-            //DispatcherUnhandledException += App_DispatcherUnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
         }
 
         private async void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             if (DebugHelper.IsRunningInDebugMode) throw e.Exception;
             var logger = _appHost.Services.GetRequiredService<ILoggingService>();
-            var exception = e.Exception.Message;
-            if (e.Exception is ApiException apiException)
-                exception = await apiException.GetContentAsAsync<string>();
-            if (exception is not null)
-                logger.Log(exception);
+            var exception = e.Exception;
+            if (exception is ApiException)
+                logger.Log(exception, "Server Error");
             else
-                logger.Log(e.Exception);
+                logger.Log(exception);
             e.Handled = true;
         }
 
