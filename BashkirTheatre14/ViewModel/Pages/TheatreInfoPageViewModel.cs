@@ -35,11 +35,14 @@ namespace BashkirTheatre14.ViewModel.Pages
                 await foreach (var info in _infoService.GetListAsync(_cancellationTokenSource.Token))
                 {
                     TheatrInfos.Add(info);
+                    if (TheatrInfos.Any() && CurrentInfo == null)
+                    {
+                        CurrentInfo = TheatrInfos[0];
+                    }
+
+                    await Task.Delay(100);
                 }
-                if (TheatrInfos.Any())
-                {
-                    CurrentInfo = TheatrInfos.First();
-                }
+                
             }
             catch (OperationCanceledException)
             {

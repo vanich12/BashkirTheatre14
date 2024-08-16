@@ -32,7 +32,10 @@ namespace BashkirTheatre14.ViewModel.Controls
         [RelayCommand]
         private void GoToQuestions()
         {
-            _navigationService.Navigate(Quiz);
+            if (_navigationService is not null)
+            {
+                _navigationService.Navigate(Quiz);
+            }
         }
 
         public override async ValueTask DisposeAsync()

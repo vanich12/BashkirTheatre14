@@ -26,7 +26,7 @@
                 BorderBrush="#96358C"
                 Margin="-25 0">
             <Border.Background>
-                    <ImageBrush ImageSource="{Binding ImagePath, Converter={StaticResource ImageConverter}}"/>
+                    <ImageBrush  ImageSource="{Binding ImagePath, IsAsync=True,Converter={StaticResource ImageConverter}}" />
             </Border.Background>
         </Border>
     </DataTemplate>

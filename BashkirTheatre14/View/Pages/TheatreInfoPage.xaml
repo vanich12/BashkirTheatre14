@@ -25,32 +25,45 @@
                     BorderBrush="#96358C"
                     Margin="-25 0">
                 <Border.Background>
-                    <ImageBrush ImageSource="{Binding CurrentInfo.ImagePath, Converter={StaticResource ImageConverter}}"/>
+                    <ImageBrush ImageSource="{Binding CurrentInfo.ImagePath,IsAsync=True,Converter={StaticResource ImageConverter}}"/>
                 </Border.Background>
             </Border>
-            <StackPanel>
-                <TextBlock Text="О ТЕАТРЕ"
-                           Style="{StaticResource BoldWhiteTextBlock}"
-                           Margin="0 228 0 76"
-                           TextAlignment="Center"/>
-                <TextBlock 
-                    Style="{StaticResource MainWhiteTextBlock}"
-                    TextAlignment="Center"
-                    Text="{Binding CurrentInfo.Info.Description}"
-                    />
+       
+                    <StackPanel>
+                    <TextBlock Text="О ТЕАТРЕ"
+                               Style="{StaticResource BoldWhiteTextBlock}"
+                               Margin="0 228 0 76"
+                               TextAlignment="Center"/>
+                    <ScrollViewer
+                        Height="1168"
+                        Width="1668"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled"
+                        Style="{StaticResource PrimaryScrollViewer}">
+                        <StackPanel Width="1570">
+                            <TextBlock 
+                                Style="{StaticResource MainWhiteTextBlock}"
+                                TextAlignment="Center"
+                                Text="{Binding CurrentInfo.Info.Description}" />
+                        </StackPanel>
+                    </ScrollViewer>
+
                 <Button 
-                    Margin="0 0 0 0"
-                    Background="Transparent"
-                    BorderBrush="#96358c"
-                    BorderThickness="3"
-                    Foreground="White"
-                    FontSize="56"
-                    HorizontalAlignment="Center"
-                    Padding="165.5 36"
-                    Content="НАЗАД"
-                    Command="{Binding NavigateToMainCommand}"
-                    Style="{StaticResource PurpleLightButton}"/>
-            </StackPanel>
+                        Margin="0 100 0 100"
+                        BorderBrush="#96358c"
+                        BorderThickness="3"
+                        Foreground="White"
+                        FontSize="56"
+                        HorizontalAlignment="Center"
+                        Padding="165.5 36"
+                        Content="НАЗАД"
+                        Command="{Binding NavigateToMainCommand}"
+                        Style="{StaticResource PurpleLightButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="../../Resources/Images/ChButBg.png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

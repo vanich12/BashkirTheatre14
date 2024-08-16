@@ -25,7 +25,8 @@
     </Style>
 
     <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
-        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="0">
+        <Border CornerRadius="10"
+                Background="{TemplateBinding Background}" BorderThickness="0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -85,6 +86,7 @@
            BasedOn="{StaticResource BaseScrollViewerStyle}">
         <Setter Property="Foreground" Value="{StaticResource MainFillBrush}"/>
         <Setter Property="Background" Value="{StaticResource SecondaryBackgroundBrush}"/>
+        <Setter Property="Margin" Value="0 0 0 0"/>
 
     </Style>
 

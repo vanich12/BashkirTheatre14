@@ -30,11 +30,6 @@ namespace BashkirTheatre14.ViewModel.Controls
             _navigationService.Navigate(Quiz);
         }
 
-        public override Task Load()
-        {
-            throw new NotImplementedException();
-        }
-
         [RelayCommand]
         private void GoToQuestions()
         {
@@ -43,6 +38,11 @@ namespace BashkirTheatre14.ViewModel.Controls
 
         public override async ValueTask DisposeAsync()
         {
+        }
+
+        public override Task Load()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -48,17 +48,24 @@ namespace BashkirTheatre14.ViewModel.Pages
             ChroniclesList.Clear();
             try
             {
+                bool isFirstItem = true;
                 await foreach (var chronicle in _chronicleService.GetListAsync(_cancellationTokenSource.Token))
                 {
                     ChroniclesList.Add(chronicle);
+
+                    if (isFirstItem)
+                    {
+                        CurrentChronicle = chronicle;
+                        isFirstItem = false;
+                    }
                 }
             }
             catch (OperationCanceledException)
             {
+               
             }
-
-            CurrentChronicle = ChroniclesList.First();
         }
+
 
         [RelayCommand]
         private async Task SlideLeft(ContentSliderUserControl slider)
