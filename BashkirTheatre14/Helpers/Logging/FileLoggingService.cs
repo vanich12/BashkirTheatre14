@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿ using System.IO;
 using System.Text;
 
 namespace BashkirTheatre14.Helpers.Logging

@@ -19,7 +19,8 @@
                  <ResourceDictionary Source="Resources/Styles/GenericStyles.xaml"/>
                  <ResourceDictionary Source="Resources/Styles/KeyboardStyles.xaml"/>
                  
-                 
+                 <ResourceDictionary Source="Resources/Styles/ScrollBarStyles.xaml"/>
+
                  
                  <ResourceDictionary Source="Resources/Icons.xaml"/>
                  <ResourceDictionary Source="Resources/DataTemplates/Controls.xaml"/>

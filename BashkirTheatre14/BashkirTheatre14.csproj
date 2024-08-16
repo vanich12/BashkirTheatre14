@@ -18,9 +18,7 @@
     <None Remove="Resources\Images\BadResult.png" />
     <None Remove="Resources\Images\Bg.png" />
     <None Remove="Resources\Images\ChButBg.png" />
-    <None Remove="Resources\Images\GoodResult.png" />
     <None Remove="Resources\Images\MainBackground.png" />
-    <None Remove="Resources\Images\PerfectResult.png" />
     <None Remove="Resources\Images\QuizCharacters.png" />
     <None Remove="Resources\Images\QuizHeader.png" />
     <None Remove="Resources\Images\QuizMaskIcon.png" />
@@ -74,9 +72,7 @@
     <Resource Include="Resources\Images\BadResult.png" />
     <Resource Include="Resources\Images\Bg.png" />
     <Resource Include="Resources\Images\ChButBg.png" />
-    <Resource Include="Resources\Images\GoodResult.png" />
     <Resource Include="Resources\Images\MainBackground.png" />
-    <Resource Include="Resources\Images\PerfectResult.png" />
     <Resource Include="Resources\Images\QuizCharacters.png" />
     <Resource Include="Resources\Images\QuizHeader.png" />
     <Resource Include="Resources\Images\QuizMaskIcon.png" />
