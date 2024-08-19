@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using BashkirTheatre14.View.Popups.PopupContainers;
 using Brush = System.Windows.Media.Brush;
 
 namespace BashkirTheatre14.View.Components
@@ -47,6 +48,12 @@ namespace BashkirTheatre14.View.Components
         public ModalControl()
         {
             Visibility = Visibility.Collapsed;
+            AddHandler(BasePopupContainer.ClosingEvent,new RoutedEventHandler(Closing));
+        }
+
+        private void Closing(object sender, RoutedEventArgs e)
+        {
+            CloseAnimated();
         }
 
         private static void IsOpenChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -55,10 +62,6 @@ namespace BashkirTheatre14.View.Components
             if (modal.IsOpen)
             {
                 modal.OpenAnimated();
-            }
-            else
-            {
-                modal.CloseAnimated();
             }
 
         }

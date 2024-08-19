@@ -22,6 +22,7 @@ namespace BashkirTheatre14.View.Popups.PopupContainers
             };
             animation.Completed += (o, args) => RaiseEvent(new RoutedEventArgs(ClosedEvent));
             StartAnimation(animation);
+            RaiseEvent(new RoutedEventArgs(ClosingEvent));
         }
 
         protected override void StartAnimation(params Timeline[] animations)

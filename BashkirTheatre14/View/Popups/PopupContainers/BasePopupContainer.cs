@@ -29,11 +29,25 @@ namespace BashkirTheatre14.View.Popups.PopupContainers
             this.Loaded += ContainerLoaded;
         }
 
+
         protected abstract void ContainerLoaded(object sender, RoutedEventArgs e);
         public abstract void Close();
 
         protected abstract void StartAnimation(params Timeline[] animations);
-        
+
+
+        public static readonly RoutedEvent ClosingEvent = EventManager.RegisterRoutedEvent(
+            name: "Closing",
+            routingStrategy: RoutingStrategy.Bubble,
+            handlerType: typeof(RoutedEventHandler),
+            ownerType: typeof(BasePopupContainer));
+
+        public event RoutedEventHandler Closing
+        {
+            add { AddHandler(ClosedEvent, value); }
+            remove { RemoveHandler(ClosedEvent, value); }
+        }
+
 
         public static readonly RoutedEvent ClosedEvent = EventManager.RegisterRoutedEvent(
             name: "Closed",

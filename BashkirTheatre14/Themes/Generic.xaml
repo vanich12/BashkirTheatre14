@@ -111,6 +111,7 @@
     <Style TargetType="{x:Type popupContainers1:OpacityPopupContainer}">
         <Setter Property="Duration" Value="0:0:0.5"/>
         <Setter Property="EasingFunction" Value="{DynamicResource PowerEase}"/>
+        <Setter Property="Opacity" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="popupContainers1:OpacityPopupContainer">
