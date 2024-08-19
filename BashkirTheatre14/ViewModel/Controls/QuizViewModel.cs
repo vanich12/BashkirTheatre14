@@ -14,32 +14,39 @@ using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls
 {
-    public partial class QuizViewModel:ObservableObject
+    public partial class QuizViewModel : ObservableObject
     {
         private readonly IParameterNavigationService<QuizViewModel> _navigationServiceParam;
         private readonly INavigationService _navigationService;
-        public int CorrectAnswersCount { get; private set; }
 
+        public int CorrectAnswersCount { get; private set; }
         public QuizModel Quiz { get; }
+
         [ObservableProperty] private Question? _selectedQuestion;
         [ObservableProperty] private Answer? _selectedAnswer;
         [ObservableProperty] private int _questionIndex;
 
-        public QuizViewModel(IParameterNavigationService<QuizViewModel> navigationServiceParam, INavigationService navigationService ,QuizModel quiz)
+        public bool CanExecuteNextQuestions => NextQuestionsCommand.CanExecute(null);
+
+        private bool HasSelectedAnswer() => SelectedAnswer != null;
+
+        public QuizViewModel(IParameterNavigationService<QuizViewModel> navigationServiceParam, INavigationService navigationService, QuizModel quiz)
         {
-           _navigationServiceParam = navigationServiceParam;
-           _navigationService = navigationService;
+            _navigationServiceParam = navigationServiceParam;
+            _navigationService = navigationService;
             Quiz = quiz;
             SelectedQuestion = quiz.ToNextQuestion();
         }
 
         [RelayCommand]
-        private void SelectAnswer(Answer answer) 
+        private void SelectAnswer(Answer answer)
         {
             SelectedAnswer = answer;
+            NextQuestionsCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(CanExecuteNextQuestions));  // Notify UI about change
         }
 
-        private void GoToResult()=>_navigationServiceParam.Navigate(this);
+        private void GoToResult() => _navigationServiceParam.Navigate(this);
 
         private void CheckAnswer()
         {
@@ -47,11 +54,10 @@ namespace BashkirTheatre14.ViewModel.Controls
             if (SelectedQuestion.CheckAnswer(SelectedAnswer)) CorrectAnswersCount++;
         }
 
-
         [RelayCommand]
-        private void GoToMainPage()=>_navigationService.Navigate();
+        private void GoToMainPage() => _navigationService.Navigate();
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(HasSelectedAnswer))]
         private void NextQuestions()
         {
             if (SelectedAnswer == null)
@@ -60,12 +66,18 @@ namespace BashkirTheatre14.ViewModel.Controls
             }
             CheckAnswer();
             var nextQuestion = Quiz.ToNextQuestion();
-            if(nextQuestion is null) GoToResult();
+            if (nextQuestion is null)
+            {
+                GoToResult();
+                return;
+            }
+
             QuestionIndex++;
             SelectedAnswer = null;
-            IsSelectedAnswer = false;
             SelectedQuestion = nextQuestion;
-        }
 
+            NextQuestionsCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(CanExecuteNextQuestions));  // Notify UI about change
+        }
     }
 }
