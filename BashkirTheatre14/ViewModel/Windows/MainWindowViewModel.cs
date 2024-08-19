@@ -52,11 +52,10 @@ namespace BashkirTheatre14.ViewModel.Windows
 
         private void _inactivityHelper_OnInactivity(int inactivityTime)
         {
-            _initialNavigationService.Navigate();
-            
+            if(CurrentViewModel is not MainPageViewModel) _initialNavigationService.Navigate();
         }
 
-        private void Timer(object sender, EventArgs eventArgs)
+        private void Timer(object? sender, EventArgs eventArgs)
         {
             _sec++;
             if (_sec < 7) return;
@@ -80,6 +79,7 @@ namespace BashkirTheatre14.ViewModel.Windows
         [RelayCommand]
         private void StopTimer()
         {
+            
             _timer.Tick -= Timer;
             _timer.Stop();
             _sec = 0;
@@ -88,7 +88,7 @@ namespace BashkirTheatre14.ViewModel.Windows
         [RelayCommand]
         private void StartTimer()
         {
-            _timer?.Stop();
+            _timer.Stop();
             _sec = 0;
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer;

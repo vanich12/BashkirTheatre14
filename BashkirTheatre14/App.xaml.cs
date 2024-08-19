@@ -30,7 +30,7 @@ namespace BashkirTheatre14
             DispatcherUnhandledException += App_DispatcherUnhandledException;
         }
 
-        private async void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             if (DebugHelper.IsRunningInDebugMode) throw e.Exception;
             var logger = _appHost.Services.GetRequiredService<ILoggingService>();
@@ -42,7 +42,7 @@ namespace BashkirTheatre14
             e.Handled = true;
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args = null)
+        private static IHostBuilder CreateHostBuilder(string[]? args = null)
         {
             return Host.CreateDefaultBuilder(args)
                 .BuildConfiguration()

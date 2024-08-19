@@ -4,6 +4,8 @@
     {
         void Log(string message);
 
-        void Log(Exception exception, string message = null);
+        void Log(Exception exception, string message);
+
+        void Log(Exception exception);
     }
 }

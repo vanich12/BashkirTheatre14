@@ -1,14 +1,7 @@
-﻿using BashkirTheatre14.Model.Entities;
-using BashkirTheatre14.Model;
+﻿using BashkirTheatre14.Model;
+using BashkirTheatre14.Model.Entities;
 using BashkirTheatre14.ViewModel.Controls;
 using MvvmNavigationLib.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BashkirTheatre14.Model;
-using BashkirTheatre14.ViewModel.Pages;
 
 namespace BashkirTheatre14.Services
 {

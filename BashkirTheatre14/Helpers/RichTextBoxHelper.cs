@@ -47,9 +47,9 @@ namespace BashkirTheatre14.Helpers
             {
                 textBlock.Text = Clipboard.GetText();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                
+                //
             }
         }
         
