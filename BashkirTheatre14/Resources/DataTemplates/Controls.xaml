@@ -97,13 +97,11 @@
 
     <DataTemplate DataType="{x:Type controls:QuizViewModel}">
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center">
-            <!-- Две строки: одна для основного содержимого, вторая для кнопок -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- Основное содержимое (включает ProgressBar, TextBlock и ItemsControl) -->
             <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="0 500 0 0" Width="1668" HorizontalAlignment="Center">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="717" Margin="0 0 0 240" Height="48">
                     <ProgressBar
@@ -195,32 +193,31 @@
                 </ItemsControl>
             </StackPanel>
 
-            <!-- Кнопки внизу, фиксированные на месте -->
-            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 20">
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 300" >
                 <Button 
-            Content="ПРОДОЛЖИТЬ"
-            FontWeight="Bold"
-            FontSize="80"
-            Margin="0 0 0 40"
-            Padding="76 38"
-            Foreground="White"
-            Background="#96358c"
-            HorizontalAlignment="Center"
-            Command="{Binding NextQuestionsCommand}"
-            Style="{StaticResource PurpleLightButton}"/>
+                    Content="ПРОДОЛЖИТЬ"
+                    FontWeight="Bold"
+                    FontSize="80"
+                    Margin="0 0 0 40"
+                    Padding="76 38"
+                    Foreground="White"
+                    Background="{Binding IsSelectedAnswer, Converter={StaticResource BoolToColorConverter}}"
+                    HorizontalAlignment="Center"
+                    Command="{Binding NextQuestionsCommand}"
+                    Style="{StaticResource PurpleLightButton}"/>
 
                 <Button
-            Content="ЗАВЕРШИТЬ"
-            Padding ="140 38"
-            BorderBrush="White"
-            BorderThickness="3"
-            Margin="0 40 0 0"
-            FontSize="80"
-            Background="Transparent"
-            HorizontalAlignment="Center"
-            Foreground="White"
-            Command="{Binding GoToMainPageCommand}"
-            Style="{StaticResource PurpleLightButton}"/>
+                Content="ЗАВЕРШИТЬ"
+                Padding ="140 38"
+                BorderBrush="White"
+                BorderThickness="3"
+                Margin="0 40 0 0"
+                FontSize="80"
+                Background="Transparent"
+                HorizontalAlignment="Center"
+                Foreground="White"
+                Command="{Binding GoToMainPageCommand}"
+                Style="{StaticResource PurpleLightButton}"/>
             </StackPanel>
         </Grid>
     </DataTemplate>

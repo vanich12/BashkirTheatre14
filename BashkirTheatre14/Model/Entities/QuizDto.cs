@@ -22,8 +22,6 @@ namespace BashkirTheatre14.Model.Entities
         private readonly IEnumerator<Question> _questionEnumerator = QuizDto.Questions.GetEnumerator();
         public Question? ToNextQuestion() => _questionEnumerator.MoveNext() ? _questionEnumerator.Current : null;
 
-
-
     }
 
     public record Question(

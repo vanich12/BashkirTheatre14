@@ -38,15 +38,17 @@
                     <ScrollViewer
                         Height="1168"
                         Width="1668"
+                        PanningMode="VerticalOnly"
+                        helpers:ManipulationBoundaryFeedbackHelper.Handled="True"
                         VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Disabled"
                         Style="{StaticResource PrimaryScrollViewer}">
-                        <StackPanel Width="1570">
+                   
                             <TextBlock 
                                 Style="{StaticResource MainWhiteTextBlock}"
                                 TextAlignment="Center"
                                 helpers:RichTextBoxHelper.HtmlText="{Binding CurrentInfo.Info.Description}" />
-                        </StackPanel>
+               
                     </ScrollViewer>
 
                 <Button 

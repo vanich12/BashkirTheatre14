@@ -24,6 +24,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         [ObservableProperty] private Question? _selectedQuestion;
         [ObservableProperty] private Answer? _selectedAnswer;
         [ObservableProperty] private int _questionIndex;
+        [ObservableProperty] private bool _isSelectedAnswer;
 
         public QuizViewModel(IParameterNavigationService<QuizViewModel> navigationServiceParam, INavigationService navigationService ,QuizModel quiz)
         {
@@ -31,10 +32,15 @@ namespace BashkirTheatre14.ViewModel.Controls
            _navigationService = navigationService;
             Quiz = quiz;
             SelectedQuestion = quiz.ToNextQuestion();
+            IsSelectedAnswer = false;
         }
 
         [RelayCommand]
-        private void SelectAnswer(Answer answer)=>SelectedAnswer = answer;
+        private void SelectAnswer(Answer answer) 
+        {
+            SelectedAnswer = answer;
+            IsSelectedAnswer = true;
+        }
 
         private void GoToResult()=>_navigationServiceParam.Navigate(this);
 
@@ -51,10 +57,16 @@ namespace BashkirTheatre14.ViewModel.Controls
         [RelayCommand]
         private void NextQuestions()
         {
+            if (SelectedAnswer == null)
+            {
+                return;
+            }
             CheckAnswer();
             var nextQuestion = Quiz.ToNextQuestion();
             if(nextQuestion is null) GoToResult();
             QuestionIndex++;
+            SelectedAnswer = null;
+            IsSelectedAnswer = false;
             SelectedQuestion = nextQuestion;
         }
 

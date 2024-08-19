@@ -195,7 +195,7 @@
                         Background="Transparent"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        Padding="76 180"
+                        Padding="76 165"
                         Width="530"
                         Height="1111"
                         >
@@ -251,7 +251,7 @@
                             Background="Transparent"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="76 180"
+                            Padding="76 165"
                             Width="530"
                             Height="1111"
                         >
@@ -307,7 +307,7 @@
                             Background="Transparent"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="76 180"
+                            Padding="76 165"
                             Width="530"
                             Height="1111"
                         >

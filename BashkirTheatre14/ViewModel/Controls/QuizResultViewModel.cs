@@ -25,17 +25,17 @@ namespace BashkirTheatre14.ViewModel.Controls
 
         private string GetResultText() => PointResult switch
         {
-            <= 2 => "Надо тренироваться!",
-            < 5 => "Отлично!",
+            <= 3 => "Надо тренироваться!",
+            < 7 => "Отлично!",
             _ => "Превосходно!"
         };
 
         private string GetResultImageUri()=> PointResult switch
         {
-            <= 2 => "../../Resources/Gif/SadFace.gif",
+            <= 3 => "../../Resources/Gif/SadFace.gif",
             < 7 => "../../Resources/Gif/in-love.gif",
             _ => "../../Resources/Gif/party.gif"
         };
 
-}
+    }
 }
