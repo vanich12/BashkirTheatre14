@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using BashkirTheatre14.Model.Entities;
 using BashkirTheatre14.Services;
 using BashkirTheatre14.View.Controls;
@@ -75,7 +76,7 @@ namespace BashkirTheatre14.ViewModel.Pages
                 IsLast = slider.CurrentItemIndex - 1 >= 0 ? LastAnim.NotLeftLast : LastAnim.PreLast;
             CurrentAnim = AnimTrigger.Left;
             NewModel = (ChronicleViewModel)slider.CurrentItem;
-            await Task.Delay(550);
+            await Task.Delay(550);//anim
             CurrentChronicle = (ChronicleViewModel)slider.CurrentItem;
             CurrentAnim = AnimTrigger.None;
             IsLast = slider.CurrentItemIndex - 1 >= 0 ? LastAnim.None : LastAnim.LeftLast;
@@ -89,7 +90,7 @@ namespace BashkirTheatre14.ViewModel.Pages
                 IsLast = slider.CurrentItemIndex + 1 < ChroniclesList.Count ? LastAnim.NotRightLast : LastAnim.PreLast;
             CurrentAnim = AnimTrigger.Right;
             NewModel = (ChronicleViewModel)slider.CurrentItem;
-            await Task.Delay(550);
+            await Task.Delay(550); //anim
             CurrentChronicle = (ChronicleViewModel)slider.CurrentItem;
             CurrentAnim = AnimTrigger.None;
             IsLast = slider.CurrentItemIndex + 1 < ChroniclesList.Count ? LastAnim.None : LastAnim.RightLast;

@@ -189,8 +189,9 @@ namespace BashkirTheatre14.View.Components
             CurrentItemIndex = index;
         }
 
-        private void AnimatedScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        private async void AnimatedScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            AnimatedScrollViewer.ScrollChanged -= AnimatedScrollViewer_OnScrollChanged;
             _scrollChanged = true;
 
             for (var i = 0; i < ContentItemsControl.Items.Count; i++)
@@ -207,6 +208,9 @@ namespace BashkirTheatre14.View.Components
                 element.Opacity = Math.Pow(scale,2);
                 Panel.SetZIndex(element,(int)(scale * 10));
             }
+
+            await Task.Delay(10);
+            AnimatedScrollViewer.ScrollChanged += AnimatedScrollViewer_OnScrollChanged;
         }
 
 
