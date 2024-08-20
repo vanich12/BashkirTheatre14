@@ -46,6 +46,7 @@
                    
                             <TextBlock 
                                 Style="{StaticResource MainWhiteTextBlock}"
+                                FontSize="50"
                                 TextAlignment="Center"
                                 helpers:RichTextBoxHelper.HtmlText="{Binding CurrentInfo.Info.Description}" />
                

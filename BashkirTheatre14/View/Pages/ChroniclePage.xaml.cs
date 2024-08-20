@@ -67,20 +67,17 @@ namespace BashkirTheatre14.View.Pages
                     _offset = 0;
                     break;
             }
-
-
-
-
+            if (_isAnimated) return;
             switch (_offset)
             {
-                case <= -64 and > -2000 when SliderUserControl.CurrentItemIndex > 0:
+                case <= -128 and > -2000 when SliderUserControl.CurrentItemIndex > 0:
                     _offset = 0;
                     _isAnimated = true;
                     (this.DataContext as ChroniclesPageViewModel).SlideLeftCommand.Execute(SliderUserControl);
                     await Task.Delay(550);//anim
                     _isAnimated = false;
                     break;
-                case >= 64 and < 2000 when SliderUserControl.CurrentItemIndex < (this.DataContext as ChroniclesPageViewModel).ChroniclesList.Count - 1:
+                case >= 128 and < 2000 when SliderUserControl.CurrentItemIndex < (this.DataContext as ChroniclesPageViewModel).ChroniclesList.Count - 1:
                     _offset = 0;
                     _isAnimated = true;
                     (this.DataContext as ChroniclesPageViewModel).SlideRightCommand.Execute(SliderUserControl);
