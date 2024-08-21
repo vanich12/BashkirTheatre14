@@ -41,6 +41,7 @@ namespace BashkirTheatre14.ViewModel.Pages
         {
             this._chronicleService = chronicleService;
             this._navigationService = navigationService;
+            IsLast = LastAnim.LeftLast;
         }
 
         protected override async Task Loaded()

@@ -67,19 +67,19 @@
            Width="2160"
            Height="414">
             <Border Width="80"
-                  Height="80"
-                  CornerRadius="40"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  BorderBrush="#873281"
-                  BorderThickness="10"
-                  Background="#2F213D">
+         Height="80"
+         CornerRadius="40"
+         HorizontalAlignment="Left"
+         VerticalAlignment="Top"
+         BorderBrush="#873281"
+         BorderThickness="10"
+         Background="#2F213D">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="RenderTransform">
                             <Setter.Value>
                                 <TranslateTransform X="-80"
-                                                 Y="400"/>
+                                        Y="400"/>
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Opacity" Value="0"/>
@@ -87,9 +87,9 @@
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding CurrentAnim}"
-                                            Value="Left"/>
+                                   Value="Left"/>
                                     <Condition Binding="{Binding IsLast}"
-                                            Value="RightLast"/>
+                                   Value="RightLast"/>
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToRight2"/>
@@ -97,16 +97,16 @@
                                     <BeginStoryboard Name="ToRight1">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="356"
-                                                          AccelerationRatio="0.4"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="356"
+                                                 AccelerationRatio="0.4"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="90"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="90"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.EnterActions>
@@ -114,14 +114,14 @@
                                     <BeginStoryboard Name="ToRightReverse1">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0"
-                                                          Duration="0:0:0"/>
+                                                 To="0"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="-80"
-                                                          Duration="0:0:0"/>
+                                                 To="-80"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="400"
-                                                          Duration="0:0:0"/>
+                                                 To="400"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.ExitActions>
@@ -129,9 +129,9 @@
                             <MultiDataTrigger>
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding CurrentAnim}"
-                                            Value="Left"/>
+                                   Value="Left"/>
                                     <Condition Binding="{Binding IsLast}"
-                                            Value="NotLeftLast"/>
+                                   Value="NotLeftLast"/>
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToRight1"/>
@@ -139,16 +139,16 @@
                                     <BeginStoryboard Name="ToRight2">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="356"
-                                                          AccelerationRatio="0.7"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="356"
+                                                 AccelerationRatio="0.7"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                           To="90"
-                                           DecelerationRatio="0.2"
-                                           Duration="{StaticResource Duration}"/>
+                                  To="90"
+                                  DecelerationRatio="0.2"
+                                  Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.EnterActions>
@@ -156,14 +156,14 @@
                                     <BeginStoryboard Name="ToRightReverse2">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0"
-                                                          Duration="0:0:0"/>
+                                                 To="0"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="-80"
-                                                          Duration="0:0:0"/>
+                                                 To="-80"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                           To="400"
-                                                           Duration="0:0:0"/>
+                                                  To="400"
+                                                  Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.ExitActions>
@@ -172,52 +172,52 @@
                     </Style>
                 </Border.Style>
                 <Border Width="40"
-                     Height="40"
-                     CornerRadius="20"
-                     Background="White"
-                     BorderThickness="0"/>
+            Height="40"
+            CornerRadius="20"
+            Background="White"
+            BorderThickness="0"/>
             </Border>
             <Border Width="80"
-                 Height="80"
-                 CornerRadius="40"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 BorderBrush="#873281"
-                 BorderThickness="10"
-                 Background="#2F213D">
+        Height="80"
+        CornerRadius="40"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        BorderBrush="#873281"
+        BorderThickness="10"
+        Background="#2F213D">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="RenderTransform">
                             <Setter.Value>
                                 <TranslateTransform X="356"
-                                 Y="95"/>
+                        Y="95"/>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Opacity" Value="0.0"/>
+                        <Setter Property="Opacity" Value="0.2"/>
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsLast}"
-                                      Value="LeftLast">
+                             Value="LeftLast">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentAnim}"
-                                      Value="Right">
+                             Value="Right">
                                 <DataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToRight"/>
                                     <StopStoryboard BeginStoryboardName="ToRightReverse"/>
                                     <BeginStoryboard Name="ToLeft">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="-80"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="-80"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="400"
-                                                          AccelerationRatio="0.4"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="400"
+                                                 AccelerationRatio="0.4"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -225,36 +225,36 @@
                                     <BeginStoryboard Name="ToLeftReverse">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="0:0:0"/>
+                                                 To="0.2"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="356"
-                                                          Duration="0:0:0"/>
+                                                 To="356"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                          To="95"
-                                          Duration="0:0:0"/>
+                                 To="95"
+                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentAnim}"
-                                      Value="Left">
+                             Value="Left">
                                 <DataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToLeft"/>
                                     <StopStoryboard BeginStoryboardName="ToLeftReverse"/>
                                     <BeginStoryboard Name="ToRight">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="1"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="1"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1040"
-                                                          AccelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="1040"
+                                                 AccelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                          To="0"
-                                          DecelerationRatio="0.7"
-                                          Duration="{StaticResource Duration}"/>
+                                 To="0"
+                                 DecelerationRatio="0.7"
+                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -262,14 +262,14 @@
                                     <BeginStoryboard Name="ToRightReverse">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="0:0:0"/>
+                                                 To="0.2"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="356"
-                                                          Duration="0:0:0"/>
+                                                 To="356"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                          To="95"
-                                          Duration="0:0:0"/>
+                                 To="95"
+                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
@@ -278,19 +278,19 @@
                     </Style>
                 </Border.Style>
                 <Border Width="40"
-                     Height="40"
-                     CornerRadius="20"
-                     Background="White"
-                     BorderThickness="0"/>
+            Height="40"
+            CornerRadius="20"
+            Background="White"
+            BorderThickness="0"/>
             </Border>
             <Border Width="80"
-                 Height="80"
-                 CornerRadius="40"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 BorderBrush="#873281"
-                 BorderThickness="10"
-                 Background="#2F213D">
+        Height="80"
+        CornerRadius="40"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        BorderBrush="#873281"
+        BorderThickness="10"
+        Background="#2F213D">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="RenderTransform">
@@ -300,25 +300,25 @@
                         </Setter>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding CurrentAnim}"
-                                      Value="Left">
+                             Value="Left">
                                 <DataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToLeft"/>
                                     <StopStoryboard BeginStoryboardName="ToLeftReverse"/>
                                     <BeginStoryboard Name="ToRight">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          From="1040"
-                                                          To="1724"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 From="1040"
+                                                 To="1724"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          From="0"
-                                                          To="95"
-                                                          AccelerationRatio="0.7"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 From="0"
+                                                 To="95"
+                                                 AccelerationRatio="0.7"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -326,40 +326,40 @@
                                     <BeginStoryboard Name="ToRightReverse">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="1"
-                                                          Duration="0:0:0"/>
+                                                 To="1"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          From="1724"
-                                                          To="1040"
-                                                          Duration="0:0:0"/>
+                                                 From="1724"
+                                                 To="1040"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="0"
-                                                          From="95"
-                                                          Duration="0:0:0"/>
+                                                 To="0"
+                                                 From="95"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentAnim}"
-                                      Value="Right">
+                             Value="Right">
                                 <DataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToRight"/>
                                     <StopStoryboard BeginStoryboardName="ToRight"/>
                                     <BeginStoryboard Name="ToLeft">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          From="1040"
-                                                          To="356"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 From="1040"
+                                                 To="356"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          From="0"
-                                                          To="95"
-                                                          AccelerationRatio="0.7"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 From="0"
+                                                 To="95"
+                                                 AccelerationRatio="0.7"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -367,16 +367,16 @@
                                     <BeginStoryboard Name="ToLeftReverse">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="1"
-                                                          Duration="0:0:0"/>
+                                                 To="1"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1040"
-                                                          From="356"
-                                                          Duration="0:0:0"/>
+                                                 To="1040"
+                                                 From="356"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="0"
-                                                          From="95"
-                                                          Duration="0:0:0"/>
+                                                 To="0"
+                                                 From="95"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
@@ -385,52 +385,52 @@
                     </Style>
                 </Border.Style>
                 <Border Width="40"
-                     Height="40"
-                     CornerRadius="20"
-                     Background="White"
-                     BorderThickness="0"/>
+            Height="40"
+            CornerRadius="20"
+            Background="White"
+            BorderThickness="0"/>
             </Border>
             <Border Width="80"
-                 Height="80"
-                 CornerRadius="40"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 BorderBrush="#873281"
-                 BorderThickness="10"
-                 Background="#2F213D">
+        Height="80"
+        CornerRadius="40"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        BorderBrush="#873281"
+        BorderThickness="10"
+        Background="#2F213D">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="RenderTransform">
                             <Setter.Value>
                                 <TranslateTransform X="1724"
-                                 Y="95"/>
+                        Y="95"/>
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Opacity" Value="0.2"/>
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsLast}"
-                                      Value="RightLast">
+                             Value="RightLast">
                                 <Setter Property="Visibility" Value="Collapsed"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentAnim}"
-                                      Value="Right">
+                             Value="Right">
                                 <DataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToRight"/>
                                     <StopStoryboard BeginStoryboardName="ToRightReverse"/>
                                     <BeginStoryboard Name="ToLeft">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="1"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="1"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1040"
-                                                          AccelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="1040"
+                                                 AccelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="0"
-                                                          DecelerationRatio="0.7"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0"
+                                                 DecelerationRatio="0.7"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -438,36 +438,36 @@
                                     <BeginStoryboard Name="ToLeftReverse">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="0:0:0"/>
+                                                 To="0.2"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1724"
-                                                          Duration="0:0:0"/>
+                                                 To="1724"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="95"
-                                                          Duration="0:0:0"/>
+                                                 To="95"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentAnim}"
-                                      Value="Left">
+                             Value="Left">
                                 <DataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToLeft"/>
                                     <StopStoryboard BeginStoryboardName="ToLeftReverse"/>
                                     <BeginStoryboard Name="ToRight">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="2240"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="2240"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="400"
-                                                          AccelerationRatio="0.4"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="400"
+                                                 AccelerationRatio="0.4"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -475,14 +475,14 @@
                                     <BeginStoryboard Name="ToRightReverse">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="0:0:0"/>
+                                                 To="0.2"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1724"
-                                                          Duration="0:0:0"/>
+                                                 To="1724"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="95"
-                                                          Duration="0:0:0"/>
+                                                 To="95"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
@@ -491,25 +491,25 @@
                     </Style>
                 </Border.Style>
                 <Border Width="40"
-                     Height="40"
-                     CornerRadius="20"
-                     Background="White"
-                     BorderThickness="0"/>
+            Height="40"
+            CornerRadius="20"
+            Background="White"
+            BorderThickness="0"/>
             </Border>
             <Border Width="80"
-                 Height="80"
-                 CornerRadius="40"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 BorderBrush="#873281"
-                 BorderThickness="10"
-                 Background="#2F213D">
+        Height="80"
+        CornerRadius="40"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        BorderBrush="#873281"
+        BorderThickness="10"
+        Background="#2F213D">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Setter Property="RenderTransform">
                             <Setter.Value>
                                 <TranslateTransform X="2160"
-                                                 Y="400"/>
+                                        Y="400"/>
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Opacity" Value="0"/>
@@ -517,9 +517,9 @@
                             <MultiDataTrigger >
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding CurrentAnim}"
-                                            Value="Right"/>
+                                   Value="Right"/>
                                     <Condition Binding="{Binding IsLast}"
-                                            Value="LeftLast"/>
+                                   Value="LeftLast"/>
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToLeft2"/>
@@ -527,16 +527,16 @@
                                     <BeginStoryboard Name="ToLeft1">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1724"
-                                                          AccelerationRatio="0.4"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="1724"
+                                                 AccelerationRatio="0.4"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="90"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="90"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.EnterActions>
@@ -544,14 +544,14 @@
                                     <BeginStoryboard Name="ToLeftReverse1">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0"
-                                                          Duration="0:0:0"/>
+                                                 To="0"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="2160"
-                                                          Duration="0:0:0"/>
+                                                 To="2160"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="400"
-                                                          Duration="0:0:0"/>
+                                                 To="400"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.ExitActions>
@@ -559,9 +559,9 @@
                             <MultiDataTrigger >
                                 <MultiDataTrigger.Conditions>
                                     <Condition Binding="{Binding CurrentAnim}"
-                                            Value="Right"/>
+                                   Value="Right"/>
                                     <Condition Binding="{Binding IsLast}"
-                                            Value="NotRightLast"/>
+                                   Value="NotRightLast"/>
                                 </MultiDataTrigger.Conditions>
                                 <MultiDataTrigger.EnterActions>
                                     <StopStoryboard BeginStoryboardName="ToLeft1"/>
@@ -569,16 +569,16 @@
                                     <BeginStoryboard Name="ToLeft2">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="1724"
-                                                          AccelerationRatio="0.7"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="1724"
+                                                 AccelerationRatio="0.7"
+                                                 Duration="{StaticResource Duration}"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="90"
-                                                          DecelerationRatio="0.2"
-                                                          Duration="{StaticResource Duration}"/>
+                                                 To="90"
+                                                 DecelerationRatio="0.2"
+                                                 Duration="{StaticResource Duration}"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.EnterActions>
@@ -586,14 +586,14 @@
                                     <BeginStoryboard Name="ToLeftReverse2">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                          To="0"
-                                                          Duration="0:0:0"/>
+                                                 To="0"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                                          To="2160"
-                                                          Duration="0:0:0"/>
+                                                 To="2160"
+                                                 Duration="0:0:0"/>
                                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                                          To="400"
-                                                          Duration="0:0:0"/>
+                                                 To="400"
+                                                 Duration="0:0:0"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </MultiDataTrigger.ExitActions>
@@ -602,12 +602,11 @@
                     </Style>
                 </Border.Style>
                 <Border Width="40"
-                     Height="40"
-                     CornerRadius="20"
-                     Background="White"
-                     BorderThickness="0"/>
+            Height="40"
+            CornerRadius="20"
+            Background="White"
+            BorderThickness="0"/>
             </Border>
-
         </Grid>
     
         <Grid Margin="0 2645 0 0"
