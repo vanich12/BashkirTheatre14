@@ -10,7 +10,7 @@ using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls.Map
 {
-    public partial class MapControlViewModel : BasePageViewModel, IRecipient<MapObjectSelectedMessage>, IRecipient<IsNavigatingChangedMessage>,IRecipient<NavigatedMessage>
+    public partial class MapControlViewModel: ObservableObject, IRecipient<MapObjectSelectedMessage>, IRecipient<IsNavigatingChangedMessage>,IRecipient<NavigatedMessage>
     {
         private readonly CreateViewModel<MapObjectPopupViewModel, AreaViewModel> _mapObjectPopupFactory;
         private readonly INavigationService _toSearchMapObjectPopup;
@@ -54,11 +54,6 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
             OnPropertyChanged(nameof(ShowOverlay));
         }
 
-        protected override Task Loaded()
-        {
-            return Task.CompletedTask;
-        }
-
         [RelayCommand]
         private async Task LoadMap(ZoomableContentControl zoomableContentControl)
         {
@@ -67,7 +62,7 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
             IsLoading = false;
         }
 
-        protected override async Task Unloaded()
+        public async Task Unloaded()
         {
             Map.MapNavigation.CancelNavigation();
             await Map.DisposeAsync();

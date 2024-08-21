@@ -225,4 +225,6 @@
     <DataTemplate DataType="{x:Type map1:MapObjectPopupViewModel}">
         <map:MapObjectPopupView DataContext="{Binding}"/>
     </DataTemplate>
+
+
 </ResourceDictionary>

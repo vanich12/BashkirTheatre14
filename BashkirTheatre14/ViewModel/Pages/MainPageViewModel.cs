@@ -48,9 +48,9 @@ namespace BashkirTheatre14.ViewModel.Pages
             return Task.CompletedTask;
         }
 
-        protected override Task Unloaded()
+        protected override async Task Unloaded()
         {
-            return Task.CompletedTask;
+            await MapControlViewModel.Unloaded();
         }
     }
 }
