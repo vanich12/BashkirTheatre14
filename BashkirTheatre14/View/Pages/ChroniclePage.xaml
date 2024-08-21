@@ -10,6 +10,7 @@
       xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
       xmlns:components="clr-namespace:BashkirTheatre14.View.Components"
       xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
+      xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DataContext="{d:DesignInstance pages:ChroniclesPageViewModel}"
       d:DesignHeight="3804" d:DesignWidth="2160"
@@ -799,6 +800,21 @@
 
         <Image 
             Source="/Resources/Images/Bg.png"/>
+
+        <ScrollViewer HorizontalAlignment="Left"
+                      PanningMode="HorizontalOnly"
+                      VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Hidden"
+                      CanContentScroll="False"
+                      ScrollChanged="ScrollViewer_OnScrollChanged"
+                      ManipulationBoundaryFeedback="ScrollViewer_OnManipulationBoundaryFeedback"
+                      PreviewMouseWheel='ScrollViewer_OnPreviewMouseWheel'
+                      Name="ScrollViewer">
+            
+            <Grid Width="10000" 
+                  Background="Transparent"
+                  VerticalAlignment="Center"/>
+        </ScrollViewer>
 
         <Button
             HorizontalAlignment="Center"
