@@ -48,17 +48,19 @@
                 <Grid
                 Margin="40"
                 Width="1668"
-                Height="120">
+                Height="120"
+                FocusManager.FocusedElement="{Binding ElementName=Search}">
                     <components:PlaceholderTextBox
-                    Text="{Binding SearchText, Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="{StaticResource MainFillBrush}"
-                    BorderBrush="{StaticResource MainFillBrush}"
-                    FontSize="40"
-                    Placeholder="Найти на карте..."
-                    PlaceholderBrush="{StaticResource PlaceholderForegroundBrush}"
-                    VerticalContentAlignment="Center"
-                    Padding="60 0"
-                    CornerRadius="40"/>
+                        x:Name="Search"
+                        Text="{Binding SearchText, Mode=OneWayToSource,UpdateSourceTrigger=PropertyChanged}"
+                        Foreground="{StaticResource MainFillBrush}"
+                        BorderBrush="{StaticResource MainFillBrush}"
+                        FontSize="40"
+                        Placeholder="Найти на карте..."
+                        PlaceholderBrush="{StaticResource PlaceholderForegroundBrush}"
+                        VerticalContentAlignment="Center"
+                        Padding="60 0"
+                        CornerRadius="40"/>
                     <ContentControl ContentTemplate="{StaticResource SearchIcon}"
                                   HorizontalAlignment="Right"
                                   Width="36"
