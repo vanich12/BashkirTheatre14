@@ -67,10 +67,13 @@ namespace BashkirTheatre14.ViewModel.Pages
             }
         }
 
-
+        private bool _isScrolling;
         [RelayCommand]
         private async Task SlideLeft(ContentSliderUserControl slider)
         {
+            if(_isScrolling) return;
+            if (slider.CurrentItemIndex - 1 < 0) return;
+            _isScrolling = true;
             slider.LeftCommand.Execute(null);
             if (IsLast != LastAnim.RightLast)
                 IsLast = slider.CurrentItemIndex - 1 >= 0 ? LastAnim.NotLeftLast : LastAnim.PreLast;
@@ -80,11 +83,15 @@ namespace BashkirTheatre14.ViewModel.Pages
             CurrentChronicle = (ChronicleViewModel)slider.CurrentItem;
             CurrentAnim = AnimTrigger.None;
             IsLast = slider.CurrentItemIndex - 1 >= 0 ? LastAnim.None : LastAnim.LeftLast;
+            _isScrolling = false;
         }
 
         [RelayCommand]
         private async Task SlideRight(ContentSliderUserControl slider)
         {
+            if (_isScrolling) return;
+            if (slider.CurrentItemIndex + 1 > slider.ContentItemsControl.Items.Count - 1) return;
+            _isScrolling = true;
             slider.RightCommand.Execute(null);
             if (IsLast != LastAnim.LeftLast)
                 IsLast = slider.CurrentItemIndex + 1 < ChroniclesList.Count ? LastAnim.NotRightLast : LastAnim.PreLast;
@@ -94,6 +101,7 @@ namespace BashkirTheatre14.ViewModel.Pages
             CurrentChronicle = (ChronicleViewModel)slider.CurrentItem;
             CurrentAnim = AnimTrigger.None;
             IsLast = slider.CurrentItemIndex + 1 < ChroniclesList.Count ? LastAnim.None : LastAnim.RightLast;
+            _isScrolling = false;
         }
 
         [RelayCommand]

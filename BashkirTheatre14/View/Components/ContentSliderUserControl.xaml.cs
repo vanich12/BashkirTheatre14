@@ -159,7 +159,7 @@ namespace BashkirTheatre14.View.Components
                 LeftButton.Visibility = CurrentItemIndex == 0 ? Visibility.Hidden : Visibility.Visible;
                 RightButton.Visibility = CurrentItemIndex + 1 == list.Count ? Visibility.Hidden : Visibility.Visible;
             }
-            
+
             CurrentItem = list[CurrentItemIndex];
         }
 
@@ -188,29 +188,33 @@ namespace BashkirTheatre14.View.Components
 
             CurrentItemIndex = index;
         }
-
-        private async void AnimatedScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        private void AnimatedScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            AnimatedScrollViewer.ScrollChanged -= AnimatedScrollViewer_OnScrollChanged;
             _scrollChanged = true;
+            var factor = 4;
+            if (ContentItemsControl.Items.Count > 0)
+            {
+                factor = ((ContentItemsControl.ItemContainerGenerator.ContainerFromIndex(CurrentItemIndex) as FrameworkElement).LayoutTransform as ScaleTransform).ScaleX > 0.999 ? 0 : 4;
 
+            }
             for (var i = 0; i < ContentItemsControl.Items.Count; i++)
             {
                 var element = ContentItemsControl.ItemContainerGenerator.ContainerFromIndex(i) as FrameworkElement;
 
                 if (element is null)
                     continue;
-
                 var value = GetElementIntersectionWithCenterGrid(element);
+                if (factor == 0)
+                {
+                    value = Math.Round(value);
+                }
+               
                 var scale = Scale + (1.0 - Scale) * value;
 
                 element.LayoutTransform = new ScaleTransform(scale, scale);
-                element.Opacity = Math.Pow(scale,2);
-                Panel.SetZIndex(element,(int)(scale * 10));
+                element.Opacity = scale * scale;
+                Panel.SetZIndex(element, (int)(scale * 10));
             }
-
-            await Task.Delay(10);
-            AnimatedScrollViewer.ScrollChanged += AnimatedScrollViewer_OnScrollChanged;
         }
 
 
@@ -310,6 +314,6 @@ namespace BashkirTheatre14.View.Components
         }
 
 
-        
+
     }
 }

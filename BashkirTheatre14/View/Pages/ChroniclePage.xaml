@@ -27,19 +27,19 @@
                 BorderBrush="#96358C"
                 Margin="-25 0">
             <Border.Background>
-                    <ImageBrush  ImageSource="{Binding ImagePath, IsAsync=True,Converter={StaticResource ImageConverter}}" />
+                    <ImageBrush ImageSource="{Binding ImagePath, IsAsync=True,Converter={StaticResource ImageConverter}}" />
             </Border.Background>
         </Border>
     </DataTemplate>
     <Duration x:Key="Duration">0:0:.5</Duration>
     <PowerEase x:Key="PowerEase"
-               Power="2"
+               Power="1"
                EasingMode="EaseInOut"/>
     </UserControl.Resources>
     <Grid Height="3840px" 
        Width="2160px">
-        <Image Source="/Resources/Images/Background.png"/>
-
+        <Image Source="/Resources/Images/Background.png"
+               />
         <components:ContentSliderUserControl Margin="0 885 0 0"
                                         x:Name="SliderUserControl"
                                         VerticalAlignment="Top"
@@ -810,9 +810,11 @@
                       ScrollChanged="ScrollViewer_OnScrollChanged"
                       ManipulationBoundaryFeedback="ScrollViewer_OnManipulationBoundaryFeedback"
                       PreviewMouseWheel='ScrollViewer_OnPreviewMouseWheel'
+                      TouchUp="ScrollViewer_OnTouchUp"
+                      MouseUp="ScrollViewer_OnMouseUp"
                       Name="ScrollViewer">
             
-            <Grid Width="10000" 
+            <Grid Width="20000" 
                   Background="Transparent"
                   VerticalAlignment="Center"/>
         </ScrollViewer>

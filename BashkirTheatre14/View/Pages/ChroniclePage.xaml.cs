@@ -44,49 +44,65 @@ namespace BashkirTheatre14.View.Pages
         }
 
         private double _offset;
-        private bool _isAnimated;
         private async void ScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            
             switch (e.HorizontalOffset)
             {
-                case < 2000:
-                    ScrollViewer.ScrollToHorizontalOffset(6000);
+                case < 3000:
+                    ScrollViewer.ScrollToHorizontalOffset(16000);
                     break;
-                case > 7000:
-                    ScrollViewer.ScrollToHorizontalOffset(3000);
+                case > 17000:
+                    ScrollViewer.ScrollToHorizontalOffset(4000);
                     break;
             }
-            if (_isAnimated) return;
+            if(Math.Abs(e.HorizontalChange) > 3000) return;
             switch (_offset)
             {
-                case <= 0.0 when e.HorizontalChange is < 0 and > -2000:
-                case >= 0.0 when e.HorizontalChange is > 0 and < 2000:
+                case <= 0.0 when e.HorizontalChange < 0 :
+                case >= 0.0 when e.HorizontalChange > 0:
                     _offset += e.HorizontalChange;
                     break;
                 default:
                     _offset = 0;
                     break;
             }
-            if (_isAnimated) return;
-            switch (_offset)
+            
+        }
+
+
+        private void ScrollViewer_OnTouchUp(object? sender, TouchEventArgs e)
+        {
+            if (Math.Abs(_offset) is > 256 or < 3000)
             {
-                case <= -128 and > -2000 when SliderUserControl.CurrentItemIndex > 0:
-                    _offset = 0;
-                    _isAnimated = true;
-                    (this.DataContext as ChroniclesPageViewModel).SlideLeftCommand.Execute(SliderUserControl);
-                    await Task.Delay(550);//anim
-                    _isAnimated = false;
-                    break;
-                case >= 128 and < 2000 when SliderUserControl.CurrentItemIndex < (this.DataContext as ChroniclesPageViewModel).ChroniclesList.Count - 1:
-                    _offset = 0;
-                    _isAnimated = true;
-                    (this.DataContext as ChroniclesPageViewModel).SlideRightCommand.Execute(SliderUserControl);
-                    await Task.Delay(550);//anim
-                    _isAnimated = false;
-                    break;
+                switch (_offset)
+                {
+                    case <= -256:
+                        (this.DataContext as ChroniclesPageViewModel).SlideLeftCommand.Execute(SliderUserControl);
+                        break;
+                    case >= 256:
+                        (this.DataContext as ChroniclesPageViewModel).SlideRightCommand.Execute(SliderUserControl);
+                        break;
+                }
             }
+            _offset = 0;
+        }
 
-
+        private void ScrollViewer_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (Math.Abs(_offset) is > 256 or < 3000)
+            {
+                switch (_offset)
+                {
+                    case <= -256:
+                        (this.DataContext as ChroniclesPageViewModel).SlideLeftCommand.Execute(SliderUserControl);
+                        break;
+                    case >= 256:
+                        (this.DataContext as ChroniclesPageViewModel).SlideRightCommand.Execute(SliderUserControl);
+                        break;
+                }
+            }
+            _offset = 0;
         }
     }
 }
