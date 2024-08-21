@@ -60,6 +60,7 @@
             <components:ExpandingTextBlock Visibility="{Binding IsNotInfrastructure,Converter={StaticResource BooleanToVisibilityConverter}}"
                        helpers:RichTextBoxHelper.HtmlText="{Binding MapObject.Description}"
                        Foreground="{StaticResource PrimaryForegroundBrush}"
+                       UseAnimation="{Binding IsLoaded}"
                        Style="{StaticResource DescriptionTextStyle}"
                        CollapsedHeight="140"
                        IsExpanded="{Binding IsDetailsOpen}"

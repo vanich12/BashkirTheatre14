@@ -8,8 +8,8 @@
                     xmlns:helpers="clr-namespace:BashkirTheatre14.Helpers"
                     xmlns:map="clr-namespace:BashkirTheatre14.View.Controls.Map"
                     xmlns:map1="clr-namespace:BashkirTheatre14.ViewModel.Controls.Map"
-                    xmlns:utilities="clr-namespace:BashkirTheatre14.Utilities"
-                    xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif">
+                    xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+                    xmlns:utlities="clr-namespace:BashkirTheatre14.Utlities">
             
     <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
             <StackPanel VerticalAlignment="Center" 
@@ -115,7 +115,7 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center">
                         <b:Interaction.Behaviors>
-                            <utilities:ProgressBarAnimateBehavior/>
+                            <utlities:ProgressBarAnimateBehavior/>
                         </b:Interaction.Behaviors>
                     </ProgressBar>
 

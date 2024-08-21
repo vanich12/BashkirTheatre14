@@ -8,14 +8,13 @@
              xmlns:popups="clr-namespace:BashkirTheatre14.ViewModel.Popups"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
-             xmlns:converters="clr-namespace:BashkirTheatre14.Converters"
              mc:Ignorable="d" 
              Height="1500" Width="1668"
              d:DataContext="{d:DesignInstance popups:QuizSelectionPopupViewModel}">
     <UserControl.Resources>
         <converter:SelectQuizConverter x:Key="SelectQuizConverter"/>
         <converter:SelectConverter x:Key="SelectConverter"/>
-        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <converter:BoolToColorConverter x:Key="BoolToColorConverter"/>
     </UserControl.Resources>
 
     <b:Interaction.Triggers>

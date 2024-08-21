@@ -15,6 +15,7 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
         [ObservableProperty] private List<string>? _images;
         [ObservableProperty] private bool _isDetailsOpen;
         [ObservableProperty] private MapObject? _mapObject;
+        [ObservableProperty] private bool _isLoaded;
 
         private readonly MapNavigationService<Terminal> _mapNavigation;
         private readonly MapImageLoadingClient _mapImageLoadingClient;
@@ -43,6 +44,7 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
                 images.Add(imagePath);
             }
 
+            IsLoaded = true;
             Images = images;
         }
 

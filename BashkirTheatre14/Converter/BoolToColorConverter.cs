@@ -1,11 +1,10 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 using Brushes = System.Windows.Media.Brushes;
 using Color = System.Windows.Media.Color;
 
-namespace BashkirTheatre14.Converters
+namespace BashkirTheatre14.Converter
 {
     public class BoolToColorConverter : IValueConverter
     {

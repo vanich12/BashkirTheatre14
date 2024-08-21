@@ -1,12 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converter="clr-namespace:BashkirTheatre14.Converter"
-                    xmlns:converters="clr-namespace:BashkirTheatre14.Converters">
+                    xmlns:converter="clr-namespace:BashkirTheatre14.Converter">
     <converter:ProgressToWidthConverter x:Key="ProgressToWidthConverter"/>
     <converter:SelectAnswerConverter x:Key="SelectAnswerConverter"/>
     <converter:SelectConverter x:Key="SelectBoolAnswerConverter"/>
     <converter:ProgressBarColorConverter x:Key="ProgressBarColorConverter"/>
-    <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+    <converter:BoolToColorConverter x:Key="BoolToColorConverter"/>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <converter:ImageConverter x:Key="ImageConverter"/>
     <converter:InvertBooleanToVisibilityConverter x:Key="InvertBooleanToVisibilityConverter"/>

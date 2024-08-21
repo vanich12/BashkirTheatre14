@@ -1,11 +1,9 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Media.Animation;
 using Microsoft.Xaml.Behaviors;
 using ProgressBar = System.Windows.Controls.ProgressBar;
 
-namespace BashkirTheatre14.Utilities
+namespace BashkirTheatre14.Utlities
 {
     public class ProgressBarAnimateBehavior : Behavior<ProgressBar>
     {

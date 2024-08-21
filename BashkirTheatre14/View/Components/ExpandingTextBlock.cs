@@ -19,6 +19,15 @@ namespace BashkirTheatre14.View.Components
             set { SetValue(IsExpandedProperty, value); }
         }
 
+        public static readonly DependencyProperty UseAnimationProperty = DependencyProperty.Register(
+            nameof(UseAnimation), typeof(bool), typeof(ExpandingTextBlock), new PropertyMetadata(true));
+
+        public bool UseAnimation
+        {
+            get { return (bool)GetValue(UseAnimationProperty); }
+            set { SetValue(UseAnimationProperty, value); }
+        }
+
         public static readonly DependencyProperty AnimationDurationProperty = DependencyProperty.Register(
             nameof(AnimationDuration), typeof(Duration), typeof(ExpandingTextBlock), new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(250))));
 
@@ -40,9 +49,11 @@ namespace BashkirTheatre14.View.Components
         {
             if(d is not ExpandingTextBlock control) return;
             if(control.IsExpanded) control.Expand();
-            else control.Collapse();
+            else if(control.UseAnimation) control.Collapse(true);
+            else control.Collapse(false);
 
         }
+
 
         public ExpandingTextBlock()
         {
@@ -51,15 +62,16 @@ namespace BashkirTheatre14.View.Components
 
         private void ExpandingTextBlock_Loaded(object sender, RoutedEventArgs e)
         {
-            Collapse();
+            Collapse(false);
         }
 
-        private void Collapse()
+        private void Collapse(bool useAnimation)
         {
             TextTrimming = TextTrimming.WordEllipsis;
-            var animation = new DoubleAnimation(ActualHeight, CollapsedHeight, AnimationDuration);
+            var animation = new DoubleAnimation(ActualHeight, CollapsedHeight, useAnimation? AnimationDuration:TimeSpan.Zero);
             BeginAnimation(HeightProperty,animation);
         }
+
 
         private void Expand()
         {
