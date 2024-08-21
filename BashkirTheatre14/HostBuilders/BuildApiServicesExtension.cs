@@ -31,7 +31,7 @@ namespace BashkirTheatre14.HostBuilders
 
                 services.AddSingleton<ILoggingService>(s => new FileLoggingService("Logs"));
 
-                services.AddMap<Terminal, Floor, MapObject>(host,context.Configuration.GetValue<int>("terminalId"),true,TimeSpan.FromMinutes(10));
+                services.AddMap<Terminal, Floor, MapObject>(host,context.Configuration.GetValue<int>("terminalId"),250,true,TimeSpan.FromMinutes(10));
 
                 services.AddSingleton<QuizService>();
                 services.AddSingleton<ChronicleService>();
