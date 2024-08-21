@@ -39,6 +39,7 @@ namespace BashkirTheatre14.View.Components
             set { SetValue(IsOpenProperty, value); }
         }
 
+        private bool _isClosed;
 
         static ModalControl()
         {
@@ -54,6 +55,7 @@ namespace BashkirTheatre14.View.Components
         private void Closing(object sender, RoutedEventArgs e)
         {
             CloseAnimated();
+            _isClosed = true;
         }
 
         private static void IsOpenChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -61,8 +63,14 @@ namespace BashkirTheatre14.View.Components
             var modal = (ModalControl)d;
             if (modal.IsOpen)
             {
+                modal._isClosed = false;
                 modal.OpenAnimated();
             }
+            else if(!modal._isClosed)
+            {
+                modal.CloseAnimated();
+                modal._isClosed = true;
+            };
 
         }
 

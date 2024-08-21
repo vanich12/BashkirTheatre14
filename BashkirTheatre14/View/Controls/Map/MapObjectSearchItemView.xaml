@@ -58,7 +58,7 @@
                                           Visibility="{Binding MapObjectPopupViewModel.IsNotInfrastructure,
                                             Converter={StaticResource BooleanToVisibilityConverter}}"
                                           Content="ПОДРОБНЕЕ"
-                                          CornerRadius="32"
+                                          CornerRadius="21"
                                           FontSize="30"
                                           Margin="0 0 16 0"
                                           Padding="24 12"
