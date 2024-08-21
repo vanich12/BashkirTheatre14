@@ -71,12 +71,7 @@
     </UserControl.Resources>
     <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
           Width="{Binding Width}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <utlities:AnimatedScrollViewer Grid.Column="1" x:Name="AnimatedScrollViewer"
+        <utlities:AnimatedScrollViewer  x:Name="AnimatedScrollViewer"
                                         VerticalScrollBarVisibility="Disabled"
                                         Style="{DynamicResource CategoryScrollViewerStyle}"
                                         HorizontalScrollBarVisibility="{Binding ScrollBarVisibility}"
@@ -84,31 +79,9 @@
                                         PanningDeceleration="1.0"
                                         AnimationDuration="0:0:0.3"
                                         ManipulationBoundaryFeedback="AnimatedScrollViewer_OnManipulationBoundaryFeedback"
-                                        ScrollChanged="AnimatedScrollViewer_OnScrollChanged"
-                                        PreviewTouchDown="AnimatedScrollViewer_OnTouchDown"
                                         PreviewTouchUp="AnimatedScrollViewer_OnTouchUp">
-            <StackPanel Orientation="Horizontal" >
-
-                <Grid>
-                    <Grid.Style>
-                        <Style TargetType="Grid">
-                            <Setter Property="Width" Value="{Binding ActualWidth,ElementName=LeftGrid}"/>
-                            <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding CurrentItemIndex,Converter={StaticResource GreaterThanConverter},ConverterParameter=0}" Value="True"/>
-                                        <Condition Binding="{Binding StartFromCenter}" Value="True"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <MultiDataTrigger.Setters>
-                                        <Setter Property="Width" Value="{Binding ItemWidth}"/>
-                                    </MultiDataTrigger.Setters>
-                                </MultiDataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Grid.Style>
-                </Grid>
-
                 <ItemsControl x:Name="ContentItemsControl" 
+                              HorizontalAlignment="Center"
                               ItemsSource="{Binding ItemsSource}"
                               ItemTemplate="{Binding ItemTemplate}">
                     <ItemsControl.ItemsPanel>
@@ -120,41 +93,11 @@
                         <Style TargetType="FrameworkElement">
                             <Setter Property="Width" Value="{Binding ItemWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
                             <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"/>
-                            <Setter Property="LayoutTransform">
-                                <Setter.Value>
-                                    <ScaleTransform ScaleX="1.0"
-                                                    ScaleY="1.0"/>
-                                </Setter.Value>
-                            </Setter>
-
-                            <!--<EventSetter Event="PreviewMouseDown" Handler="Element_OnMouseDown"/>
-                            <EventSetter Event="PreviewMouseUp" Handler="Element_OnMouseUp"/>
-                            <EventSetter Event="PreviewMouseMove" Handler="Element_OnMouseMove"/>-->
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                 </ItemsControl>
-
-                <Grid Width="{Binding ActualWidth, ElementName=RightGrid}"/>
-            </StackPanel>
         </utlities:AnimatedScrollViewer>
-        <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="{Binding ItemWidth}"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0"
-                     x:Name="LeftGrid"/>
-
-            <Grid Grid.Column="1"
-                     x:Name="CenterGrid"/>
-
-            <Grid Grid.Column="2"
-                     x:Name="RightGrid"/>
-
-        </Grid>
-        <Button Grid.Column="1" 
+        <Button
                 Name="LeftButton"
                 Visibility="{Binding ArrowsShow}"
                 Command="{Binding LeftCommand}"
@@ -162,7 +105,7 @@
                 HorizontalAlignment="Left"
                 Margin="16 0 0 0"
                 ContentTemplate="{StaticResource LeftArrowIcon}"/>
-        <Button Grid.Column="1"
+        <Button 
                 Name="RightButton"
                 Style="{StaticResource ArrowButtonStyle}"
                 ContentTemplate="{StaticResource RightArrowIcon}"

@@ -8,7 +8,7 @@
              xmlns:popupContainers="clr-namespace:BashkirTheatre14.View.Popups.PopupContainers"
              xmlns:components="clr-namespace:BashkirTheatre14.View.Components"
              mc:Ignorable="d" 
-             Height="2000" Width="2100"
+             Height="2000" Width="2160"
              HorizontalAlignment="Right"
              d:DataContext="{d:DesignInstance popups1:MapObjectDetailsPopupViewModel}">
     <UserControl.Resources>

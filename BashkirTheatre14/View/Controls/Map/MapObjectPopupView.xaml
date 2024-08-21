@@ -40,12 +40,11 @@
         <StackPanel Margin="32">
             <components:LeftAlignContentSliderUserControl 
                 ArrowsShow="Visible"
-                StartFromCenter="True"
+                DisplayItemsCount="3"
                 ArrowsPadding="12"
                 ItemsSource="{Binding Images}"
                 ItemTemplate="{StaticResource ImageTemplate}"
                 ItemWidth="310"
-                Scale="1"
                 ArrowsWidth="48"
                 ArrowsHeight="48"
                 Height="300"

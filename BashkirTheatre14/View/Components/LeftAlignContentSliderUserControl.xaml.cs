@@ -14,8 +14,15 @@ namespace BashkirTheatre14.View.Components
     /// </summary>
     public partial class LeftAlignContentSliderUserControl : UserControl
     {
-        public static readonly DependencyProperty StartFromCenterProperty = DependencyProperty.Register(
-            nameof(StartFromCenter), typeof(bool), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(bool)));
+
+        public static readonly DependencyProperty DisplayItemsCountProperty = DependencyProperty.Register(
+            nameof(DisplayItemsCount), typeof(int), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(1));
+
+        public int DisplayItemsCount
+        {
+            get { return (int)GetValue(DisplayItemsCountProperty); }
+            set { SetValue(DisplayItemsCountProperty, value); }
+        }
 
         public static readonly DependencyProperty ArrowsPaddingProperty = DependencyProperty.Register(
             nameof(ArrowsPadding), typeof(Thickness), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(Thickness)));
@@ -25,11 +32,7 @@ namespace BashkirTheatre14.View.Components
             get { return (Thickness)GetValue(ArrowsPaddingProperty); }
             set { SetValue(ArrowsPaddingProperty, value); }
         }
-        public bool StartFromCenter
-        {
-            get { return (bool)GetValue(StartFromCenterProperty); }
-            set { SetValue(StartFromCenterProperty, value); }
-        }
+        
 
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(
             nameof(ItemsSource), typeof(IList), typeof(LeftAlignContentSliderUserControl),
@@ -116,45 +119,37 @@ namespace BashkirTheatre14.View.Components
             set => SetValue(CurrentItemProperty, value);
         }
 
-        public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
-            nameof(Scale), typeof(double), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(1.0));
 
-        public double Scale
-        {
-            get => (double)GetValue(ScaleProperty);
-            set => SetValue(ScaleProperty, value);
-        }
+
+        private bool LeftCommandEnabled => CurrentItemIndex is not 0;
+        private bool RightCommandEnabled => CurrentItemIndex<DisplayItemsCount ?
+            CurrentItemIndex + DisplayItemsCount < ItemsSource?.Count :
+            CurrentItemIndex + 1 != ItemsSource?.Count;
 
         private ICommand? _leftCommand;
+        public ICommand LeftCommand => _leftCommand ??= new RelayCommand(_ => ScrollByStep(CurrentItemIndex > DisplayItemsCount ? -1 : -DisplayItemsCount));
 
-        public ICommand LeftCommand => _leftCommand ??= new RelayCommand(f =>
-        {
-            if (CurrentItemIndex - 1 < 0) return;
-            CurrentItemIndex--;
-            ScrollToIndex(CurrentItemIndex);
-        });
 
         private ICommand? _rightCommand;
-
-        public ICommand RightCommand => _rightCommand ??= new RelayCommand(f =>
-        {
-            if (ItemsSource is not { } list) return;
-            if (CurrentItemIndex + 1 > list.Count - 1) return;
-            CurrentItemIndex++;
-            ScrollToIndex(CurrentItemIndex);
-        });
+        public ICommand RightCommand => _rightCommand ??= new RelayCommand(_ => ScrollByStep(CurrentItemIndex == 0 ? DisplayItemsCount : 1));
 
         public LeftAlignContentSliderUserControl()
         {
             InitializeComponent();
         }
 
+        private void ScrollByStep(int step)
+        {
+            if (CurrentItemIndex + step > ItemsSource?.Count - 1
+                || CurrentItemIndex + step < 0) return;
+            CurrentItemIndex += step;
+            ScrollToIndex(CurrentItemIndex);
+        }
 
         private static void ItemsSourcePropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is not LeftAlignContentSliderUserControl control)
                 return;
-            if (control.ItemsSource?.Count >= 2 && control.StartFromCenter) control.CurrentItemIndex = 1;
             control.UpdateCurrentItem();
             control.ScrollToIndex(control.CurrentItemIndex, false);
         }
@@ -181,12 +176,6 @@ namespace BashkirTheatre14.View.Components
                 RightButton.Visibility = Visibility.Visible;
             }
             if (ItemsSource is not { } list || CurrentItemIndex < 0 || CurrentItemIndex >= list.Count) return;
-            if (ArrowsShow == Visibility.Visible)
-            {
-                LeftButton.IsEnabled = StartFromCenter? CurrentItemIndex > 1:CurrentItemIndex>0;
-                RightButton.IsEnabled = CurrentItemIndex + 1 != ItemsSource.Count;
-            }
-            
             CurrentItem = list[CurrentItemIndex];
         }
 
@@ -202,7 +191,7 @@ namespace BashkirTheatre14.View.Components
                 index = list.Count - 1;
             }
 
-            var offset = ItemWidth * Scale * index;
+            var offset = ItemWidth * index;
 
             if (animate)
             {
@@ -214,53 +203,13 @@ namespace BashkirTheatre14.View.Components
             }
 
             CurrentItemIndex = index;
+            NotifyCanExecuteForArrows();
         }
 
-        private void AnimatedScrollViewer_OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        private void NotifyCanExecuteForArrows()
         {
-            _scrollChanged = true;
-
-            for (var i = 0; i < ContentItemsControl.Items.Count; i++)
-            {
-                var element = ContentItemsControl.ItemContainerGenerator.ContainerFromIndex(i) as FrameworkElement;
-
-                if (element is null)
-                    continue;
-
-                var value = GetElementIntersectionWithCenterGrid(element);
-                var scale = Scale + (1.0 - Scale) * value;
-
-                element.LayoutTransform = new ScaleTransform(scale, scale);
-            }
-        }
-
-        private double GetElementIntersectionWithCenterGrid(FrameworkElement element)
-        {
-            if (!element.IsVisible)
-                return 0.0;
-
-            var elementBoundsRect = element.TransformToAncestor(AnimatedScrollViewer)
-                .TransformBounds(new Rect(0.0, 0.0, element.ActualWidth, element.ActualHeight));
-            var containerRect = new Rect(LeftGrid.ActualWidth, 0.0, ItemWidth, AnimatedScrollViewer.ActualHeight);
-
-            if (containerRect.Contains(elementBoundsRect.TopLeft) &&
-                containerRect.Contains(elementBoundsRect.BottomRight))
-                return 1.0;
-
-            if (containerRect.Contains(elementBoundsRect.BottomRight))
-                return 1.0 - (containerRect.Left - elementBoundsRect.Left) / elementBoundsRect.Width;
-
-            if (containerRect.Contains(elementBoundsRect.TopLeft))
-                return 1.0 - (elementBoundsRect.Right - containerRect.Right) / elementBoundsRect.Width;
-
-            return 0.0;
-        }
-
-        private bool _scrollChanged;
-
-        private void AnimatedScrollViewer_OnTouchDown(object? sender, TouchEventArgs e)
-        {
-            _scrollChanged = false;
+            LeftButton.IsEnabled = LeftCommandEnabled;
+            RightButton.IsEnabled = RightCommandEnabled;
         }
 
         private void AnimatedScrollViewer_OnTouchUp(object? sender, TouchEventArgs e)
@@ -268,59 +217,13 @@ namespace BashkirTheatre14.View.Components
             if (sender is not ScrollViewer scrollViewer)
                 return;
 
-            var currentPosition = scrollViewer.HorizontalOffset / (ItemWidth * Scale);
+            var currentPosition = scrollViewer.HorizontalOffset / ItemWidth;
             var deltaOffset = currentPosition - CurrentItemIndex;
             var offsetLength = Math.Abs(deltaOffset);
 
-            var currentItemIndex = offsetLength is >= 0.2 and < 0.5
-                ? CurrentItemIndex + (int)Math.Round(deltaOffset / offsetLength)
-                : (int)Math.Round(currentPosition);
+            var currentItemIndex = CurrentItemIndex + (int)Math.Round(deltaOffset / offsetLength);
 
             ScrollToIndex(currentItemIndex);
-        }
-
-        private bool _mouseMoved;
-
-        private void Element_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            _scrollChanged = false;
-            _mouseMoved = false;
-
-            if (sender is not ContentPresenter contentPresenter)
-                return;
-
-            var content = contentPresenter.Content;
-
-            if (content.Equals(CurrentItem))
-                return;
-
-            e.Handled = true;
-        }
-
-        private void Element_OnMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (_scrollChanged || _mouseMoved || sender is not ContentPresenter contentPresenter)
-                return;
-
-            var content = contentPresenter.Content;
-
-            if (content == CurrentItem)
-                return;
-
-            if (ItemsSource is not { } list)
-                return;
-
-            var index = list.IndexOf(content);
-
-            if (index < 0)
-                return;
-
-            ScrollToIndex(index);
-        }
-
-        private void Element_OnMouseMove(object sender, MouseEventArgs e)
-        {
-            _mouseMoved = true;
         }
 
         private void AnimatedScrollViewer_OnManipulationBoundaryFeedback(object? sender, ManipulationBoundaryFeedbackEventArgs e)
