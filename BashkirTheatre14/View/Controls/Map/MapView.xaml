@@ -244,8 +244,8 @@
                                     <DataTrigger.EnterActions>
                                         <BeginStoryboard>
                                             <Storyboard
-                                     TargetProperty="(Panel.ZIndex)">
-                                                <Int32Animation BeginTime="0:0:0.2"
+                                                TargetProperty="(Panel.ZIndex)">
+                                                <Int32Animation
                                                      Duration="0"
                                                      To="3"/>
                                             </Storyboard>
@@ -254,9 +254,10 @@
                                     <DataTrigger.ExitActions>
                                         <BeginStoryboard>
                                             <Storyboard
-                                     TargetProperty="(Panel.ZIndex)">
+                                                TargetProperty="(Panel.ZIndex)">
                                                 <Int32Animation Duration="0"
-                                                     To="0"/>
+                                                                BeginTime="0:0:0.25"
+                                                                To="0"/>
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </DataTrigger.ExitActions>
