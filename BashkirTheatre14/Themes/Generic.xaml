@@ -11,6 +11,11 @@
 
 
     <Style TargetType="components1:PlaceholderTextBox">
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu Visibility="Collapsed"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="components1:PlaceholderTextBox">
