@@ -52,7 +52,8 @@ namespace BashkirTheatre14.ViewModel.Windows
 
         private void _inactivityHelper_OnInactivity(int inactivityTime)
         {
-            if(CurrentViewModel is not MainPageViewModel) _initialNavigationService.Navigate();
+            if(CurrentViewModel is not MainPageViewModel mainPage) _initialNavigationService.Navigate();
+            else mainPage.MapControlViewModel.MapObjectPopup?.CloseCommand.Execute(false);
             if(CurrentModalViewModel is BasePopupViewModel popup) popup.CloseContainerCommand.Execute(false);
         }
 
