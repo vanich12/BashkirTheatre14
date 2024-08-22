@@ -15,6 +15,15 @@ namespace BashkirTheatre14.View.Components
     public partial class LeftAlignContentSliderUserControl : UserControl
     {
 
+        public static readonly DependencyProperty AlignToCenterProperty = DependencyProperty.Register(
+            nameof(AlignToCenter), typeof(bool), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(default(bool)));
+
+        public bool AlignToCenter
+        {
+            get { return (bool)GetValue(AlignToCenterProperty); }
+            set { SetValue(AlignToCenterProperty, value); }
+        }
+
         public static readonly DependencyProperty DisplayItemsCountProperty = DependencyProperty.Register(
             nameof(DisplayItemsCount), typeof(int), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(1));
 
@@ -119,7 +128,9 @@ namespace BashkirTheatre14.View.Components
             set => SetValue(CurrentItemProperty, value);
         }
 
-
+        public Thickness ContentMargin=>AlignToCenter
+            ?new Thickness((Width-ItemWidth)/2,0, (Width - ItemWidth) / 2,0) 
+            :new Thickness();
 
         private bool LeftCommandEnabled => CurrentItemIndex is not 0;
         private bool RightCommandEnabled => CurrentItemIndex<DisplayItemsCount ?

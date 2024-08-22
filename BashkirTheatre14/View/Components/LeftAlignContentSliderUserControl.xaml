@@ -80,8 +80,8 @@
                                         AnimationDuration="0:0:0.3"
                                         ManipulationBoundaryFeedback="AnimatedScrollViewer_OnManipulationBoundaryFeedback"
                                         PreviewTouchUp="AnimatedScrollViewer_OnTouchUp">
-                <ItemsControl x:Name="ContentItemsControl" 
-                              HorizontalAlignment="Center"
+                <ItemsControl HorizontalAlignment="Center"
+                              Margin="{Binding ContentMargin}"
                               ItemsSource="{Binding ItemsSource}"
                               ItemTemplate="{Binding ItemTemplate}">
                     <ItemsControl.ItemsPanel>

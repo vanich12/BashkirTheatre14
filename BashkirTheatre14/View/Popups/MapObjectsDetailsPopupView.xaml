@@ -37,6 +37,8 @@
                 ArrowsShow="Visible"
                 ArrowsWidth="96"
                 ArrowsHeight="96"
+                Width="2160"
+                AlignToCenter="True"
                 ItemsSource="{Binding Images}"
                 ItemTemplate="{StaticResource ImageTemplate}"
                 ItemWidth="1684"

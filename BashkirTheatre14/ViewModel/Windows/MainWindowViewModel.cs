@@ -21,7 +21,7 @@ namespace BashkirTheatre14.ViewModel.Windows
         private readonly InactivityHelper _inactivityHelper;
         private readonly PasswordInactivityHelper _passwordInactivityHelper;
         private readonly ModalNavigationStore _modalNavigationStore;
-        private readonly NavigationService<MainPageViewModel> _initialNavigationService;
+        private readonly CompositeNavigationService<MainPageViewModel> _initialNavigationService;
         private readonly NavigationService<PasswordPopupViewModel> _passwordNavigationService;
 
 
@@ -30,7 +30,7 @@ namespace BashkirTheatre14.ViewModel.Windows
         public bool IsModalOpen => _modalNavigationStore.IsOpen;
 
         public MainWindowViewModel(IMessenger messenger,NavigationStore navigationStore, InactivityHelper inactivityHelper, PasswordInactivityHelper passwordInactivityHelper,
-            ModalNavigationStore modalNavigationStore, NavigationService<MainPageViewModel> initialNavigationService,
+            ModalNavigationStore modalNavigationStore, CompositeNavigationService<MainPageViewModel> initialNavigationService,
             NavigationService<PasswordPopupViewModel> passwordNavigationService)
         {
             _navigationStore = navigationStore;
@@ -53,6 +53,7 @@ namespace BashkirTheatre14.ViewModel.Windows
         private void _inactivityHelper_OnInactivity(int inactivityTime)
         {
             if(CurrentViewModel is not MainPageViewModel) _initialNavigationService.Navigate();
+            if(CurrentModalViewModel is BasePopupViewModel popup) popup.CloseContainerCommand.Execute(false);
         }
 
         private void Timer(object? sender, EventArgs eventArgs)
