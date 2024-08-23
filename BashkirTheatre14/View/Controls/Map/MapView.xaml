@@ -216,18 +216,35 @@
                      HorizontalAlignment="Right"
                      Panel.ZIndex="4"
                      Margin="40">
-                    <components:RoundedButton Style="{StaticResource AlterMapToolButtonStyle}"
-                        ContentTemplate="{StaticResource PlusIcon}"
-                        Command="{Binding Map.ZoomInCommand}"/>
-                    <components:RoundedButton Style="{StaticResource AlterMapToolButtonStyle}"
-                         Margin="0 20"
-                         ContentTemplate="{StaticResource MinusIcon}"
-                         Command="{Binding Map.ZoomOutCommand}"/>
 
-                    <components:RoundedButton Style="{StaticResource MapToolButtonStyle}"
+                    <components:RoundedButton 
                         ContentTemplate="{StaticResource MapArrowIcon}"
                         Command="{Binding Map.MoveToTerminalCommand}"
-                        CommandParameter="4"/>
+                        CommandParameter="1">
+                        <components:RoundedButton.Style>
+                            <Style TargetType="components:RoundedButton" BasedOn="{StaticResource MapToolButtonStyle}">
+                                <Setter Property="Opacity" Value="0"/>
+                                <Style.Triggers>
+                                    <DataTrigger Value="True">
+                                        <DataTrigger.Binding>
+                                            <MultiBinding Converter="{StaticResource EqualsConverter}">
+                                                <Binding Path="Map.SelectedFloor"/>
+                                                <Binding Path="Map.TerminalFloor"/>
+                                            </MultiBinding>
+                                        </DataTrigger.Binding>
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard
+                                                Storyboard="{StaticResource HideOpacityStoryBoard}"/>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <BeginStoryboard
+                                                Storyboard="{StaticResource ShowOpacityStoryBoard}"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </components:RoundedButton.Style>
+                    </components:RoundedButton>
                 </StackPanel>
 
                 <popups:Loader 
@@ -236,6 +253,7 @@
                 <components1:ZoomableContentControl
                      x:Name="ZoomableContentControl"
                      ZoomMin="1"
+                     ZoomMax="1"
                      Visibility="{Binding IsLoading,Converter={StaticResource InvertBooleanToVisibilityConverter}}"
                      AnimationDuration="0:0:0.2">
                     <components1:ZoomableContentControl.Style>
@@ -279,7 +297,7 @@
                         <b:DataTrigger Binding="{Binding Map.SelectedFloor.AreaSelected}"
                                        Value="True">
                             <b:CallMethodAction TargetObject="{Binding ElementName=ZoomableContentControl}"
-                     MethodName="ResetOffset"/>
+                                MethodName="ResetOffset"/>
                         </b:DataTrigger>
                     </b:Interaction.Triggers>
                     <map:FloorView DataContext="{Binding Map.SelectedFloor}"/>

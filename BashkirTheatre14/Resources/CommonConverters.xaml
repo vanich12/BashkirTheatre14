@@ -12,4 +12,5 @@
     <converter:ImageConverter x:Key="UnlimitedImageConverter"/>
     <converter:GreaterThanConverter x:Key="GreaterThanConverter"/>
     <converter:BooleanToHiddenVisibilityConverter x:Key="BooleanToHiddenVisibilityConverter"/>
+    <converter:EqualsConverter x:Key="EqualsConverter"/>
 </ResourceDictionary>
