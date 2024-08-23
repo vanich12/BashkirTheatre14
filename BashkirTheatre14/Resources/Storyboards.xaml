@@ -25,7 +25,7 @@
         <ColorAnimation
             Duration="0:0:0.5"
             Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)"
-            To="#BD007E"/>
+            To="#96358C"/>
     </Storyboard>
 
     <Storyboard x:Key="ShowOpacityStoryBoard"
