@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MapControlLib.ViewModels.Messages;
+using MapControlLib.ViewModels;
 using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls.Map

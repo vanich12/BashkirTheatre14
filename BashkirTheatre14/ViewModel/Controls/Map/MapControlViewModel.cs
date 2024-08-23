@@ -1,11 +1,9 @@
 ﻿using BashkirTheatre14.Model.Entities.Map;
-using BashkirTheatre14.ViewModel.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MapControlLib.Components;
 using MapControlLib.ViewModels;
-using MapControlLib.ViewModels.Messages;
 using MvvmNavigationLib.Services;
 
 namespace BashkirTheatre14.ViewModel.Controls.Map
@@ -32,6 +30,7 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
         [RelayCommand]
         private void ToSearchMapObjectPopup()
         {
+            MapObjectPopup?.CloseCommand.Execute(null);
             _toSearchMapObjectPopup.Navigate();
         }
 
@@ -43,10 +42,7 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
             OnPropertyChanged(nameof(ShowOverlay));
         }
 
-        public void Receive(IsNavigatingChangedMessage message)
-        {
-            OnPropertyChanged(nameof(ShowOverlay));
-        }
+        public void Receive(IsNavigatingChangedMessage message)=>OnPropertyChanged(nameof(ShowOverlay));
 
         public void Receive(NavigatedMessage message)
         {
