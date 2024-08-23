@@ -22,7 +22,7 @@ namespace BashkirTheatre14.ViewModel.Controls.Map
         private readonly MapImageLoadingClient _mapImageLoadingClient;
         private readonly IParameterNavigationService<List<string>> _toDetailsNavigationService;
         public bool IsNotInfrastructure => !MapObject?.IsInfrastructure??false;
-        public bool HasPictures => Images?.Any() ?? false;
+        public bool HasPictures => (Images?.Any() ?? false)&&IsNotInfrastructure;
 
         public MapObjectPopupViewModel(AreaViewModel area,MapNavigationService<Terminal> mapNavigation,MapImageLoadingClient mapImageLoadingClient,
             IParameterNavigationService<List<string>> toDetailsNavigationService)
