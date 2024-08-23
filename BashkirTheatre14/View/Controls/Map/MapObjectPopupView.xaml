@@ -89,21 +89,21 @@
                 </Button.Style>
             </components:RoundedButton>
 
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Left">
+            <Grid>
                 <components:RoundedButton Style="{StaticResource AlterButtonStyle}"
                         Content="ЗАКРЫТЬ"
+                        HorizontalAlignment="Left"
                         FontSize="40"
                         Command="{Binding CloseCommand}"
                         Padding="38"/>
                 <components:RoundedButton Style="{StaticResource BaseButtonStyle}"
-                                        Margin="20 0 0 0"
                                         Content="ПОСТРОИТЬ МАРШРУТ"
+                                        HorizontalAlignment="Right"
                                         FontSize="40"
                                         Command="{Binding NavigateCommand}"
                                         FontWeight="Bold"
                                         Padding="72 38"/>
-            </StackPanel>
+            </Grid>
         </StackPanel>
     </Border>
 </UserControl>
