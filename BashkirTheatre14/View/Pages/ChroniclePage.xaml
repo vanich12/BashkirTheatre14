@@ -672,20 +672,8 @@
                            FontSize="120"
                            FontFamily="{DynamicResource Arial}"
                            FontWeight="Bold"
-                           TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Text">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource EndAtToWordConverter}">
-                                        <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
-                                        <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
+                           Text="{Binding CurrentChronicle.Chronicle.DateAt}"
+                           TextAlignment="Center"/>
 
                 <TextBlock Foreground="White"
                         FontSize="60"
@@ -755,21 +743,9 @@
                            Foreground="White"
                            FontSize="120"
                            FontWeight="Bold"
+                           Text="{Binding NewModel.Chronicle.DateAt}"
                            FontFamily="{DynamicResource Arial}"
-                           TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Text">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource EndAtToWordConverter}">
-                                        <Binding Path="NewModel.Chronicle.StartAt"/>
-                                        <Binding Path="NewModel.Chronicle.EndAt"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
+                           TextAlignment="Center"/>
                 <TextBlock Foreground="White"
                         FontSize="60"
                         TextAlignment="Center"
