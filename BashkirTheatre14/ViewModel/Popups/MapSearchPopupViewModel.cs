@@ -31,7 +31,7 @@ namespace BashkirTheatre14.ViewModel.Popups
         {
             FilteredItems = new ObservableCollection<SearchMapObjectPopupViewModel>();
             AllItems = new ObservableCollection<SearchMapObjectPopupViewModel>();
-            var mapObjects = await _mapClient.Resource.Value;
+            var mapObjects = await _mapClient.GetAsync();
             foreach (var mapPopup in mapObjects
                          .Where(m=>m is not TerminalAreaViewModel)
                          .Select(mapObject => _mapObjectViewModelFactory(mapObject)))
