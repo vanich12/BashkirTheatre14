@@ -29,7 +29,9 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <popupContainers:OpacityPopupContainer>
-        <Border Background="White" CornerRadius="40">
+        <Border Background="White"
+                MaxHeight="1337"
+                CornerRadius="40">
             <StackPanel
             Background="Transparent">
 
@@ -86,9 +88,10 @@
                                                   TextAlignment="Center"
                                                   Margin="20 00"
                                                   VerticalAlignment="Center"
+                                                  FontFamily="{DynamicResource Arial}"
                                                   FontSize="56"
                                                   MaxWidth="550"
-                                                  FontWeight="Bold"
+                                                  FontWeight="Normal"
                                                   TextWrapping="Wrap"
                                                   >
                                                 <TextBlock.Style>
@@ -117,6 +120,7 @@
                     Content="НАЗАД"
                     FontSize="80"
                     Foreground="#96358c"
+                    FontFamily="{DynamicResource Arial}"
                     Background="Transparent"
                     BorderBrush="#96358c"
                     Padding="76 38"
@@ -130,6 +134,7 @@
                 <Button 
                     Background="{Binding DataContext.HasSelected, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToColorConverter}}"
                     Foreground="White"
+                    FontFamily="{DynamicResource Arial}"
                     IsEnabled="{Binding DataContext.HasSelected, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     FontWeight="Bold"
                     DataContext="{Binding SelectedQuiz}"

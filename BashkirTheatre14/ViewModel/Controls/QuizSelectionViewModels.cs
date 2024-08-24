@@ -15,7 +15,11 @@ public partial class BaseQuizViewModel(IParameterNavigationService<QuizModel> na
     [RelayCommand] private void ToNextPage() => navService.Navigate(Quiz);
 }
 
-public class QuizItemViewModel(IParameterNavigationService<QuizModel> navService, QuizModel quiz) : BaseQuizViewModel(navService, quiz);
+public partial class QuizItemViewModel(IParameterNavigationService<QuizModel> navService, QuizModel quiz)
+    : BaseQuizViewModel(navService, quiz)
+{
+
+}
 
 public partial class QuizChoiceViewModel(IParameterNavigationService<QuizModel> navService, QuizModel quiz)
     : BaseQuizViewModel(navService, quiz)

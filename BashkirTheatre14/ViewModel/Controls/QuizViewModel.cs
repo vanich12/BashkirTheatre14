@@ -25,7 +25,7 @@ namespace BashkirTheatre14.ViewModel.Controls
         [ObservableProperty] private Question? _selectedQuestion;
         [ObservableProperty] private Answer? _selectedAnswer;
         [ObservableProperty] private int _questionIndex;
-
+        public string QuestionTitle { get; set; }
         public bool CanExecuteNextQuestions => NextQuestionsCommand.CanExecute(null);
 
         private bool HasSelectedAnswer() => SelectedAnswer != null;

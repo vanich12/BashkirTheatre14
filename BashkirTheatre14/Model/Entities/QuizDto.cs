@@ -13,16 +13,21 @@ namespace BashkirTheatre14.Model.Entities
         [property: JsonPropertyName("title")] string Title,
         [property: JsonPropertyName("questions")]
         IReadOnlyList<Question> Questions,
-        [property: JsonPropertyName("display")] bool Display
-    );
+        [property: JsonPropertyName("display")]
+        bool Display
+    )
+    {
 
-    public record QuizModel(QuizDto QuizDto)
+    }
+
+    public record QuizModel(QuizDto QuizDto, QuizItemData QuizItemData)
     {
         
         private readonly IEnumerator<Question> _questionEnumerator = QuizDto.Questions.GetEnumerator();
         public Question? ToNextQuestion() => _questionEnumerator.MoveNext() ? _questionEnumerator.Current : null;
 
     }
+
 
     public record Question(
         [property: JsonPropertyName("id")] int Id,

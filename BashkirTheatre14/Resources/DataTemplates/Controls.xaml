@@ -18,7 +18,7 @@
                     Width="1060"
                     Height="900"
                     Margin="0 0 0 240"
-                    Source="../../Resources/Images/QuizCharacters.png"/>
+                    Source="{Binding Quiz.QuizItemData.ImagePath, Converter={StaticResource ImageConverter}}"/>
                 
                 <TextBlock Text="{Binding Quiz.QuizDto.Title}"
                            Style="{StaticResource BoldWhiteTextBlock}"
@@ -31,7 +31,7 @@
                     Style="{StaticResource MainWhiteTextBlock}"
                     TextAlignment="Center"
                     VerticalAlignment="Top"
-                    Text="Когда Красная Шапочка и Буратино устали стоять на фасаде здания, они решили, что пора познакомиться с миром искусства и впервые в жизни посетить театр. Однако, столкнувшись с необходимостью соблюдать определённые правила поведения, они оказались в растерянности."/>
+                    Text="{Binding Quiz.QuizItemData.Description}"/>
                     
                 <TextBlock 
                     Style="{StaticResource MainWhiteTextBlock}"
@@ -43,6 +43,7 @@
                         FontWeight="Bold"
                         FontSize="80"
                         Padding="76 38"
+                        FontFamily="{DynamicResource Arial}"
                         Margin=" 0 240 0 0"
                         Foreground="White"
                         Background="#96358c"
@@ -119,7 +120,9 @@
                         </b:Interaction.Behaviors>
                     </ProgressBar>
 
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
+                    <TextBlock HorizontalAlignment="Center" 
+                               FontFamily="{DynamicResource Arial}"
+                               VerticalAlignment="Center" FontSize="40">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{1}/{0}">
                                 <Binding Path="Quiz.QuizDto.Questions.Count"/>
@@ -198,8 +201,9 @@
                     Content="ПРОДОЛЖИТЬ"
                     FontWeight="Bold"
                     FontSize="80"
+                    FontFamily="{DynamicResource Arial}"
                     Margin="0 0 0 40"
-                    Padding="76 38"
+                    Padding="100 38"
                     Foreground="White"
                     HorizontalAlignment="Center"
                     Command="{Binding NextQuestionsCommand}"
@@ -208,6 +212,7 @@
 
                 <Button
                 Content="ЗАВЕРШИТЬ"
+                FontFamily="{DynamicResource Arial}"
                 Padding ="140 38"
                 BorderBrush="White"
                 BorderThickness="3"

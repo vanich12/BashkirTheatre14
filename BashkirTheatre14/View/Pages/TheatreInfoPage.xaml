@@ -48,6 +48,7 @@
                                 Style="{StaticResource MainWhiteTextBlock}"
                                 FontSize="50"
                                 TextAlignment="Center"
+                                FontWeight="Normal"
                                 helpers:RichTextBoxHelper.HtmlText="{Binding CurrentInfo.Info.Description}" />
                
                     </ScrollViewer>

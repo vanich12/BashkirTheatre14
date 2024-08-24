@@ -10,6 +10,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Font\ARIAL.TTF" />
+    <None Remove="Resources\Font\ARIALBD 1.TTF" />
+    <None Remove="Resources\Font\ARIALBD.TTF" />
+    <None Remove="Resources\Font\ARIALBI 1.TTF" />
+    <None Remove="Resources\Font\ARIALBI.TTF" />
+    <None Remove="Resources\Font\ARIALBLACKITALIC.TTF" />
+    <None Remove="Resources\Font\ArialCE.ttf" />
+    <None Remove="Resources\Font\arialceb.ttf" />
+    <None Remove="Resources\Font\ArialCEBoldItalic.ttf" />
+    <None Remove="Resources\Font\ArialCEItalic.ttf" />
+    <None Remove="Resources\Font\ArialCEMTBlack.ttf" />
+    <None Remove="Resources\Font\ARIALI 1.TTF" />
+    <None Remove="Resources\Font\ARIALI.TTF" />
+    <None Remove="Resources\Font\ARIALLGT.TTF" />
+    <None Remove="Resources\Font\ARIALLGTITL.TTF" />
+    <None Remove="Resources\Font\ArialMdm.ttf" />
+    <None Remove="Resources\Font\ArialMdmItl.ttf" />
+    <None Remove="Resources\Font\ARIALN.TTF" />
+    <None Remove="Resources\Font\ARIALNB.TTF" />
+    <None Remove="Resources\Font\ARIALNBI.TTF" />
+    <None Remove="Resources\Font\ARIALNI.TTF" />
+    <None Remove="Resources\Font\ARIBLK.TTF" />
     <None Remove="Resources\Gif\in-love.gif" />
     <None Remove="Resources\Gif\party.gif" />
     <None Remove="Resources\Gif\SadFace.gif" />
@@ -29,10 +51,6 @@
     <None Remove="Resources\Images\SelectQuiz.png" />
     <None Remove="Resources\Images\timeline.png" />
     <None Remove="Resources\Images\zaglushka.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +82,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Font\ARIAL.TTF" />
+    <Resource Include="Resources\Font\ARIALBD 1.TTF" />
+    <Resource Include="Resources\Font\ARIALBD.TTF" />
+    <Resource Include="Resources\Font\ARIALBI 1.TTF" />
+    <Resource Include="Resources\Font\ARIALBI.TTF" />
+    <Resource Include="Resources\Font\ARIALBLACKITALIC.TTF" />
+    <Resource Include="Resources\Font\ArialCE.ttf" />
+    <Resource Include="Resources\Font\arialceb.ttf" />
+    <Resource Include="Resources\Font\ArialCEBoldItalic.ttf" />
+    <Resource Include="Resources\Font\ArialCEItalic.ttf" />
+    <Resource Include="Resources\Font\ArialCEMTBlack.ttf" />
+    <Resource Include="Resources\Font\ARIALI 1.TTF" />
+    <Resource Include="Resources\Font\ARIALI.TTF" />
+    <Resource Include="Resources\Font\ARIALLGT.TTF" />
+    <Resource Include="Resources\Font\ARIALLGTITL.TTF" />
+    <Resource Include="Resources\Font\ArialMdm.ttf" />
+    <Resource Include="Resources\Font\ArialMdmItl.ttf" />
+    <Resource Include="Resources\Font\ARIALN.TTF" />
+    <Resource Include="Resources\Font\ARIALNB.TTF" />
+    <Resource Include="Resources\Font\ARIALNBI.TTF" />
+    <Resource Include="Resources\Font\ARIALNI.TTF" />
+    <Resource Include="Resources\Font\ARIBLK.TTF" />
     <Resource Include="Resources\Gif\in-love.gif" />
     <Resource Include="Resources\Gif\party.gif" />
     <Resource Include="Resources\Gif\SadFace.gif" />
