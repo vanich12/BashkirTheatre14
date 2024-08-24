@@ -11,10 +11,11 @@
              d:DesignHeight="3840" d:DesignWidth="2160"
              d:DataContext="{d:DesignInstance pages:MainPageViewModel}">
     <Grid>
+        <Image Source="../../Resources/Images/Background.png"/>
+        <Image Source="../../Resources/Images/Bg.png"/>
         <StackPanel
-            Margin="246 387 246 0"
+            Margin="246 587 246 0"
             Width="1668">
-            <Image Source="../../Resources/Images/QuizHeader.png"/>
 
             <map:MapView Margin="0 76"
                          DataContext="{Binding MapControlViewModel}"/>

@@ -1,5 +1,6 @@
 ﻿using BashkirTheatre14.Helpers.Logging;
 using BashkirTheatre14.Model;
+using BashkirTheatre14.Model.Entities;
 using BashkirTheatre14.Model.Entities.Map;
 using BashkirTheatre14.Services;
 using MapControlLib.Helpers;
@@ -19,6 +20,7 @@ namespace BashkirTheatre14.HostBuilders
             builder.ConfigureServices((context,services) =>
             {
                 var host = new Uri(context.Configuration.GetValue<string>("host") ?? string.Empty);
+                var quizPreviewData = context.Configuration.GetSection("quizItemData").Get<List<QuizItemData>>() ?? new List<QuizItemData>();
                 services.AddMemoryCache();
                 services.AddScoped<ApiCachingHttpMessageHandler>();
 
@@ -28,6 +30,10 @@ namespace BashkirTheatre14.HostBuilders
                     .ConfigureHttpClient(c =>
                         c.BaseAddress = host)
                     .AddHttpMessageHandler<ApiCachingHttpMessageHandler>();
+
+                services.AddSingleton<QuizItemDataStore>(s =>
+                    new QuizItemDataStore(quizPreviewData)
+                );
 
                 services.AddSingleton<ILoggingService>(s => new FileLoggingService("Logs"));
 

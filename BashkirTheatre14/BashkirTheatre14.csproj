@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\arialmt.ttf" />
+    <None Remove="Resources\Fonts\arial_bolditalicmt.ttf" />
     <None Remove="Resources\Gif\in-love.gif" />
     <None Remove="Resources\Gif\party.gif" />
     <None Remove="Resources\Gif\SadFace.gif" />
@@ -29,10 +31,6 @@
     <None Remove="Resources\Images\SelectQuiz.png" />
     <None Remove="Resources\Images\timeline.png" />
     <None Remove="Resources\Images\zaglushka.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +62,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Fonts\arialmt.ttf" />
+    <Resource Include="Resources\Fonts\arial_bolditalicmt.ttf" />
     <Resource Include="Resources\Gif\in-love.gif" />
     <Resource Include="Resources\Gif\party.gif" />
     <Resource Include="Resources\Gif\SadFace.gif" />

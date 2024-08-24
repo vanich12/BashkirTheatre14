@@ -16,7 +16,7 @@ namespace BashkirTheatre14.Model.Entities
         [property: JsonPropertyName("display")] bool Display
     );
 
-    public record QuizModel(QuizDto QuizDto)
+    public record QuizModel(QuizDto QuizDto, QuizItemData QuizItemData)
     {
         
         private readonly IEnumerator<Question> _questionEnumerator = QuizDto.Questions.GetEnumerator();

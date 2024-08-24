@@ -18,7 +18,8 @@
 <UserControl.Resources>
     <converter:ImageConverter x:Key="ImageConverter"/>
         <converter:EndAtIsNullConverter x:Key="EndAtIsNullConverter"/>
-    <DataTemplate x:Key="ImageTemplate"
+    <converter:EndAtToWordConverter x:Key="EndAtToWordConverter"/>
+        <DataTemplate x:Key="ImageTemplate"
                   DataType="{x:Type vm:ChronicleViewModel}">
         <Border CornerRadius="700"
                 Width="1400"
@@ -669,29 +670,19 @@
                 <TextBlock Margin="0 0 0 76"
                            Foreground="White"
                            FontSize="120"
+                           FontFamily="{DynamicResource Arial}"
                            FontWeight="Bold"
                            TextAlignment="Center">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Text" Value="{Binding Path=CurrentChronicle.Chronicle.StartAt}"/>
-                            <Style.Triggers>
-                                <DataTrigger Value="False">
-                                    <DataTrigger.Binding>
-                                        <MultiBinding Converter="{StaticResource EndAtIsNullConverter}">
-                                            <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
-                                            <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
-                                        </MultiBinding>
-                                    </DataTrigger.Binding>
-                                    <Setter Property="Text">
-                                        <Setter.Value>
-                                            <MultiBinding StringFormat="{}{0} - {1}">
-                                                <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
-                                                <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
-                                            </MultiBinding>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
+                            <Setter Property="Text">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource EndAtToWordConverter}">
+                                        <Binding Path="CurrentChronicle.Chronicle.StartAt"/>
+                                        <Binding Path="CurrentChronicle.Chronicle.EndAt"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
@@ -699,6 +690,7 @@
                 <TextBlock Foreground="White"
                         FontSize="60"
                         TextAlignment="Center"
+                        FontFamily="{DynamicResource Arial}"
                         TextWrapping="Wrap"
                         Width="1668px"
                         helpers:RichTextBoxHelper.HtmlText="{Binding CurrentChronicle.Chronicle.Description}"/>
@@ -763,28 +755,18 @@
                            Foreground="White"
                            FontSize="120"
                            FontWeight="Bold"
+                           FontFamily="{DynamicResource Arial}"
                            TextAlignment="Center">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
-                            <Setter Property="Text" Value="{Binding Path=NewModel.Chronicle.StartAt}"/>
-                            <Style.Triggers>
-                                <DataTrigger Value="False">
-                                    <DataTrigger.Binding>
-                                        <MultiBinding Converter="{StaticResource EndAtIsNullConverter}">
-                                            <Binding Path="NewModel.Chronicle.StartAt"/>
-                                            <Binding Path="NewModel.Chronicle.EndAt"/>
-                                        </MultiBinding>
-                                    </DataTrigger.Binding>
-                                    <Setter Property="Text">
-                                        <Setter.Value>
-                                            <MultiBinding StringFormat="{}{0} - {1}">
-                                                <Binding Path="NewModel.Chronicle.StartAt"/>
-                                                <Binding Path="NewModel.Chronicle.EndAt"/>
-                                            </MultiBinding>
-                                        </Setter.Value>
-                                    </Setter>
-                                </DataTrigger>
-                            </Style.Triggers>
+                            <Setter Property="Text">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource EndAtToWordConverter}">
+                                        <Binding Path="NewModel.Chronicle.StartAt"/>
+                                        <Binding Path="NewModel.Chronicle.EndAt"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
@@ -792,6 +774,7 @@
                         FontSize="60"
                         TextAlignment="Center"
                         TextWrapping="Wrap"
+                        FontFamily="{DynamicResource Arial}"
                         Width="1668px"
                         helpers:RichTextBoxHelper.HtmlText="{Binding NewModel.Chronicle.Description}"/>
             </StackPanel>

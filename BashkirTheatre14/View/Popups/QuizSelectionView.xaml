@@ -28,7 +28,9 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <popupContainers:OpacityPopupContainer>
-        <Border Background="White" CornerRadius="40">
+        <Border Background="White"
+                MaxHeight="1337"
+                CornerRadius="40">
             <StackPanel
             Background="Transparent">
 
@@ -86,8 +88,9 @@
                                                   Margin="20 00"
                                                   VerticalAlignment="Center"
                                                   FontSize="56"
+                                                  FontFamily="{DynamicResource Arial}"
                                                   MaxWidth="550"
-                                                  FontWeight="Bold"
+                                                  FontWeight="Normal"
                                                   TextWrapping="Wrap"
                                                   >
                                                 <TextBlock.Style>
@@ -123,6 +126,7 @@
                     Margin="0 80 20 0"
                     HorizontalAlignment="Center"
                     BorderThickness="3"
+                    FontFamily="{DynamicResource Arial}"
                     Command="{Binding CloseContainerCommand}"
                     Style="{StaticResource PurpleLightButton}"/>
 
@@ -136,6 +140,7 @@
                     Padding="76 38"
                     Style="{StaticResource PurpleLightButton}"
                     Margin="20 80 0 0"
+                    FontFamily="{DynamicResource Arial}"
                     Command="{Binding ToNextPageCommand}"
                     Content="ПРОДОЛЖИТЬ">
                     <b:Interaction.Triggers>

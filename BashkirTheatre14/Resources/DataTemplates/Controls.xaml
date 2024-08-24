@@ -10,36 +10,35 @@
                     xmlns:map1="clr-namespace:BashkirTheatre14.ViewModel.Controls.Map"
                     xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
                     xmlns:utlities="clr-namespace:BashkirTheatre14.Utlities">
-            
+
     <DataTemplate DataType="{x:Type controls:QuizItemViewModel}">
-            <StackPanel VerticalAlignment="Center" 
+        <StackPanel VerticalAlignment="Center" 
                         MaxWidth="1668" HorizontalAlignment="Center">
-                <Image 
+            <Image 
                     Width="1060"
                     Height="900"
                     Margin="0 0 0 240"
-                    Source="../../Resources/Images/QuizCharacters.png"/>
-                
-                <TextBlock Text="{Binding Quiz.QuizDto.Title}"
+                    Source="{Binding Quiz.QuizItemData.ImagePath, Converter={StaticResource ImageConverter}}"/>
+
+            <TextBlock Text="{Binding Quiz.QuizDto.Title}"
                            Style="{StaticResource BoldWhiteTextBlock}"
                            TextAlignment="Center"
                            Margin="0 0 0 0"
-                           LineHeight="138px"
-                />
-                <TextBlock 
+                           LineHeight="138px"/>
+            <TextBlock 
                     Margin="0 80"
                     Style="{StaticResource MainWhiteTextBlock}"
                     TextAlignment="Center"
                     VerticalAlignment="Top"
-                    Text="Когда Красная Шапочка и Буратино устали стоять на фасаде здания, они решили, что пора познакомиться с миром искусства и впервые в жизни посетить театр. Однако, столкнувшись с необходимостью соблюдать определённые правила поведения, они оказались в растерянности."/>
-                    
-                <TextBlock 
+                    Text="{Binding Quiz.QuizItemData.Description}"/>
+
+            <TextBlock 
                     Style="{StaticResource MainWhiteTextBlock}"
                     TextAlignment="Center"
                     FontWeight="ExtraLight"
-                    Text="Давайте поможем им узнать, как следует вести себя в театре, чтобы их визит стал приятным и культурным опытом!" />
+                    Text="{Binding Quiz.QuizItemData.AddDescription}" />
 
-                <Button Content="НАЧАТЬ!" 
+            <Button Content="НАЧАТЬ!" 
                         FontWeight="Bold"
                         FontSize="80"
                         Padding="76 38"
@@ -49,8 +48,8 @@
                         Command="{Binding ToNextPageCommand}"
                         HorizontalAlignment="Center"
                         Style="{StaticResource PurpleLightButton}"/>
-            </StackPanel>
-    </DataTemplate>  
+        </StackPanel>
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type controls:QuizResultViewModel}" >
         <StackPanel VerticalAlignment="Center"
@@ -93,7 +92,7 @@
                 Command="{Binding GoToMainPageCommand}"
                 Style="{StaticResource PurpleLightButton}"/>
         </StackPanel>
-    </DataTemplate> 
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type controls:QuizViewModel}">
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Center">
@@ -119,7 +118,9 @@
                         </b:Interaction.Behaviors>
                     </ProgressBar>
 
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40">
+                    <TextBlock HorizontalAlignment="Center" 
+                               FontFamily="{DynamicResource Arial}"
+                               VerticalAlignment="Center" FontSize="40">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{1}/{0}">
                                 <Binding Path="Quiz.QuizDto.Questions.Count"/>
@@ -198,8 +199,9 @@
                     Content="ПРОДОЛЖИТЬ"
                     FontWeight="Bold"
                     FontSize="80"
+                    FontFamily="{DynamicResource Arial}"
                     Margin="0 0 0 40"
-                    Padding="76 38"
+                    Padding="100 38"
                     Foreground="White"
                     HorizontalAlignment="Center"
                     Command="{Binding NextQuestionsCommand}"

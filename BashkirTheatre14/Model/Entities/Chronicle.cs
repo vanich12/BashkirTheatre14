@@ -11,8 +11,7 @@ namespace BashkirTheatre14.Model.Entities
         [property: JsonPropertyName("id")] int Id,
         [property: JsonPropertyName("description")]
         string Description,
-        [property: JsonPropertyName("startAt")]
-        string StartAt,
+        [property: JsonPropertyName("startAt")] string StartAt,
         [property: JsonPropertyName("endAt")] string EndAt,
         [property: JsonPropertyName("image")] string ImagePath,
         [property: JsonPropertyName("descriptionsWithoutTags")]

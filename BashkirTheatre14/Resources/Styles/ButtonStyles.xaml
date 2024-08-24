@@ -65,6 +65,7 @@
                                     CornerRadius="40">
                                 <TextBlock x:Name="PlaceHolder"
                                            TextWrapping="Wrap"
+                                           FontFamily="{DynamicResource Arial}"
                                            Foreground="{TemplateBinding Foreground}"
                                            Text="{TemplateBinding Content}"
                                            FontSize="{TemplateBinding FontSize}"
@@ -112,7 +113,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource MainFillBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource SecondaryBackgroundBrush}"/>
         <Setter Property="Template" Value="{DynamicResource BaseButtonTemplate}"/>
-        <Setter Property="FontFamily" Value="{DynamicResource SegoeFontFamily}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="Focusable" Value="False"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
@@ -174,11 +175,13 @@
 
     <Style TargetType="TextBlock" x:Key ="MainPageCartTitle">
         <Setter Property="FontSize" Value="56"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Arial}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
     <Style TargetType="TextBlock" x:Key ="MainPageCartDescr">
         <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Arial}"/>
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
     <Style x:Key="MainPageControl" TargetType="Button">
