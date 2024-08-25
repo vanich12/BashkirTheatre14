@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:utlities="clr-namespace:BashkirTheatre14.Utlities"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Loaded="LeftAlignContentSliderUserControl_OnLoaded">
     <UserControl.Resources>
         <DataTemplate x:Key="LeftArrowIcon">
             <Viewbox>
@@ -81,6 +82,7 @@
                                         ManipulationBoundaryFeedback="AnimatedScrollViewer_OnManipulationBoundaryFeedback"
                                         PreviewTouchUp="AnimatedScrollViewer_OnTouchUp">
                 <ItemsControl HorizontalAlignment="Center"
+                              Name="ItemsControl"
                               Margin="{Binding ContentMargin}"
                               ItemsSource="{Binding ItemsSource}"
                               ItemTemplate="{Binding ItemTemplate}">
@@ -91,7 +93,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
                         <Style TargetType="FrameworkElement">
-                            <Setter Property="Width" Value="{Binding ItemWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+                            <Setter Property="MaxWidth" Value="{Binding ItemWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
                             <Setter Property="Height" Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"/>
                         </Style>
                     </ItemsControl.ItemContainerStyle>

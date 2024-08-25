@@ -17,8 +17,8 @@
                 Command="{Binding DataContext.ShowImagesCommand,RelativeSource={RelativeSource FindAncestor,AncestorType=UserControl}}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Grid
-                            Width="300"
+                        <Grid Margin="10 0"
+                            MaxWidth="300"
                             Height="300">
                             <Border
                                 x:Name="Border"

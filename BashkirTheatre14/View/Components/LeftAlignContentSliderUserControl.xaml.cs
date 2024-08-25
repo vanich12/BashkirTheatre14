@@ -128,9 +128,15 @@ namespace BashkirTheatre14.View.Components
             set => SetValue(CurrentItemProperty, value);
         }
 
-        public Thickness ContentMargin=>AlignToCenter
-            ?new Thickness((Width-ItemWidth)/2,0, (Width - ItemWidth) / 2,0) 
-            :new Thickness();
+        public static readonly DependencyProperty ContentMarginProperty = DependencyProperty.Register(
+            nameof(ContentMargin), typeof(Thickness), typeof(LeftAlignContentSliderUserControl), new PropertyMetadata(new Thickness()));
+
+        public Thickness ContentMargin
+        {
+            get { return (Thickness)GetValue(ContentMarginProperty); }
+            set { SetValue(ContentMarginProperty, value); }
+        }
+
 
         private bool LeftCommandEnabled => CurrentItemIndex is not 0;
         private bool RightCommandEnabled => CurrentItemIndex<DisplayItemsCount ?
@@ -240,6 +246,17 @@ namespace BashkirTheatre14.View.Components
         private void AnimatedScrollViewer_OnManipulationBoundaryFeedback(object? sender, ManipulationBoundaryFeedbackEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void LeftAlignContentSliderUserControl_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (AlignToCenter)
+                ContentMargin = new Thickness(
+                    (Width - (ItemsControl.ItemContainerGenerator.ContainerFromIndex(0) as FrameworkElement)
+                        .ActualWidth) / 2, 0,
+                    (Width -
+                     (ItemsControl.ItemContainerGenerator.ContainerFromIndex(ItemsSource.Count - 1) as FrameworkElement)
+                     .ActualWidth) / 2, 0);
         }
     }
 }

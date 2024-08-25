@@ -14,8 +14,8 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type system:String}"
                       x:Key="ImageTemplate">
-            <Grid
-                Width="1668"
+            <Grid Margin="8 0"
+                MaxWidth="1668"
                 Height="1668">
                 <Border
                     x:Name="Border"
