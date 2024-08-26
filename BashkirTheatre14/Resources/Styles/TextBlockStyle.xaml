@@ -26,7 +26,7 @@
 
 
     <Style x:Key="BoldWhiteTextBlock" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="120"/>
+        <Setter Property="FontSize" Value="110"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontFamily" Value="{DynamicResource Arial}" />

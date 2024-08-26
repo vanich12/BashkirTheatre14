@@ -144,25 +144,27 @@
                 </Grid>
 
                 <TextBlock 
-            Style="{StaticResource BoldWhiteTextBlock}"
-            TextAlignment="Center"
-            Margin="100 0"
-            MinHeight="670"
-            MaxWidth="1668"
-            helpers:RichTextBoxHelper.HtmlText="{Binding SelectedQuestion.Title}"/>
+                    Style="{StaticResource BoldWhiteTextBlock}"
+                    TextAlignment="Center"
+                    Margin="100 0"
+                    MinHeight="70"
+                    MaxHeight="1000"
+                    MaxWidth="1668"
+                    TextTrimming="CharacterEllipsis"
+                    helpers:RichTextBoxHelper.HtmlText="{Binding SelectedQuestion.Title}"/>
 
                 <TextBlock
-            Margin="0 50"
-            Text="Выберите один вариант ответа"
-            TextAlignment="Center"
-            Style="{StaticResource MainWhiteTextBlock}"/>
+                    Margin="0 30 0 0"
+                    Text="Выберите один вариант ответа"
+                    TextAlignment="Center"
+                    Style="{StaticResource MainWhiteTextBlock}"/>
 
                 <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel 
                         Height="1100"
-                        Margin="170 240"/>
+                        Margin="170 180"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
