@@ -70,7 +70,7 @@
     <DataTemplate x:Key="CrossIcon">
         <Viewbox>
             <Grid>
-                <Path Data="M49.6274 49.6274L4.37253 4.37258M49.6274 4.37258L4.37253 49.6274" Stroke="#96358C" StrokeThickness="8" StrokeEndLineCap="round"/>
+                <Path Data="M49.6274 49.6274L4.37253 4.37258M49.6274 4.37258L4.37253 49.6274" Stroke="#96358C" StrokeThickness="8" StrokeEndLineCap="Round" StrokeStartLineCap="Round" StrokeLineJoin="Round"/>
             </Grid>
         </Viewbox>
     </DataTemplate>
